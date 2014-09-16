@@ -96,6 +96,7 @@
      <Compile Include="Assets\Scripts\Zombie\Behaviours\LeaderZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\NormalZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\SuicideZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\ZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
      <Compile Include="Assets\Scripts\Zombie\ParticleLayerOrder.js" />
@@ -106,6 +107,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
      <Compile Include="Assets\TurretDestroyer.js" />
   </ItemGroup>
   <ItemGroup>
