@@ -15,10 +15,10 @@ var explosionDamage : float;
 var animator : Animator;
 
 function Awake() {
+	explosionCollider = GetComponent(CircleCollider2D);
 	zombieProperties = GetComponent(ZombieProperties);
 	zombieResources = GetComponent(ZombieResources);
 	animator = GetComponent(Animator);
-	
 }
 
 /*	
@@ -30,8 +30,9 @@ function Awake() {
 */
 
 function selfDestruct() {
-	var colliders : Collider[] = Physics.OverlapSphere(explosionCollider.center,explosionCollider.radius);
-	for (var c : Collider in colliders) {
+	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(explosionCollider.center,explosionCollider.radius);
+	explosionCollider.radius = explosionRadius;
+	for (var c : Collider2D in colliders) {
 		if(c.gameObject.CompareTag("zed")) {
 			c.gameObject.GetComponent(ZedResources).reduceHealth(explosionDamage);
 		}
@@ -39,8 +40,10 @@ function selfDestruct() {
 		//
 		//
 	}
+	// Zombie cuts his own health to zero.
+	zombieResources.reduceHealth(zombieProperties.getMaxHealth());
 	
-
+	// TODO: Input animation and destruction of zombie here.
 
 
 

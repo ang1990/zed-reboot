@@ -17,6 +17,8 @@ var acceleration : float;
 var damping : float;
 var mouseInfluenceWeight : float;
 
+private var shakeIntensity : float;
+
 function Start(){
 	leftBound = EnvironmentAttributes.mapBounds.min.x + (Camera.main.orthographicSize * Camera.main.aspect);	
 	rightBound =  EnvironmentAttributes.mapBounds.max.x - (Camera.main.orthographicSize * Camera.main.aspect);	
@@ -24,9 +26,20 @@ function Start(){
 	topBound = EnvironmentAttributes.mapBounds.max.y - Camera.main.orthographicSize;
 }
 
+// Function to induce camera shake during explosions, etc.
+// Set 0.05 for average-sized explosions.
+
+function induceShake(amount : float) {
+	shakeIntensity = amount;
+}
+
 function Update () {
 	var zedPosition : Vector3 = target.position;
 	var camPosition : Vector3 = transform.position;
+	
+	if (Input.GetKeyDown("h")) {
+		induceShake(0.05);
+	}
 	
 	var mouseScreenPosition : Vector3 = Input.mousePosition;
 	mouseScreenPosition.z = -transform.position.z;
@@ -46,4 +59,10 @@ function Update () {
 	cameraSpeedY *= Mathf.Exp(-damping*Time.deltaTime);
 
 	transform.position += (new Vector3(cameraSpeedX*Time.deltaTime, cameraSpeedY*Time.deltaTime, 0));
+	shakeCamera();
+}
+
+function shakeCamera() {
+	shakeIntensity *= Mathf.Exp(-damping*Time.deltaTime*0.5);
+	transform.position += Random.insideUnitCircle*shakeIntensity;
 }

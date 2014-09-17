@@ -25,12 +25,16 @@ private var isInterceptor : boolean;
 var target : GameObject;
 var targetVisualRange : float;
 
+// Suicide-related data.
+var suicideTimer : float;
+var suicideTime : float;
+
 // Position-related data
 var nextPosition : Vector2;
 
 // Zombie scripts
 var zombieResources : ZombieResources;
-var zombieStrike : ZombieStrike;
+var zombieSuicide : ZombieSuicide;
 var navigator : PolyNavAgent;
 private var animator : Animator;
 	
@@ -39,7 +43,7 @@ private var mapBounds : Bounds;
 
 function Start() {
 	setTarget(GameObject.Find("zed"));
-	zombieStrike = transform.GetComponent(ZombieStrike) as ZombieStrike;
+	zombieSuicide = transform.GetComponent(ZombieSuicide);
 	zombieResources = transform.GetComponent(ZombieResources) as ZombieResources;
 	navigator = transform.GetComponent(PolyNavAgent);
 	animator = transform.GetComponent(Animator);
@@ -48,10 +52,14 @@ function Start() {
 function Update() {
 	navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
 	animator.SetFloat("speed", gameObject.GetComponent(Rigidbody2D).velocity.magnitude);
-	// If zombie is within range, strike the target.
+	// If zombie is within range, start self-destruct timer.
 	if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
-			zombieStrike.hitTarget(target);
-		}
+			suicideTimer += Time.deltaTime;
+	// If zombie started suicide timer for enough time, blow him up.
+			if(suicideTimer > suicideTime)
+				zombieSuicide.selfDestruct();
+		} else
+			suicideTimer = 0;
 		// If the target isn't Zed, then it's probably a turret.
 /*		if(!target.CompareTag("Player")) {
 			if(target.GetComponent(TurretResources.isDead())) {
