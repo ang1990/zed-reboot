@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Visuals\CameraController.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\MainMenu.js">
     <Files>
-      <File FileName="Assets\Scripts\Zombie\Behaviours\SuicideZombieBehaviour.js" Line="55" Column="34" />
-      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Visuals\CameraController.js" Line="40" Column="25" />
-      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="65" Column="3" />
+      <File FileName="Assets\Scripts\Menu\MainMenu.js" Line="69" Column="2" />
+      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="7" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

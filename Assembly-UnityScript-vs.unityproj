@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />
      <Compile Include="Assets\Scripts\Menu\HighScores.js" />
      <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
+     <Compile Include="Assets\Scripts\Menu\LevelMenu.js" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
@@ -109,6 +110,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
      <Compile Include="Assets\TurretDestroyer.js" />
+     <Compile Include="Assets\testScript.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

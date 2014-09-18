@@ -16,14 +16,15 @@ var titleHeight : float;
 var buttonWidth : float;  // fraction of Screen.width
 var buttonHeight : float; // fraction of Screen.width
 var titleLabelY : float; // fraction of Screen.height
-var startButtonY : float; 
-var howToPlayButtonY : float;
-var highScoreButtonY : float;
-var quitButtonY : float;
+var lvButton1 : float; 
+var lvButton2 : float;
+var lvButton3 : float;
+var returnButton : float;
 
-var gameSceneName : String;
-var highScoreSceneName : String;
-var howToPlaySceneName : String;
+var lvName1 : String;
+var lvName2 : String;
+var lvName3 : String;
+var mainMenuName : String;
 
 function Awake() {
 	screenToDefaultScreenRatio = parseFloat(Screen.width)/defaultScreenWidth;
@@ -44,25 +45,23 @@ function OnGUI() {
 			titleHeight*Screen.width); // height until first button
 	GUI.Label(buttonRect, GUIContent("zed"), centeredStyle);
 
-	// Start game
-	if (newButton(startButtonY, "Start Survival")) {
+	// Level 1, 2 and 3.
+	if (newButton(lvButton1, "Level 1")) {
 		Time.timeScale = 1;
-		Application.LoadLevel(gameSceneName);
+		Application.LoadLevel(lvName1);
 	}
 	
-	// High scores
-	if (newButton(highScoreButtonY, "High Scores")) {
-		Application.LoadLevel(highScoreSceneName);
+	if (newButton(lvButton2, "Level 2")) {
+		Application.LoadLevel(lvName2);
 	}
 
-	// How to play
-	if (newButton(howToPlayButtonY, "How To Play")) {
-		Application.LoadLevel(howToPlaySceneName);
+	if (newButton(lvButton3, "Level 3")) {
+		Application.LoadLevel(lvName3);
 	}
 
-	// Quit game
-	if (newButton(quitButtonY, "Quit Game")) {
-		Application.Quit();
+	// Return to main menu.
+	if (newButton(returnButton, "Return to Main")) {
+		Application.LoadLevel(mainMenuName);
 	}
 
 	GUI.skin = null;
