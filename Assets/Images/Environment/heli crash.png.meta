@@ -1,0 +1,92 @@
+fileFormatVersion: 2
+guid: bdd3887f0ac80ca4fae7bbad2cf646f5
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: heli crash
+    21300002: heli crash_0
+    21300004: heli crash_1
+    21300006: heli crash_2
+    21300008: heli crash_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 500
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: heli crash_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2735
+        width: 2422
+        height: 2226
+      alignment: 9
+      pivot: {x: .444900513, y: .460800081}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: heli crash_1
+      rect:
+        serializedVersion: 2
+        x: 2669
+        y: 2735
+        width: 2648
+        height: 2171
+      alignment: 9
+      pivot: {x: .39979142, y: .472575396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: heli crash_2
+      rect:
+        serializedVersion: 2
+        x: 2646
+        y: 2
+        width: 2702
+        height: 2671
+      alignment: 9
+      pivot: {x: .337214231, y: .440622777}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: heli crash_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2438
+        height: 2681
+      alignment: 9
+      pivot: {x: .441468894, y: .439501762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
