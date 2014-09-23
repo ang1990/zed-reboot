@@ -121,3 +121,8 @@ function spawnContinuous(prefab : GameObject, startTime : float, duration : floa
 		zombieNumber : int, edge : Edge) {	
 	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, edge));
 }
+
+function spawnConstantly(prefab : GameObject, startTime : float, duration : float, delay : float,
+		edge : Edge) {
+	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, edge));
+		}

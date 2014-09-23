@@ -16,6 +16,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 	private var endTime : float;
 	private var spawnDelay : float;
 	private var zombiesLeftCount : int;	
+	private var spawnConstantly : boolean = false;
 	
 	private var lastSpawnTime : float;
 		
@@ -77,6 +78,22 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		spawnDelay = duration/count;
 	}
 	
+	function ZombieSpawnJob(prefab : GameObject, 
+							startTime : float,
+							duration : float,
+							delayBetweenSpawns : float,
+							edge : Edge)
+	{
+		this.prefab = prefab;
+		this.locationMode = LocationMode.SINGLE_EDGE;	
+		this.edge = edge;
+		this.startTime = startTime;
+		this.endTime = startTime + duration;
+		this.zombiesLeftCount = 1;		
+		spawnDelay = delayBetweenSpawns;
+		this.spawnConstantly = true;
+	}
+	
 	function spawnIfDue() {
 		if (Time.timeSinceLevelLoad > startTime) {
 			while ((zombiesLeftCount > 0) && (Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {			
@@ -92,7 +109,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 				var zombie : GameObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
 				zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
 				zombiesLeftCount--;
-				if (zombiesLeftCount > 0) {
+				if (zombiesLeftCount > 0 || spawnConstantly) {
 					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;
 					spawnDelay = timeUntilEnd/zombiesLeftCount;
 				}

@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\MainMenu.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js">
     <Files>
-      <File FileName="Assets\Scripts\Menu\MainMenu.js" Line="69" Column="2" />
-      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="7" Column="1" />
+      <File FileName="Assets\SurvivalSpawnSequence.js" Line="46" Column="1" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" Line="19" Column="43" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="127" Column="83" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" Line="63" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
