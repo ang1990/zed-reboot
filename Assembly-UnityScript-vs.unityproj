@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
      <Compile Include="Assets\Scripts\Environment\TimedObjectDestructor.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />

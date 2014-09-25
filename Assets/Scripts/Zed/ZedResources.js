@@ -98,7 +98,7 @@ function Update() {
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
 			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
-		} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
+		} /* else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
 			if (currentWeaponIndex == 2) {
 				animator.SetTrigger("changeRifles");
 			}
@@ -107,7 +107,7 @@ function Update() {
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
 			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
-		} 
+		} */
 	}
 
 	changeOverlay();

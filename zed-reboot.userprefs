@@ -1,6 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\NamePrompt.js">
+    <Files>
+      <File FileName="Assets\Scripts\Zombie\ZombieSuicide.js" Line="45" Column="132" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" Line="24" Column="55" />
+      <File FileName="Assets\Scripts\Menu\HighScores.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="69" Column="54" />
+      <File FileName="Assets\Scripts\Miscellaneous\NamePrompt.js" Line="45" Column="11" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
