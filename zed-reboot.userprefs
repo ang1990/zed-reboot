@@ -1,11 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\MainMenu.js">
     <Files>
-      <File FileName="Assets\SurvivalSpawnSequence.js" Line="46" Column="1" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" Line="19" Column="43" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="127" Column="83" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" Line="63" Column="4" />
+      <File FileName="Assets\Scripts\Menu\MainMenu.js" Line="50" Column="1" />
+      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\HowToPlay.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="85" Column="89" />
+      <File FileName="Assets\Scripts\Zed\Perk\PerkList.js" Line="26" Column="26" />
+      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="104" Column="104" />
+      <File FileName="Assets\Scripts\Turret\BarrelTurner.js" Line="53" Column="1" />
+      <File FileName="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" Line="128" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

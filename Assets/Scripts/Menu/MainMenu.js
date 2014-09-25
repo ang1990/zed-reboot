@@ -16,11 +16,13 @@ var titleHeight : float;
 var buttonWidth : float;  // fraction of Screen.width
 var buttonHeight : float; // fraction of Screen.width
 var titleLabelY : float; // fraction of Screen.height
+var levelButtonY : float;
 var startButtonY : float; 
 var howToPlayButtonY : float;
 var highScoreButtonY : float;
 var quitButtonY : float;
 
+var levelMenuName : String;
 var gameSceneName : String;
 var highScoreSceneName : String;
 var howToPlaySceneName : String;
@@ -43,6 +45,10 @@ function OnGUI() {
 			titleWidth*Screen.width,
 			titleHeight*Screen.width); // height until first button
 	GUI.Label(buttonRect, GUIContent("zed"), centeredStyle);
+
+	if (newButton(levelButtonY, "Stage Mode")) {
+		Application.LoadLevel(levelMenuName);
+	}
 
 	// Start game
 	if (newButton(startButtonY, "Start Survival")) {

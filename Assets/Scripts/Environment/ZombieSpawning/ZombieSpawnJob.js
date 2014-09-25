@@ -109,7 +109,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 				var zombie : GameObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
 				zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
 				zombiesLeftCount--;
-				if (zombiesLeftCount > 0 || spawnConstantly) {
+				if (zombiesLeftCount > 0 && !spawnConstantly) {
 					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;
 					spawnDelay = timeUntilEnd/zombiesLeftCount;
 				}

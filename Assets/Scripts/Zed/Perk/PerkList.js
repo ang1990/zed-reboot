@@ -23,7 +23,7 @@ class PerkList {
 		} else if (perk instanceof WeaponPerk) {
 			weaponPerkList.Add(perk as WeaponPerk);
 		} else if (perk instanceof LaserPerk) {
-			laserPerk = perk;
+			laserPerk = perk as LaserPerk;
 		}
 		lastAdded = perk;
 	}
