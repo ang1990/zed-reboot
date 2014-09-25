@@ -101,15 +101,15 @@ function trimUnnecessaryComponents() {
             }
     }
     if(transform.childCount > 0) {
-    	var childrenTransforms : Transform[] = transform.GetComponentsInChildren(Transform) as Transform[];    
-    	for(var i : int = 0; i < childrenTransforms.Length; i++) {
-    		var child : Transform = childrenTransforms[i];    		
-    		if(child.gameObject.CompareTag("detector")) {
-	    		Destroy(child.gameObject);
-	    	} else if(child.gameObject.CompareTag("collisionDetector")) {
-	    		Destroy(child.gameObject);
-	    	}
-	    	child.gameObject.isStatic = true;
+    	var childrenTransforms = transform.GetComponentsInChildren(Transform) as Transform[];
+	    for(var i : int = 0; i < childrenTransforms.Length; i++) {
+	    	var child : Transform = childrenTransforms[i];    		
+	    	if(child.gameObject.CompareTag("detector")) {
+		   		Destroy(child.gameObject);
+		   	} else if(child.gameObject.CompareTag("collisionDetector")) {
+		   		Destroy(child.gameObject);
+		   	}
+		   	child.gameObject.isStatic = true;
     	}    	
     }  
     gameObject.isStatic = true;    
