@@ -79,7 +79,7 @@ function OnTriggerStay2D(other : Collider2D) {
 			overlapDistance = colliderRadius + otherCollisionBehavior.getColliderRadius() - absPositionDifference;
 			adjustedPushInfluence = pushInfluence / (pushInfluence + otherCollisionBehavior.pushInfluence);
 			pushImpulse = directionSign*adjustedPushInfluence*overlapDistance*pushDirection;
-			Debug.Log(transform.root.gameObject.name);
+//			Debug.Log(transform.root.gameObject.name);
 		}
 		otherCollisionBehavior.displaceTransform(pushImpulse);	
 		

@@ -59,7 +59,9 @@ function Update() {
 					var currentMeleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
 					animator.SetBool("meleeStrike", true);
 				}
-			} 
+			} else if(currentWeapon instanceof TurretPlacerWeapon) {
+				successfulStrike = currentWeapon.strike();
+			}
 		} 
 	} 	else if (Input.GetMouseButton(1) && Time.timeScale != 0) {
 		currentWeapon.secondaryStrike();

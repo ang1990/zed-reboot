@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Instantiates the weapons that Zed can currently use.
  */
 
@@ -9,11 +9,12 @@ var zedResources : ZedResources;
 var revolverBulletPrefab : GameObject;
 var shotgunBulletPrefab : GameObject;
 var assaultRifleBulletPrefab : GameObject;
+var turretPrefabs: GameObject;
 var zed : GameObject;
 var clips : AudioClip[];
 
 function initializeArsenal () : Weapon[] {
-	var weapons : Weapon[] = new Weapon[3];
+	var weapons : Weapon[] = new Weapon[5];
 			
 	/*
 	Parameters in order for projectile weapon:
@@ -47,8 +48,12 @@ function initializeArsenal () : Weapon[] {
 		"shotgun", shotgunBulletPrefab, zed, new Vector2(0.8,-0.13), clips[4], clips[5]);
 	
 	// AssaultRifle
-//	weapons[3] = new ProjectileWeapon(7, 20, 20, 0, 1, 24, 1, 20, 0.1, 2, 
-//		"assaultRifle", assaultRifleBulletPrefab, zed, new Vector2(0.8,-0.13), clips[6], clips[7]);
+	weapons[3] = new ProjectileWeapon(7, 20, 20, 0, 1, 24, 1, 20, 0.1, 2, 
+		"assaultRifle", assaultRifleBulletPrefab, zed, new Vector2(0.8,-0.13), clips[6], clips[7]);
+		
+	// Turrent placer
+	weapons[4] = new TurretPlacerWeapon(1.1, 50, 20, 20, 1, 1, 1, 10, 0.5, 2, 
+		"turretplacer", turretPrefabs, zed, new Vector2(0.8,-0.13), clips[4], clips[5]);
 	
 	
 	// initialize Sword strike data: time, angle, length (for raycast)

@@ -82,7 +82,7 @@ function Update() {
 			animator.SetBool("carrySword", true);
 			animator.SetBool("carryRifle", false);
 			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
 		} else if (Input.GetKeyDown("2") && currentWeaponIndex != 1) {
 			currentWeaponIndex = 1;
 			animator.SetBool("carrySword", false);
@@ -98,7 +98,7 @@ function Update() {
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
 			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
-		} /* else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
+		} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
 			if (currentWeaponIndex == 2) {
 				animator.SetTrigger("changeRifles");
 			}
@@ -107,7 +107,17 @@ function Update() {
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
 			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
-		} */
+		} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
+			if (currentWeaponIndex == 2) {
+				animator.SetTrigger("changeRifles");
+			}
+			currentWeaponIndex = 4;
+			animator.SetBool("carrySword", false);
+			animator.SetBool("carryRifle", true);
+			animator.SetBool("carryPistol", false);
+			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+		} 
+		
 	}
 
 	changeOverlay();

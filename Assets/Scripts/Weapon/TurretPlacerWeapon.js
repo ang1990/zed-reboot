@@ -4,7 +4,7 @@
 
 #pragma strict
 
-class ProjectileWeapon extends Weapon {
+class TurretPlacerWeapon extends Weapon {
 	var rateOfFire : float;
 	var firePower : float;
 	var bulletSpeed : float;
@@ -12,7 +12,7 @@ class ProjectileWeapon extends Weapon {
 	var bulletsSpawned : int;
 	var clipSize : int;
 	var reloadTime : float;
-	var bulletPrefab : GameObject;
+	var turretPrefab : GameObject;
 	var zedMovement : ZedMovement;
 	var zedResources : ZedResources;
 	var spawnOffset : Vector2;
@@ -34,8 +34,10 @@ class ProjectileWeapon extends Weapon {
 	var scatterRelaxationFactor : float;
 	var lastShotScatterAngle : float;
 	
+	
+	
 			
-	function ProjectileWeapon(rateOfFire : float, 
+	function TurretPlacerWeapon(rateOfFire : float, 
 			firePower : float, 
 			bulletSpeed : float,
 			spread : float,
@@ -46,7 +48,7 @@ class ProjectileWeapon extends Weapon {
 			scatterSaturationFactor : float,
 			scatterRelaxationFactor : float,
 			id : String,
-			bulletPrefab : GameObject, 
+			turretPrefab : GameObject, 
 			owner : GameObject,
 			spawnOffset : Vector2,
 			firingSound : AudioClip,
@@ -63,7 +65,7 @@ class ProjectileWeapon extends Weapon {
 		this.scatterSaturationFactor = scatterSaturationFactor;
 		this.scatterRelaxationFactor = scatterRelaxationFactor;
 		this.id = id;
-		this.bulletPrefab = bulletPrefab;
+		this.turretPrefab = turretPrefab;
 		this.owner = owner;
 		this.zedMovement = owner.GetComponent(ZedMovement);
 		this.zedResources = owner.GetComponent(ZedResources);
@@ -71,7 +73,7 @@ class ProjectileWeapon extends Weapon {
 		this.firingSound = firingSound;
 		this.reloadingSound = reloadingSound;
 			
-		bullets = 1000; // hardcoded, should be dynamic in future implementation.
+		bullets = 3; // hardcoded, should be dynamic in future implementation.
 		reload();
 	}
 	
@@ -87,53 +89,22 @@ class ProjectileWeapon extends Weapon {
 			actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
 			actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
 		}
-	
+		
 		if (Time.time > reloadEndTime && 
 			Time.time > lastShotTime + 1.0/actualRateOfFire ) {
 			justReloaded = false;
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
 				successfulStrike = true;
-				
-				var gunAngle : float = zedMovement.getUpperBodyAngle();
-				// apply scatter
-				var scatterAngle = zedResources.getCurrentScatterAngle();
-				var shotAngle : float = gunAngle + Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
-				
-
-				for (var b : int = 0; b < bulletsSpawned; b++) {
-					var newBullet : GameObject = Instantiate(bulletPrefab, 
-						zedMovement.getPosition(), 
-						Quaternion.identity);
-
-					var angleWithSpread : float = shotAngle + Random.Range(-0.5*spread, 0.5*spread);
-					
-					newBullet.transform.eulerAngles = new Vector3(0, 0, angleWithSpread);
-					
-					newBullet.transform.position.x = newBullet.transform.position.x
-							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
-							- Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
-						
-					newBullet.transform.position.y = newBullet.transform.position.y
-							+ Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
-							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
-				
-					
-					newBullet.GetComponent(BulletProperties).setPower(firePower);
-					newBullet.GetComponent(BulletProperties).setOwner(owner);
-					newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
-									
-					increaseScatterAngle();
-					
-					AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
-					lastShotTime = Time.time;
-				}
+				placeTurret();
 
 				if (bulletsInClip == 0) {
-					reload();
+					if(bullets > 0)
+						reload();
 				}
 			} else {
-				reload();
+				if(bullets > 0)
+					reload();
 			}
 		}
 
@@ -212,5 +183,9 @@ class ProjectileWeapon extends Weapon {
 	// @Override
 	function getClipSize() : int {
 		return clipSize; // 0 is melee
+	}
+	
+	function placeTurret() {
+		Instantiate(turretPrefab, GameObject.Find("zed").GetComponent(ZedMovement).getPosition(), Quaternion.identity);
 	}
 }
