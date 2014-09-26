@@ -6,6 +6,7 @@
 
 class Weapon extends UnityEngine.Object {
 	var id : String;
+	var weaponType : String;
 	var owner : GameObject;
 
 	function strike() : boolean {

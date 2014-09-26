@@ -19,7 +19,6 @@ var animator : Animator;
 var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
 
-var weaponArsenal : WeaponArsenal;
 var perkStock : PerkStock;
 
 var zedProperties : ZedProperties;
@@ -48,13 +47,12 @@ var fastBloodSpawner : ParticleSystem;
  *	HEALTH
  */
 function Start() {
-	// initializes weapons-array
-	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
 	health = 100;
 	
 	activePerks = new PerkList();
 	overlay = GameObject.Find("overlay");
+	changeWeapon();
 }
 
 function Update() {
@@ -76,51 +74,65 @@ function Update() {
 			animatorDead = true;
 			trimUnnecessaryComponents();
 		}
+	// This handles weapon changing. 
 	} else if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {
 		if (Input.GetKeyDown("1") && currentWeaponIndex != 0) {
-			currentWeaponIndex = 0;
-			animator.SetBool("carrySword", true);
-			animator.SetBool("carryRifle", false);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
+			if(weapons[0].id != "nullWeapon") {
+				currentWeaponIndex = 0;
+				changeWeapon();
+			}
 		} else if (Input.GetKeyDown("2") && currentWeaponIndex != 1) {
-			currentWeaponIndex = 1;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", false);
-			animator.SetBool("carryPistol", true);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+			if(weapons[1].id != "nullWeapon") {
+				currentWeaponIndex = 1;
+				changeWeapon();
+			}
 		} else if (Input.GetKeyDown("3") && currentWeaponIndex != 2) {
-			if (currentWeaponIndex == 3) {
-				animator.SetTrigger("changeRifles");
+			if(weapons[2].id != "nullWeapon") {
+				currentWeaponIndex = 2;
+				changeWeapon();
 			}
-			currentWeaponIndex = 2;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", true);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
-			if (currentWeaponIndex == 2) {
-				animator.SetTrigger("changeRifles");
+			if(weapons[3].id != "nullWeapon") {
+				currentWeaponIndex = 3;
+				changeWeapon();
 			}
-			currentWeaponIndex = 3;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", true);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
-			if (currentWeaponIndex == 2) {
-				animator.SetTrigger("changeRifles");
-			}
 			currentWeaponIndex = 4;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", true);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+		// Right now we don't have an animation for this state. So we just adopt the previous state.
+		//	changeWeaponAnimator();
 		} 
 		
 	}
 
 	changeOverlay();
+}
+
+private function changeWeapon() {
+	if(weapons[currentWeaponIndex].id == "sword") {
+		animator.SetBool("carrySword", true);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryPistol", false);
+	} else if(weapons[currentWeaponIndex].id == "revolver") {
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryPistol", true);
+	} else if(weapons[currentWeaponIndex].id == "shotgun") {
+		if (animator.GetBool("carryRifle")) {
+			animator.SetTrigger("changeRifles");
+		}
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryPistol", false);
+	} else if(weapons[currentWeaponIndex].id == "assaultRifle") {
+		if (animator.GetBool("carryRifle")) {
+			animator.SetTrigger("changeRifles");
+		}
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryPistol", false);
+	}
+	AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+
 }
 
 function reduceHealth(reductionAmount : float) {

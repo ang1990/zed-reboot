@@ -73,6 +73,7 @@ class ProjectileWeapon extends Weapon {
 			
 		bullets = 1000; // hardcoded, should be dynamic in future implementation.
 		reload();
+		this.weaponType = "projectileWeapon";
 	}
 	
 	// @Override

@@ -82,6 +82,8 @@
      <Compile Include="Assets\Scripts\Weapon\TurretPlacerWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\survivalArsenal.js" />
      <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserSight.js" />
@@ -112,6 +114,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
+     <Compile Include="Assets\TurretDestroyer.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

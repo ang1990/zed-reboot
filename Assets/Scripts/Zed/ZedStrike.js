@@ -36,9 +36,9 @@ function Update() {
 	}
 	// instantiate when trigger pressed and rate of fire
 	// according to weapon in zedResources
-	else if (Input.GetMouseButton(0) && Time.timeScale != 0 ) {
+	else if (Input.GetMouseButton(0) && Time.timeScale > 0 ) {
 		animatorStateInfo = animator.GetCurrentAnimatorStateInfo(1);
-		if (animatorReady(animatorStateInfo, zedResources.currentWeaponIndex)) {
+		if (animatorReady(animatorStateInfo, currentWeapon.weaponType)) {
 			if (currentWeapon instanceof ProjectileWeapon) {
 				var successfulStrike : boolean = currentWeapon.strike();
 				var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
@@ -67,7 +67,7 @@ function Update() {
 		currentWeapon.secondaryStrike();
 	} else {
 		animator.SetBool("meleeStrike", false);
-		if (zedResources.currentWeaponIndex == SWORD) {
+		if (currentWeapon.weaponType == "meleeWeapon") {
 			var meleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
 			animatorStateInfo = animator.GetCurrentAnimatorStateInfo(1);
 			if (animatorStateInfo.IsName("SwordUp")) {
@@ -90,14 +90,17 @@ function getPercentageHit() : float {
 	return ((1.0*bulletsHit)/totalBulletsSpawned)*100;
 }
 
-function animatorReady(stateInfo : AnimatorStateInfo, currentWeaponIndex : int) : boolean {
-	if (currentWeaponIndex == SWORD) {
+// The weaponType is a variable attached to each weapon.
+// It is used to determine what sort of weapon class is used.
+
+function animatorReady(stateInfo : AnimatorStateInfo, weaponType : String) : boolean {
+	if (weaponType == "meleeWeapon") {
 		return (stateInfo.IsName("WeaponLayer.SwordRelaxed") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordUp"));
-	} else if (currentWeaponIndex == SHOTGUN) {
+	} else if (weaponType == "scattergun") {
 		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.ShotGunStrike"));
-	} else if (currentWeaponIndex == ASSAULT_RIFLE) {
+	} else if (weaponType == "rifle") {
 		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.AssaultRifleStrike"));
-	} else if (currentWeaponIndex == PISTOL) {
+	} else if (weaponType == "pistol") {
 		return (stateInfo.IsName("WeaponLayer.PistolRelaxed") || stateInfo.IsName("WeaponLayer.PistolStrike"));
 	} else {
 		return true;

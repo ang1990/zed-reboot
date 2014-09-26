@@ -38,6 +38,7 @@ class MeleeWeapon extends Weapon {
 		this.unsheathSound = unsheathSound;
 		
 		zedTransform = owner.transform;
+		this.weaponType = "meleeWeapon";
 	}
 
 	// @Override
