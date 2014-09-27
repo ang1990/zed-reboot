@@ -17,18 +17,87 @@ private var lastCheckTime : float;
 
 private var spawnJobs : List.<ZombieSpawnJob>;
 
-private var HEALTH_INCREASE_TIMESTEP : float = 200;
+var waves : List.<ZombieWave>;
+
+var isEndless : boolean = false;
+var waveNum : int = 1;
+
+var easyMode : float = 0.5;
+var normalMode : float = 1;
+var hardMode : float = 2;
+var insaneMode : float = 3.5;
+
+var limitZombieCount: boolean;
+var maxZombiesLimit : int = 50;
+var undeadCount : int;
+
+var diffMultiplier : float;
 
 function Awake() {
 	spawnJobs = new List.<ZombieSpawnJob>();
+	waves = new List.<ZombieWave>();
+	// Default is Normal Mode for Missions.
+	if(!isEndless) {
+		diffMultiplier = normalMode;
+	}
+	// Survival starts with easy mode, but can be modified in future. TODO
+	else
+		diffMultiplier = easyMode;
 }
 
 function Update() {
 	// only check for spawning every so often to avoid performance drop
 	if ((Time.time - lastCheckTime) > checkingDelay) {
-		lastCheckTime = Time.time;		
-		handleSpawnJobs();	
+		lastCheckTime = Time.time;
+		// Count the zombies in the field.
+		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
+		// TODO: I think this is breaking Unity.
+		Debug.Log("Handling jobs.");
+//		if(spawnJobs.Count > 0)
+			handleSpawnJobs();
+		Debug.Log("jobs handled");
 	}
+}
+
+function addWave(newWave : ZombieWave) {
+	waves.Add(newWave);
+}
+
+function startNextWave() {
+// Pull out all the spawn jobs from the next wave.
+	if(!isEndless) {
+		spawnJobs = waves[waveNum].getWaveSpawns();
+		Debug.Log("Getting spawns");
+		waveNum++;
+		Debug.Log("Wave removed.");
+	}
+	else {
+		spawnJobs = waves[waveNum%waves.Count].getWaveSpawns();
+		waveNum++;
+	// We could step up difficulty by sets of waves. That kind of makes more sense.
+	// If we do that, we could put all that work in here.
+		switch (waveNum / waves.Count) {
+			case 0: diffMultiplier = easyMode;
+					break;
+			case 1: diffMultiplier = normalMode;
+					break;
+			case 2: diffMultiplier = hardMode;
+					break;
+			case 3: diffMultiplier = insaneMode;
+					break;
+			default: diffMultiplier = waveNum / waves.Count - 2;
+						break;
+		}
+	}
+	Debug.Log("Wave started");
+}
+
+function noMoreSpawns() {
+	return spawnJobs.Count == 0;
+}
+
+function noMoreWaves() {
+	return waves.Count == 0;
 }
 
 function handleSpawnJobs() {
@@ -36,93 +105,11 @@ function handleSpawnJobs() {
 	while (i < spawnJobs.Count) {
 		if (spawnJobs[i].isExpired()) {
 			spawnJobs.RemoveAt(i);
-		} else {
-			spawnJobs[i].setHealthMultiplier(1 + (Time.timeSinceLevelLoad / HEALTH_INCREASE_TIMESTEP));
-			spawnJobs[i].spawnIfDue();
+		} else if(limitZombieCount && undeadCount < maxZombiesLimit) {
+			spawnJobs[i].setHealthMultiplier(1 + (diffMultiplier));
+			if(spawnJobs[i].spawnIfDue())
+				undeadCount++;
 			i++;
 		}
 	}
 }
-
-/*
- * Creates an instance of the specified prefab at a 
- * certain position on or outside the map
- * time		Specifies the number of seconds after the start of the survival mode
- * 			when the spawning should take place after the start of the level
- */
-function spawnSingle(prefab : GameObject, time : float, position : Vector2) {
-	spawnSingle(prefab, time, position, Vector2.zero);
-}
-
-
-/* 
- * Creates an instance of the specified prefab at a 
- * certain position on or outside the map
- * spread is the maximum random deviation from position in
- * x and y direction
- * (uniformly distributed)
- * time		Specifies the number of seconds after the start of the survival mode
- * 			when the spawning should take place after the start of the level
- */
-function spawnSingle(prefab : GameObject, time : float, position : Vector2, spread : Vector2) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, position, spread));
-}
-
-/* 
- * Creates an instance of the specified prefab at a 
- * random position on a specified edge
- * (uniformly distributed)
- * time		Specifies the number of seconds after the start of the survival mode
- * 			when the spawning should take place after the start of the level
- */
-function spawnSingle(prefab : GameObject, time : float, edge : Edge) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, edge));
-}
-
-/* 
- * Creates an instance of the specified prefab at a 
- * random position on a specified edge
- * (uniformly distributed)
- * time		Specifies the number of seconds after the start of the survival mode
- * 			when the spawning should take place after the start of the level
- */
-function spawnSingle(prefab : GameObject, time : float, edges : Edge[]) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, edges));
-}
-
-
-/*
- * 
- * endTime 	Time in seconds for how long spawning should take place (set to Mathf.infinity
- * 			for spawning until game ends.
- */
-function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		zombieNumber : int, position : Vector2) {
-	spawnContinuous(prefab, startTime, duration, zombieNumber, position, new Vector2(0, 0));
-}
-
-
-/*
- * 
- * endTime 	Time in seconds for how long spawning should take place (set to Mathf.infinity
- * 			for spawning until game ends.
- */
-function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		zombieNumber : int, position : Vector2, spread : Vector2) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, position, spread));
-}
-
-/*
- * 
- * endTime 	Time in seconds for how long spawning should take place (set to Mathf.infinity
- * 			for spawning until game ends.
- */
-function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		zombieNumber : int, edge : Edge) {	
-	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, edge));
-}
-
-function spawnConstantly(prefab : GameObject, startTime : float, duration : float, delay : float,
-		edge : Edge) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, delay, edge));
-		}

@@ -84,7 +84,7 @@ function Update () {
 				numSpawned = 0;
 			}
 			else {
-				zombieSpawnEngine.spawnSingle(zombiePrefab,Time.time,transform.position,Vector2(1,1));
+//				zombieSpawnEngine.spawnSingle(zombiePrefab,Time.time,transform.position,Vector2(1,1));
 				numSpawned++;
 			}
 		}

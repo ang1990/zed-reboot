@@ -101,5 +101,5 @@ private function getAssaultRifle() : ProjectileWeapon {
 
 private function getTurretPlacer() : TurretPlacerWeapon {
 	return new TurretPlacerWeapon(1.1, 50, 20, 20, 1, 1, 1, 10, 0.5, 2, 
-		"turretplacer", turretPrefabs, zed, new Vector2(0.8,-0.13), clips[4], clips[5]);
+		"turretplacer", turretPrefabs, zed, new Vector2(1,0), clips[4], clips[5]);
 }

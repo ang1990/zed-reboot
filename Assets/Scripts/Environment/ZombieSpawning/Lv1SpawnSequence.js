@@ -9,6 +9,8 @@ var zombieSpawnEngine : ZombieSpawnEngine;
 var normalZombiePrefab : GameObject;
 var bossZombiePrefab : GameObject;
 
+var singleWave : ZombieWave;
+
 function Start () {
 	// possible commands:
 	// spawnSingle(prefab, time, position)
@@ -21,14 +23,18 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
 
-	zombieSpawnEngine.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
+	singleWave = new ZombieWave();
+
+	zombieSpawnEngine.isEndless = false;
+
+	singleWave.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
 
 
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 3, 10, 5, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 8, 10, 5, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 13, 10, 5, Edge.RIGHT);
+	singleWave.spawnContinuous(normalZombiePrefab, 3, 10, 5, Edge.RIGHT);
+	singleWave.spawnContinuous(normalZombiePrefab, 8, 10, 5, Edge.RIGHT);
+	singleWave.spawnContinuous(normalZombiePrefab, 13, 10, 5, Edge.RIGHT);
 
-
+	zombieSpawnEngine.addWave(singleWave);
 	
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 0, 150, 130, Edge.LEFT);
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.RIGHT);

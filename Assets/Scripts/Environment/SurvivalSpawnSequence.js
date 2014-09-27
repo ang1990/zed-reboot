@@ -23,7 +23,7 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
 // Bosses
-	zombieSpawnEngine.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
+/*	zombieSpawnEngine.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
 	zombieSpawnEngine.spawnContinuous(bossZombiePrefab, 120, 10000, 140, Edge.LEFT);
 // Initial set
 	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 0, 50, 10, Edge.LEFT);
@@ -42,5 +42,5 @@ function Start () {
 	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.TOP);
 	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
 
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);*/
 }

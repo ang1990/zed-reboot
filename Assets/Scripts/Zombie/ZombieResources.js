@@ -69,7 +69,7 @@ function Update() {
 		//spriteRenderer.sortingOrder = -10;
 		
 		// Tell Zed the difficulty of the zombie which was killed
-		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());
+		zedResources.handleZombieKilled(zombieProperties.getExpGained());
 		
 		for (var i : int = zombieProperties.getCoinsDroppable(); i > 0; i--) {
 			if (Random.Range(0.0, 1.0) < zombieProperties.getCoinDropProbability()) {

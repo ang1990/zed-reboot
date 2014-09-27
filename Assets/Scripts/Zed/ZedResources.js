@@ -12,7 +12,7 @@ private var skillPoints : int = 0;
 private var money : int = 0;
 
 private var animatorDead : boolean;
-private var promptOpened : boolean = false;
+private var defeated : boolean = false;
 
 var animator : Animator;
 
@@ -63,10 +63,8 @@ function Update() {
 	}
 	
 	if (!isAlive()) {	// Zed is dying
-		if (animatorDead && !promptOpened && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
-			Camera.main.GetComponent(NamePrompt).openPrompt();
-			promptOpened = true;
-			Time.timeScale = 0;
+		if (animatorDead && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
+			defeated = true;
 		} else if (!animatorDead) {
 			animator.SetTrigger("die");
 			slowBloodSpawner.Emit(300);
@@ -105,6 +103,10 @@ function Update() {
 	}
 
 	changeOverlay();
+}
+
+function isDefeated() : boolean {
+	return defeated;
 }
 
 private function changeWeapon() {
@@ -195,6 +197,10 @@ function trimUnnecessaryComponents() {
 /*
  *	EXPERIENCE & LEVEL
  */ 
+ 
+ // Zed gains experience from zombie kills.
+ // Account for all that here. For example, HP Vamp on kill, if implemented, wil go here.
+ 
 function handleZombieKilled(zombieDifficultyLevel : int) {
 	gainExperience(zombieDifficultyLevel);
 }
@@ -213,8 +219,24 @@ function changeMoney(difference : int) {
 	money += difference;
 }
 
+
+// The function controlling Zed's level is here.
+// A Square function is used.
+
+
+
 function updateLevel() {
-	level = Mathf.FloorToInt(Mathf.Log(experience));
+	var newLevel : int = expToLevel(experience);
+	if(newLevel > level) {
+		changeSkillPoints(newLevel-level);
+		level = newLevel;
+	}
+}
+
+// EXP = 50 (1+LEVEL)^2.
+
+private function expToLevel(exp : float) : float {
+	return Mathf.FloorToInt(Mathf.Sqrt(exp/50.0))+1;
 }
 
 function getLevel() {

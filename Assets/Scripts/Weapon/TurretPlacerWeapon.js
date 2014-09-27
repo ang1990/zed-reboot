@@ -186,6 +186,19 @@ class TurretPlacerWeapon extends Weapon {
 	}
 	
 	function placeTurret() {
-		Instantiate(turretPrefab, GameObject.Find("zed").GetComponent(ZedMovement).getPosition(), Quaternion.identity);
+		var gunAngle : float = zedMovement.getUpperBodyAngle();
+		var newTurret : GameObject = Instantiate(turretPrefab, 
+			zedMovement.getPosition(), 
+			Quaternion.identity);
+					
+			newTurret.transform.eulerAngles = new Vector3(0, 0, gunAngle);
+					
+			newTurret.transform.position.x = newTurret.transform.position.x
+					+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
+					- Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
+						
+			newTurret.transform.position.y = newTurret.transform.position.y
+							+ Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
+							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
 	}
 }

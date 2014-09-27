@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieWave.js" />
      <Compile Include="Assets\Scripts\Menu\HighScores.js" />
      <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
      <Compile Include="Assets\Scripts\Menu\LevelMenu.js" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\gameStateController.js" />
      <Compile Include="Assets\Scripts\Turret\BarrelTurner.js" />
      <Compile Include="Assets\Scripts\Turret\CogTurner.js" />
      <Compile Include="Assets\Scripts\Turret\MiniturretBehaviour.js" />
