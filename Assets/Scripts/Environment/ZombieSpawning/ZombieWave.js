@@ -1,11 +1,10 @@
 #pragma strict
 
-
 import System.Collections.Generic;
 
 class ZombieWave extends UnityEngine.Object{
 
-// True for endless mode.
+// Just contains all the spawns.
 var spawns : List.<ZombieSpawnJob>;
 
 // For normal missions, just set the boolean to false.
@@ -18,6 +17,10 @@ function ZombieWave() {
 	spawns = new List.<ZombieSpawnJob>();
 }
 
+function isEmpty() : boolean {
+	return spawns.Count <= 0;
+}
+
 function addJob(newJob : ZombieSpawnJob) {
 	if(newJob != null)
 		spawns.Add(newJob);
@@ -28,7 +31,7 @@ function addJob(newJob : ZombieSpawnJob) {
 function getWaveSpawns() : List.<ZombieSpawnJob> {
 	if(spawns == null)
 		return new List.<ZombieSpawnJob>();
-	for(var i : int = 0; i < spawns.Count; i++) {
+	else for(var i : int = 0; i < spawns.Count; i++) {
 		spawns[i].waveStart();
 	}
 	return spawns;

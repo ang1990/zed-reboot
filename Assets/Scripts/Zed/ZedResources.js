@@ -207,7 +207,6 @@ function handleZombieKilled(zombieDifficultyLevel : int) {
 
 function gainExperience(amount : int) {
 	experience += amount;
-	changeSkillPoints(amount);
 	updateLevel();
 }
 

@@ -28,13 +28,19 @@ function Update() {
 		// Stub. We may implement wave-based levels. If so, this will be the phase before wave 1.
 		// We may implement a beginning phase like this. For now, we just set to waveSpawning.
 			case GameState.starting :
+		// Issue resolved. There was an issue where the wave was not being initialized properly.
+		// The problem was partly due to Unity abstracting away the order in which scripts are executed.
+		// We cannot assume that when an item is created and referenced in the same frame
+		// that the item will be created BEFORE it is referenced.
+		// We will have to enforce the referencing AFTER the creation, hence the waitForEndOfFrame().
+				waitForEndOfFrame();
 				spawnEngine.startNextWave();
 				currentState = GameState.waveSpawning;
 				break;
 		// If there are no more spawns from this wave, we change state to waveSpawnOver.
 			case GameState.waveSpawning :
 				break;
-	//			if(spawnEngine.noMoreSpawns()) {
+//				if(spawnEngine.noMoreSpawns()) {
 //					currentState = GameState.waveSpawnOver;
 //				} break;
 		// The game will wait for Zed to kill all the zombies before continuing to the next state.
@@ -63,6 +69,10 @@ function Update() {
 				break;
 		}
 	}
+}
+
+function waitForEndOfFrame() {
+	yield WaitForEndOfFrame();
 }
 
 function waitTime(time : float) {

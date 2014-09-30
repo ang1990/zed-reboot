@@ -34,6 +34,17 @@ class ZombieSpawnJob extends UnityEngine.Object {
 
 	private var healthMultiplier : float;
 	
+	function ZombieSpawnJob(prefab : GameObject,
+			startTime : float,
+			edge : Edge) {
+		this.prefab = prefab;
+		this.locationMode = LocationMode.SINGLE_EDGE;
+		this.startTime = startTime;
+		this.endTime = startTime;
+		this.zombiesLeftCount = 1;		
+		spawnDelay = 0;
+			}
+	
 	function ZombieSpawnJob(prefab : GameObject, 
 			startTime : float, 
 			duration : float,

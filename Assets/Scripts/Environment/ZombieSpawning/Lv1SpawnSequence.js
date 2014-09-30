@@ -5,10 +5,9 @@
 
 #pragma strict
 
-var zombieSpawnEngine : ZombieSpawnEngine;
+var spawnEngine : ZombieSpawnEngine;
 var normalZombiePrefab : GameObject;
 var bossZombiePrefab : GameObject;
-
 var singleWave : ZombieWave;
 
 function Start () {
@@ -22,10 +21,8 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, position, spread)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
-
 	singleWave = new ZombieWave();
-
-	zombieSpawnEngine.isEndless = false;
+	spawnEngine.isEndless = false;
 
 	singleWave.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
 
@@ -34,7 +31,9 @@ function Start () {
 	singleWave.spawnContinuous(normalZombiePrefab, 8, 10, 5, Edge.RIGHT);
 	singleWave.spawnContinuous(normalZombiePrefab, 13, 10, 5, Edge.RIGHT);
 
-	zombieSpawnEngine.addWave(singleWave);
+	if(ReferenceEquals(singleWave, null))
+		Debug.Log("singleWave is null");
+	spawnEngine.addWave(singleWave);
 	
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 0, 150, 130, Edge.LEFT);
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.RIGHT);

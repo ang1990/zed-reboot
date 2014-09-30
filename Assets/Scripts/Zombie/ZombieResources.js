@@ -101,7 +101,11 @@ function trimUnnecessaryComponents() {
             }
     }
     if(transform.childCount > 0) {
-    	var childrenTransforms = transform.GetComponentsInChildren(Transform) as Transform[];
+    	var childrenTransforms = this.GetComponentsInChildren(Transform);
+    	if(ReferenceEquals(childrenTransforms, null))
+    	{
+    		Debug.Log("childrenTransforms is null.");
+    	}
 	    for(var i : int = 0; i < childrenTransforms.Length; i++) {
 	    	var child : Transform = childrenTransforms[i];    		
 	    	if(child.gameObject.CompareTag("detector")) {

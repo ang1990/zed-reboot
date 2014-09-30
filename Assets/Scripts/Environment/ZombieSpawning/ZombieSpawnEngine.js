@@ -10,12 +10,12 @@ import System.Collections.Generic;
 
 enum Edge { TOP, BOTTOM, LEFT, RIGHT }
 
-var checkingDelay : float = 0.1; // number of seconds between checking for new 
+var checkingDelay : float = 0.5; // number of seconds between checking for new 
 							   	 // due spawns. Higher numbers should improve
 							   	 // performance but decrease "spawn time-resolution"
 private var lastCheckTime : float;
 
-private var spawnJobs : List.<ZombieSpawnJob>;
+var spawnJobs : List.<ZombieSpawnJob>;
 
 var waves : List.<ZombieWave>;
 
@@ -52,24 +52,30 @@ function Update() {
 		// Count the zombies in the field.
 		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
 		// TODO: I think this is breaking Unity.
-		Debug.Log("Handling jobs.");
 //		if(spawnJobs.Count > 0)
 			handleSpawnJobs();
-		Debug.Log("jobs handled");
 	}
 }
 
+function spawnSingleNow(prefab : GameObject, position : Vector2, spread : Vector2) {
+	var spawn : ZombieSpawnJob = new ZombieSpawnJob(prefab, Time.time, 1, 1, position, spread);
+	spawnJobs.Add(spawn);
+}
+
 function addWave(newWave : ZombieWave) {
-	waves.Add(newWave);
+	if(!ReferenceEquals(newWave, null))
+	{
+		waves.Add(newWave);
+	}
+	else
+		Debug.Log("Wave is null.");
 }
 
 function startNextWave() {
 // Pull out all the spawn jobs from the next wave.
 	if(!isEndless) {
 		spawnJobs = waves[waveNum].getWaveSpawns();
-		Debug.Log("Getting spawns");
 		waveNum++;
-		Debug.Log("Wave removed.");
 	}
 	else {
 		spawnJobs = waves[waveNum%waves.Count].getWaveSpawns();
@@ -89,7 +95,6 @@ function startNextWave() {
 						break;
 		}
 	}
-	Debug.Log("Wave started");
 }
 
 function noMoreSpawns() {
@@ -105,10 +110,12 @@ function handleSpawnJobs() {
 	while (i < spawnJobs.Count) {
 		if (spawnJobs[i].isExpired()) {
 			spawnJobs.RemoveAt(i);
-		} else if(limitZombieCount && undeadCount < maxZombiesLimit) {
-			spawnJobs[i].setHealthMultiplier(1 + (diffMultiplier));
-			if(spawnJobs[i].spawnIfDue())
-				undeadCount++;
+		} else {
+			if(!limitZombieCount || undeadCount < maxZombiesLimit) {
+				spawnJobs[i].setHealthMultiplier(diffMultiplier);
+				if(spawnJobs[i].spawnIfDue())
+					undeadCount++;
+			}
 			i++;
 		}
 	}
