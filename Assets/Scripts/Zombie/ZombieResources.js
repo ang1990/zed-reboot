@@ -69,7 +69,7 @@ function Update() {
 		//spriteRenderer.sortingOrder = -10;
 		
 		// Tell Zed the difficulty of the zombie which was killed
-		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());
+		zedResources.handleZombieKilled(zombieProperties.getExpGained());
 		
 		for (var i : int = zombieProperties.getCoinsDroppable(); i > 0; i--) {
 			if (Random.Range(0.0, 1.0) < zombieProperties.getCoinDropProbability()) {
@@ -101,7 +101,11 @@ function trimUnnecessaryComponents() {
             }
     }
     if(transform.childCount > 0) {
-    	var childrenTransforms = transform.GetComponentsInChildren(Transform) as Transform[];
+    	var childrenTransforms = this.GetComponentsInChildren(Transform);
+    	if(ReferenceEquals(childrenTransforms, null))
+    	{
+    		Debug.Log("childrenTransforms is null.");
+    	}
 	    for(var i : int = 0; i < childrenTransforms.Length; i++) {
 	    	var child : Transform = childrenTransforms[i];    		
 	    	if(child.gameObject.CompareTag("detector")) {

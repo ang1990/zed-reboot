@@ -34,6 +34,17 @@ class ZombieSpawnJob extends UnityEngine.Object {
 
 	private var healthMultiplier : float;
 	
+	function ZombieSpawnJob(prefab : GameObject,
+			startTime : float,
+			edge : Edge) {
+		this.prefab = prefab;
+		this.locationMode = LocationMode.SINGLE_EDGE;
+		this.startTime = startTime;
+		this.endTime = startTime;
+		this.zombiesLeftCount = 1;		
+		spawnDelay = 0;
+			}
+	
 	function ZombieSpawnJob(prefab : GameObject, 
 			startTime : float, 
 			duration : float,
@@ -94,7 +105,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.spawnConstantly = true;
 	}
 	
-	function spawnIfDue() {
+	function spawnIfDue() : boolean {
 		if (Time.timeSinceLevelLoad > startTime) {
 			while ((zombiesLeftCount > 0) && (Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {			
 				if (lastSpawnTime == 0) {
@@ -108,13 +119,19 @@ class ZombieSpawnJob extends UnityEngine.Object {
 						spawnPosition2D.y, EnvironmentAttributes.zombieZCoordinate);
 				var zombie : GameObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
 				zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
+				zombie.GetComponent(ZombieProperties).multiplyExpGained(Mathf.Pow(healthMultiplier,1.5));
 				zombiesLeftCount--;
 				if (zombiesLeftCount > 0 && !spawnConstantly) {
 					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;
 					spawnDelay = timeUntilEnd/zombiesLeftCount;
 				}
-			}			
-		}
+			}
+			return true;
+		} else return false;
+	}
+	
+	function printDebug() {
+		Debug.Log("I am here!");
 	}
 	
 	function isExpired() : boolean {
@@ -125,6 +142,10 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		return prefab;
 	}
 	
+	function waveStart() {
+		startTime = Time.timeSinceLevelLoad + startTime;
+	}
+	
 	private function getPosition() : Vector2 {
 		if (locationMode == LocationMode.POSITION) {
 			return new Vector2(position.x + Random.Range(-spread.x, spread.x),
@@ -133,36 +154,35 @@ class ZombieSpawnJob extends UnityEngine.Object {
 			var selectedEdgeIndex : int = Random.Range(0, edges.Length);;
 			edge = edges[selectedEdgeIndex];
 		}	
-		
-		if (edge == Edge.TOP) {
-			return (new Vector2(
-				Random.Range(EnvironmentAttributes.leftBound, 
-						EnvironmentAttributes.rightBound),
-				EnvironmentAttributes.topBound) + new Vector2(
-						Random.Range(-spread.x, spread.x), 
-						Random.Range(-spread.y, spread.y)));
-		} else if (edge == Edge.BOTTOM) {
-			return (new Vector2(
-				Random.Range(EnvironmentAttributes.leftBound, 
-						EnvironmentAttributes.rightBound),
-				EnvironmentAttributes.bottomBound) + new Vector2(
-						Random.Range(-spread.x, spread.x), 
-						Random.Range(-spread.y, spread.y)));
-		} else if (edge == Edge.LEFT) {
-			return (new Vector2(
-				EnvironmentAttributes.leftBound, 
-				Random.Range(EnvironmentAttributes.bottomBound,
-						EnvironmentAttributes.topBound)) + new Vector2(
-						Random.Range(-spread.x, spread.x), 
-						Random.Range(-spread.y, spread.y)));			
-		} else if (edge == Edge.RIGHT) {
-			return (new Vector2(
-				EnvironmentAttributes.rightBound, 
-				Random.Range(EnvironmentAttributes.bottomBound,
-						EnvironmentAttributes.topBound)) + new Vector2(
-						Random.Range(-spread.x, spread.x), 
-						Random.Range(-spread.y, spread.y)));		
-		} else return Vector2(0, 0);
+
+		if (edge == Edge.TOP) return (new Vector2(
+					Random.Range(EnvironmentAttributes.leftBound, 
+							EnvironmentAttributes.rightBound),
+							EnvironmentAttributes.topBound) + new Vector2(
+								Random.Range(-spread.x, spread.x), 
+								Random.Range(-spread.y, spread.y)));
+		else if (edge == Edge.BOTTOM)
+				return (new Vector2(
+					Random.Range(EnvironmentAttributes.leftBound, 
+							EnvironmentAttributes.rightBound),
+							EnvironmentAttributes.bottomBound) + new Vector2(
+								Random.Range(-spread.x, spread.x), 
+								Random.Range(-spread.y, spread.y)));
+		else if (edge == Edge.LEFT)
+					return (new Vector2(
+						EnvironmentAttributes.leftBound, 
+							Random.Range(EnvironmentAttributes.bottomBound,
+								EnvironmentAttributes.topBound)) + new Vector2(
+									Random.Range(-spread.x, spread.x), 
+									Random.Range(-spread.y, spread.y)));			
+		else if (edge == Edge.RIGHT)
+					return (new Vector2(
+						EnvironmentAttributes.rightBound, 
+							Random.Range(EnvironmentAttributes.bottomBound,
+								EnvironmentAttributes.topBound)) + new Vector2(
+									Random.Range(-spread.x, spread.x), 
+									Random.Range(-spread.y, spread.y)));		
+		else return Vector2.zero;
 	}
 
 	function setHealthMultiplier(healthMultiplier : float) {

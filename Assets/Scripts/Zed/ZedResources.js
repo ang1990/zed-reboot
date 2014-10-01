@@ -12,14 +12,13 @@ private var skillPoints : int = 0;
 private var money : int = 0;
 
 private var animatorDead : boolean;
-private var promptOpened : boolean = false;
+private var defeated : boolean = false;
 
 var animator : Animator;
 
 var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
 
-var weaponArsenal : WeaponArsenal;
 var perkStock : PerkStock;
 
 var zedProperties : ZedProperties;
@@ -48,13 +47,12 @@ var fastBloodSpawner : ParticleSystem;
  *	HEALTH
  */
 function Start() {
-	// initializes weapons-array
-	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
 	health = 100;
 	
 	activePerks = new PerkList();
 	overlay = GameObject.Find("overlay");
+	changeWeapon();
 }
 
 function Update() {
@@ -65,10 +63,8 @@ function Update() {
 	}
 	
 	if (!isAlive()) {	// Zed is dying
-		if (animatorDead && !promptOpened && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
-			Camera.main.GetComponent(NamePrompt).openPrompt();
-			promptOpened = true;
-			Time.timeScale = 0;
+		if (animatorDead && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
+			defeated = true;
 		} else if (!animatorDead) {
 			animator.SetTrigger("die");
 			slowBloodSpawner.Emit(300);
@@ -76,41 +72,69 @@ function Update() {
 			animatorDead = true;
 			trimUnnecessaryComponents();
 		}
+	// This handles weapon changing. 
 	} else if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {
 		if (Input.GetKeyDown("1") && currentWeaponIndex != 0) {
-			currentWeaponIndex = 0;
-			animator.SetBool("carrySword", true);
-			animator.SetBool("carryRifle", false);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+			if(weapons[0].id != "nullWeapon") {
+				currentWeaponIndex = 0;
+				changeWeapon();
+			}
 		} else if (Input.GetKeyDown("2") && currentWeaponIndex != 1) {
-			currentWeaponIndex = 1;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", false);
-			animator.SetBool("carryPistol", true);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+			if(weapons[1].id != "nullWeapon") {
+				currentWeaponIndex = 1;
+				changeWeapon();
+			}
 		} else if (Input.GetKeyDown("3") && currentWeaponIndex != 2) {
-			if (currentWeaponIndex == 3) {
-				animator.SetTrigger("changeRifles");
+			if(weapons[2].id != "nullWeapon") {
+				currentWeaponIndex = 2;
+				changeWeapon();
 			}
-			currentWeaponIndex = 2;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", true);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
-			if (currentWeaponIndex == 2) {
-				animator.SetTrigger("changeRifles");
+			if(weapons[3].id != "nullWeapon") {
+				currentWeaponIndex = 3;
+				changeWeapon();
 			}
-			currentWeaponIndex = 3;
-			animator.SetBool("carrySword", false);
-			animator.SetBool("carryRifle", true);
-			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+		} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
+			currentWeaponIndex = 4;
+		// Right now we don't have an animation for this state. So we just adopt the previous state.
+		//	changeWeaponAnimator();
 		} 
+		
 	}
 
 	changeOverlay();
+}
+
+function isDefeated() : boolean {
+	return defeated;
+}
+
+private function changeWeapon() {
+	if(weapons[currentWeaponIndex].id == "sword") {
+		animator.SetBool("carrySword", true);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryPistol", false);
+	} else if(weapons[currentWeaponIndex].id == "revolver") {
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryPistol", true);
+	} else if(weapons[currentWeaponIndex].id == "shotgun") {
+		if (animator.GetBool("carryRifle")) {
+			animator.SetTrigger("changeRifles");
+		}
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryPistol", false);
+	} else if(weapons[currentWeaponIndex].id == "assaultRifle") {
+		if (animator.GetBool("carryRifle")) {
+			animator.SetTrigger("changeRifles");
+		}
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryPistol", false);
+	}
+	AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+
 }
 
 function reduceHealth(reductionAmount : float) {
@@ -173,13 +197,16 @@ function trimUnnecessaryComponents() {
 /*
  *	EXPERIENCE & LEVEL
  */ 
+ 
+ // Zed gains experience from zombie kills.
+ // Account for all that here. For example, HP Vamp on kill, if implemented, wil go here.
+ 
 function handleZombieKilled(zombieDifficultyLevel : int) {
 	gainExperience(zombieDifficultyLevel);
 }
 
 function gainExperience(amount : int) {
 	experience += amount;
-	changeSkillPoints(amount);
 	updateLevel();
 }
 
@@ -191,8 +218,24 @@ function changeMoney(difference : int) {
 	money += difference;
 }
 
+
+// The function controlling Zed's level is here.
+// A Square function is used.
+
+
+
 function updateLevel() {
-	level = Mathf.FloorToInt(Mathf.Log(experience));
+	var newLevel : int = expToLevel(experience);
+	if(newLevel > level) {
+		changeSkillPoints(newLevel-level);
+		level = newLevel;
+	}
+}
+
+// EXP = 50 (1+LEVEL)^2.
+
+private function expToLevel(exp : float) : float {
+	return Mathf.FloorToInt(Mathf.Sqrt(exp/50.0))+1;
 }
 
 function getLevel() {

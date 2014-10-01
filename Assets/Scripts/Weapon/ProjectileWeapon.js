@@ -73,6 +73,7 @@ class ProjectileWeapon extends Weapon {
 			
 		bullets = 1000; // hardcoded, should be dynamic in future implementation.
 		reload();
+		this.weaponType = "projectileWeapon";
 	}
 	
 	// @Override
@@ -158,7 +159,8 @@ class ProjectileWeapon extends Weapon {
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
-		playReloadSound();
+		if(Time.timeSinceLevelLoad > 0.1)
+			playReloadSound();
 	}
 	
 	function increaseScatterAngle() {
