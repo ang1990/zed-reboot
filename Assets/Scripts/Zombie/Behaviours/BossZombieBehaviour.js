@@ -11,13 +11,7 @@ class BossZombieBehaviour extends ZombieBehaviour {
 *
 *  Summon State:
 *  Boss Zombie will stand still and spawn quantitySpawned number of packZombies.
-*  It does this by initiating a spawn job around itself. Once done, it enters
-*  AfterSummon state.
-*
-*  AfterSummon State:
-*  AfterSummon is like a cooldown period, where Boss Zombie does not move. This
-*  state lasts for phaseChangedTime seconds.
-*
+*  It does this by initiating a spawn job around itself.
 */
 
 enum BossZombieState {Attacking, Summon};
@@ -84,7 +78,7 @@ function Update () {
 				numSpawned = 0;
 			}
 			else {
-//				zombieSpawnEngine.spawnSingle(zombiePrefab,Time.time,transform.position,Vector2(1,1));
+				zombieSpawnEngine.spawnSingleNow(zombiePrefab,transform.position,Vector2(1,1));
 				numSpawned++;
 			}
 		}
