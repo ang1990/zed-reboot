@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
      <Compile Include="Assets\Scripts\Menu\LevelMenu.js" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\LevelComplete.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
