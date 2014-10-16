@@ -33,6 +33,8 @@ var undeadCount : int;
 
 var diffMultiplier : float;
 
+var victory : boolean = false;
+
 function Awake() {
 	spawnJobs = new List.<ZombieSpawnJob>();
 	waves = new List.<ZombieWave>();
@@ -55,6 +57,23 @@ function Update() {
 //		if(spawnJobs.Count > 0)
 			handleSpawnJobs();
 	}
+	
+	if (spawnJobs.Count==1&&undeadCount==0) {
+		//Debug.Log("checking victory " + victory + " " + spawnJobs.Count + " " + undeadCount);
+		victory = true;
+	}
+}
+
+function checkSpawnJobs() : int {
+	return spawnJobs.Count;
+}
+
+function checkUndeadCount() : int {
+	return undeadCount;
+}
+
+function isVictory() : boolean {
+	return victory;
 }
 
 function spawnSingleNow(prefab : GameObject, position : Vector2, spread : Vector2) {

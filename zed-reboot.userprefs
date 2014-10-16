@@ -1,25 +1,13 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\gameStateController.js">
-=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\ZombieSpawner.js">
->>>>>>> eccdf90303836e4d43795081c3d4d8566b865f8a
     <Files>
-      <File FileName="Assets\Scripts\Zombie\ZombieStrike.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="1" Column="1" />
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="86" Column="2" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawner.js" Line="63" Column="2" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawner.js" Line="12" Column="37" />
       <File FileName="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="122" Column="2" />
-=======
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" Line="23" Column="78" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" Line="50" Column="12" />
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="25" Column="1" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawner.js" Line="1" Column="1" />
->>>>>>> eccdf90303836e4d43795081c3d4d8566b865f8a
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

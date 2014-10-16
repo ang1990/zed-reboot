@@ -11,18 +11,19 @@ var spawnEngine : ZombieSpawnEngine;
 var numWaves : int; // -1 for survival.
 var timeBetweenWaves : float;
 private var zedResources : ZedResources;
-private var zombieSpawner : ZombieSpawner;
 
 function Awake() {
 	currentState = GameState.starting;
 	zedResources = GameObject.Find("zed").GetComponent(ZedResources) as ZedResources;
+	//zombieSpawnEngine = GameObject.Find("environment/zombiespawning").GetComponent(ZombieSpawnEngine) as ZombieSpawnEngine;
 }
 
 function Update() {
 // Check game state every interval.
 	if(Time.timeSinceLevelLoad > lastCheckTime + interval) {
 		lastCheckTime = Time.timeSinceLevelLoad;
-		if(zombieSpawner.isVictory()) {
+		Debug.Log("checking victory " + spawnEngine.checkSpawnJobs() + " " + spawnEngine.checkUndeadCount());
+		if(spawnEngine.checkSpawnJobs()==0&&spawnEngine.checkUndeadCount()==0&&Time.timeSinceLevelLoad>5) {
 			currentState = GameState.Victory;
 		}
 		if(zedResources.isDefeated()) {
