@@ -29,20 +29,32 @@ function Start () {
 	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 30, 1500, 200, Edge.TOP);
 	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 30, 1500, 200, Edge.BOTTOM);
 	
-		
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.TOP);
+*/	
+	var singleWave = new ZombieWave();
+	zombieSpawnEngine.isEndless = false;
+
+	singleWave.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
+	singleWave.spawnSingle(bossZombiePrefab, 75, Edge.RIGHT);
+	
+			
+	singleWave.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
+	singleWave.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
+	singleWave.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.TOP);
 
 
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.LEFT);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 170, 10000, 600, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.TOP);
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
+	singleWave.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.LEFT);
+	singleWave.spawnContinuous(normalZombiePrefab, 170, 10000, 600, Edge.RIGHT);
+	singleWave.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.TOP);
+	singleWave.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
 
-	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);
+	singleWave.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);
 
-*/ //TODO
+
+	if(ReferenceEquals(singleWave, null))
+		Debug.Log("singleWave is null");
+	zombieSpawnEngine.addWave(singleWave);
+
+ 	//TODO
 	
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 0, 150, 130, Edge.LEFT);
 //	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.RIGHT);
