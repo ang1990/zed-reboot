@@ -11,6 +11,8 @@ private var topBound : float;
 private var bottomBound : float;
 private var spawnLocation : Vector2;
 
+private var victory : boolean;
+
 function Start() {
 	leftBound = transform.renderer.bounds.min.x - distanceFromEdge;
 	rightBound = transform.renderer.bounds.max.x + distanceFromEdge;
@@ -28,6 +30,14 @@ function Update() {
 		
 		randomizeSpawnLocation();
 	}
+	
+	if (Time.time>28) {
+		victory = true;
+	}
+}
+
+function isVictory() : boolean {
+	return victory;
 }
 
 function randomizeSpawnLocation() {

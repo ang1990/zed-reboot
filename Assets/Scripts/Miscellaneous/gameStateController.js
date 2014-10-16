@@ -11,6 +11,7 @@ var spawnEngine : ZombieSpawnEngine;
 var numWaves : int; // -1 for survival.
 var timeBetweenWaves : float;
 private var zedResources : ZedResources;
+private var zombieSpawner : ZombieSpawner;
 
 function Awake() {
 	currentState = GameState.starting;
@@ -21,6 +22,9 @@ function Update() {
 // Check game state every interval.
 	if(Time.timeSinceLevelLoad > lastCheckTime + interval) {
 		lastCheckTime = Time.timeSinceLevelLoad;
+		if(zombieSpawner.isVictory()) {
+			currentState = GameState.Victory;
+		}
 		if(zedResources.isDefeated()) {
 			currentState = GameState.Defeat;
 		}
@@ -55,6 +59,8 @@ function Update() {
 			/*
 			*	TODO: Put the game victory handling here!
 			*/
+				Camera.main.GetComponent(NamePrompt).openPrompt();
+				Time.timeScale = 0;
 				break;
 			case GameState.restBetweenWaves:
 			// NOTE: I'm not confident that this waitTime function works. Please test and confirm.
