@@ -39,6 +39,20 @@ function startingArsenal() : Weapon[] {
 	return weapons;
 }
 
+// Lvl2 arsenal has revolver, shotgun, and AR.
+
+function lvl2Arsenal() : Weapon[] {
+	var weapons : Weapon[] = new Weapon[numWeapons];
+	
+	weapons[0] = getRevolver();
+	weapons[1] = getShotgun();
+	weapons[2] = getAssaultRifle();
+	for(var i : int = 3; i < numWeapons; i++) {
+		weapons[i] = getNullWeapon();
+	}
+	return weapons;
+}
+
 function getSword() : MeleeWeapon {
 	var sword : MeleeWeapon = new MeleeWeapon(4000, "sword", zed, clips[0], clips[1]);
 		// initialize Sword strike data: time, angle, length (for raycast)
