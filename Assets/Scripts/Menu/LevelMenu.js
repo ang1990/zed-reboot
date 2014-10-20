@@ -48,7 +48,7 @@ function OnGUI() {
 	// Level 1, 2 and 3.
 	if (newButton(lvButton1, "Level 1")) {
 		Time.timeScale = 1;
-		Application.LoadLevel(lvName1);
+		Application.LoadLevel("cutin1");
 	}
 	
 	if (newButton(lvButton2, "Level 2")) {

@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Landmine.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\LevelMenu.js">
     <Files>
-      <File FileName="Assets\Landmine.js" Line="5" Column="17" />
-      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\MainMenu.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\HighScores.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="52" Column="3" />
+      <File FileName="Assets\cutInLv1.js" Line="7" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -120,6 +120,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
      <Compile Include="Assets\TurretDestroyer.js" />
+     <Compile Include="Assets\cutInLv1.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
