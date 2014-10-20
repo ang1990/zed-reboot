@@ -18,12 +18,14 @@ var buttonHeight : float; // fraction of Screen.width
 var titleLabelY : float; // fraction of Screen.height
 var levelButtonY : float;
 var startButtonY : float; 
+var zombieMinesButtonY : float;
 var howToPlayButtonY : float;
 var highScoreButtonY : float;
 var quitButtonY : float;
 
 var levelMenuName : String;
 var gameSceneName : String;
+var zombieMinesSceneName : String;
 var highScoreSceneName : String;
 var howToPlaySceneName : String;
 
@@ -50,10 +52,16 @@ function OnGUI() {
 		Application.LoadLevel(levelMenuName);
 	}
 
-	// Start game
+	// Start Survival
 	if (newButton(startButtonY, "Start Survival")) {
 		Time.timeScale = 1;
 		Application.LoadLevel(gameSceneName);
+	}
+	
+	// Start ZombieMines
+	if (newButton(zombieMinesButtonY, "Start Zombie Mines")) {
+		Time.timeScale = 1;
+		Application.LoadLevel(zombieMinesSceneName);
 	}
 	
 	// High scores

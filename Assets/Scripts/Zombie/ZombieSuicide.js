@@ -9,6 +9,8 @@ private var zombieProperties : ZombieProperties;
 
 private var explosionCollider : CircleCollider2D;
 
+var explosionPrefab : GameObject;
+
 var explosionRadius : float;
 var explosionPower : float;
 
@@ -30,8 +32,8 @@ function Awake() {
 */
 
 function selfDestruct() {
-	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(explosionCollider.center,explosionCollider.radius);
 	explosionCollider.radius = explosionRadius;
+	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(explosionCollider.center,explosionCollider.radius);
 	for (var c : Collider2D in colliders) {
 		if(c.gameObject.CompareTag("zed")) {
 			var damageDealt : float = explosionPower * (1 - (c.transform.position - transform.position).sqrMagnitude / explosionRadius*explosionRadius);
@@ -42,6 +44,8 @@ function selfDestruct() {
 		//
 		//
 	}
+	
+	Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 	// Zombie cuts his own health to zero, but after the self-destruct damage has been dealt, hence the waiting until the end of frame.
 	yield WaitForEndOfFrame();
 	zombieResources.reduceHealth(zombieProperties.getMaxHealth());
