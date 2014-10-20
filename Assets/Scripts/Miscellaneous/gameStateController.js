@@ -60,7 +60,7 @@ function Update() {
 			/*
 			*	TODO: Put the game victory handling here!
 			*/
-				Camera.main.GetComponent(NamePrompt).openPrompt();
+				Camera.main.GetComponent(LevelComplete).openPrompt();
 				Time.timeScale = 0;
 				break;
 			case GameState.restBetweenWaves:
