@@ -106,7 +106,7 @@ private function getShotgun() : ProjectileWeapon {
 }
 
 private function getAssaultRifle() : ProjectileWeapon {
-	var weapon : ProjectileWeapon = ProjectileWeapon(7, 20, 20, 0, 1, 24, 1, 20, 0.1, 2, 
+	var weapon : ProjectileWeapon = ProjectileWeapon(10, 40, 20, 0, 1, 24, 1, 20, 0.1, 2, 
 		"assaultRifle", assaultRifleBulletPrefab, zed, new Vector2(0.8,-0.13), clips[6], clips[7]);
 	weapon.weaponType = "rifle";
 	return weapon;

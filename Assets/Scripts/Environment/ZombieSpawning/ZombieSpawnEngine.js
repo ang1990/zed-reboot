@@ -77,7 +77,7 @@ function isVictory() : boolean {
 }
 
 function spawnSingleNow(prefab : GameObject, position : Vector2, spread : Vector2) {
-	var spawn : ZombieSpawnJob = new ZombieSpawnJob(prefab, Time.time, 1, 1, position, spread);
+	var spawn : ZombieSpawnJob = new ZombieSpawnJob(prefab, Time.timeSinceLevelLoad, 1, 1, position, spread);
 	spawnJobs.Add(spawn);
 }
 
