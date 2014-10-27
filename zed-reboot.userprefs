@@ -1,8 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\WeaponArsenal.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\Weapon\AssaultRifle.js">
     <Files>
-      <File FileName="Assets\Scripts\Weapon\WeaponArsenal.js" Line="109" Column="57" />
+      <File FileName="Assets\Scripts\Weapon\ProjectileWeapon.js" Line="192" Column="2" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Revolver.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\WeaponArsenal.js" Line="112" Column="22" />
+      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Shotgun.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" Line="32" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

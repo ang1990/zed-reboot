@@ -67,6 +67,9 @@ class MeleeWeapon extends Weapon {
 		return unsheathSound;
 	}
 	
+	function playSwitchSound() {
+		AudioSource.PlayClipAtPoint(getReloadSound() as AudioClip, owner.transform.position);
+	}
 	
 	function isStriking() {
 		return (Time.time < strikeEndTime);

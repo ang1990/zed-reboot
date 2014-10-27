@@ -10,6 +10,7 @@ var currentState : GameState;
 var spawnEngine : ZombieSpawnEngine;
 var numWaves : int; // -1 for survival.
 var timeBetweenWaves : float;
+var bell : AudioClip;
 private var zedResources : ZedResources;
 
 function Awake() {
@@ -41,6 +42,7 @@ function Update() {
 				waitForEndOfFrame();
 				spawnEngine.startNextWave();
 				currentState = GameState.waveSpawning;
+				AudioSource.PlayClipAtPoint(bell,transform.position);
 				break;
 		// If there are no more spawns from this wave, we change state to waveSpawnOver.
 			case GameState.waveSpawning :
@@ -56,10 +58,6 @@ function Update() {
 					} else currentState = GameState.restBetweenWaves;
 				} break;
 			case GameState.Victory :
-			//	Time.timeScale = 0;
-			/*
-			*	TODO: Put the game victory handling here!
-			*/
 				Camera.main.GetComponent(LevelComplete).openPrompt();
 				Time.timeScale = 0;
 				break;

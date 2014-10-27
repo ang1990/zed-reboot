@@ -91,24 +91,25 @@ private function getNullWeapon() : ProjectileWeapon {
 			reloadingSound : AudioClip
 	*/
 
-private function getRevolver() : ProjectileWeapon {
+/*
+
 	var weapon : ProjectileWeapon = new ProjectileWeapon(2, 120, 30, 0, 1, 6, 2, 30, 0.4, 2, 
 		"revolver", revolverBulletPrefab, zed, new Vector2(0.81,-0.02), clips[2], clips[3]);
 	weapon.weaponType = "pistol";
+*/
+
+private function getRevolver() : ProjectileWeapon {
+	var weapon : Revolver = Revolver(zed);
 	return weapon;
 }
 
 private function getShotgun() : ProjectileWeapon {
-	var weapon : ProjectileWeapon = ProjectileWeapon(1.1, 50, 20, 20, 5, 7, 1, 10, 0.5, 2, 
-		"shotgun", shotgunBulletPrefab, zed, new Vector2(0.8,-0.13), clips[4], clips[5]);
-	weapon.weaponType = "scattergun";
+	var weapon : Shotgun = Shotgun(zed);
 	return weapon;
 }
 
 private function getAssaultRifle() : ProjectileWeapon {
-	var weapon : ProjectileWeapon = ProjectileWeapon(10, 40, 20, 0, 1, 24, 1, 20, 0.1, 2, 
-		"assaultRifle", assaultRifleBulletPrefab, zed, new Vector2(0.8,-0.13), clips[6], clips[7]);
-	weapon.weaponType = "rifle";
+	var weapon : AssaultRifle = AssaultRifle(zed);
 	return weapon;
 	
 }

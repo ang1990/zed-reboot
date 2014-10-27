@@ -36,6 +36,8 @@ class Weapon extends UnityEngine.Object {
 	
 	function addClips(clips : int) {}
 	
+	function playSwitchSound() {}
+	
 	function getBullets() : int {
 		return 0;
 	}

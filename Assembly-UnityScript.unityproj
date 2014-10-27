@@ -89,6 +89,9 @@
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\TurretPlacerWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\Revolver.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\Shotgun.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\survivalArsenal.js" />

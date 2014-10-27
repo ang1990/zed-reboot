@@ -19,7 +19,7 @@ class ProjectileWeapon extends Weapon {
 
 	var firingSound : AudioClip;
 	var reloadingSound : AudioClip;
-	
+	var switchSound : AudioClip;
 	
 	var bullets : int;
 	var bulletsInClip : int;
@@ -72,10 +72,28 @@ class ProjectileWeapon extends Weapon {
 		this.reloadingSound = reloadingSound;
 			
 		bullets = 1000; // hardcoded, should be dynamic in future implementation.
-		reload();
+		this.bulletsInClip = this.clipSize;
 		this.weaponType = "projectileWeapon";
 	}
 	
+	function ProjectileWeapon() {
+		this.rateOfFire = 0;
+		this.firePower = 0;
+		this.bulletSpeed = 0;
+		this.spread = 0;
+		this.bulletsSpawned = 0;
+		this.clipSize = 0;
+		this.reloadTime = 0;
+		this.scatterMaxAngle = 0;
+		this.scatterSaturationFactor = 0;
+		this.scatterRelaxationFactor = 0;
+		this.id = "null";
+		this.bulletPrefab = null;
+		this.owner = null;
+		this.spawnOffset = Vector2.zero;
+		this.firingSound = null;
+		this.reloadingSound = null;
+	}
 	// @Override
 	function strike() : boolean {
 		var successfulStrike : boolean = false;
@@ -159,7 +177,7 @@ class ProjectileWeapon extends Weapon {
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
-		if(Time.timeSinceLevelLoad > 0.1)
+		if(Time.timeSinceLevelLoad > 0.25)
 			playReloadSound();
 	}
 	
@@ -180,10 +198,14 @@ class ProjectileWeapon extends Weapon {
 	// yield seems to break the whole thing.
 	
 	function playReloadSound() {
-//		Debug.Log("Reload sound going to play.");
+		Debug.Log("Reload sound going to play.");
 		var waitTime : float = reloadTime - reloadingSound.length;
 		AudioSource.PlayClipAtPoint(reloadingSound,owner.transform.position);
 //		Debug.Log("Reload sound played.");
+	}
+	
+	function playSwitchSound () {
+		AudioSource.PlayClipAtPoint(switchSound, owner.transform.position);
 	}
 	
 	function getJustReloaded() : boolean {

@@ -133,7 +133,7 @@ private function changeWeapon() {
 		animator.SetBool("carryRifle", true);
 		animator.SetBool("carryPistol", false);
 	}
-	AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
+	weapons[currentWeaponIndex].playSwitchSound();
 
 }
 
