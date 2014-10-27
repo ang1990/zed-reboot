@@ -33,7 +33,6 @@ function Awake() {
 function OnGUI() {
 	GUI.skin = null;
 	GUI.skin.font = zedFont;
-	GUI.skin.label.fontSize = defaultFontSize*titleFontSizeMultiplier*screenToDefaultScreenRatio;
 	GUI.skin.button.fontSize = defaultFontSize*buttonFontSizeMultiplier*screenToDefaultScreenRatio;
 
 	// Title

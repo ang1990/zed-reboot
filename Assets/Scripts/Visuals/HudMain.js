@@ -41,7 +41,7 @@ function OnGUI() {
 	GUI.skin = null;
 
 	// Skill points and money symbol
-	GUI.color.a = 0.4;
+	GUI.color.a = 0.7;
 	GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 45, 15, 15), moneySymbol, ScaleMode.StretchToFill);
 	GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 22, 15, 15), skillPointSymbol, ScaleMode.StretchToFill); 
 
@@ -53,7 +53,6 @@ function OnGUI() {
 	clipSize = weapon.getClipSize();
 
 	// Draws the health bar background for the current health bar
-	GUI.color = Color(0.0, 0.0, 0.0, 0.2);
 	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 200, 18), healthBar, ScaleMode.StretchToFill); 
 	
 	GUI.color = Color(0.0, 0.0, 0.0, 0.4);
