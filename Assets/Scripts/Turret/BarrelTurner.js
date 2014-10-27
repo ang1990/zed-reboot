@@ -62,7 +62,7 @@ function Update () {
 
 function fire(direction : Vector3) {
 	// currently frame dependent (high rateOfFire + low FPS = less bullets)
-	if (Time.time > lastShotTime + 1/rateOfFire ) {
+	if (Time.timeSinceLevelLoad > lastShotTime + 1/rateOfFire ) {
 		for (var b : int = 0; b < bulletsSpawned; b++) {
 			var newBullet : GameObject = Instantiate(bulletPrefab, 
 					transform.position + direction*barrelLength, 
@@ -77,7 +77,7 @@ function fire(direction : Vector3) {
 			
 			AudioSource.PlayClipAtPoint(firingSound, transform.position);
 
-			lastShotTime = Time.time;
+			lastShotTime = Time.timeSinceLevelLoad;
 		}
 
 		// recoil

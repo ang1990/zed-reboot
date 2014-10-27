@@ -52,10 +52,12 @@ function OnGUI() {
 	}
 	
 	if (newButton(lvButton2, "Level 2")) {
+		Time.timeScale = 1;
 		Application.LoadLevel(lvName2);
 	}
 
 	if (newButton(lvButton3, "Level 3")) {
+		Time.timeScale = 1;
 		Application.LoadLevel(lvName3);
 	}
 

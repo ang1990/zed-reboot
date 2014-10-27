@@ -44,8 +44,8 @@ class MeleeWeapon extends Weapon {
 	// @Override
 	function strike() : boolean {
 //		AudioSource.PlayClipAtPoint(slashSound,zed.transform.position);
-		strikeStartTime = Time.time;
-		strikeEndTime = Time.time + angleData[3*(angleDataPointCount-1)];
+		strikeStartTime = Time.timeSinceLevelLoad;
+		strikeEndTime = Time.timeSinceLevelLoad + angleData[3*(angleDataPointCount-1)];
 		return true;
 	}
 
@@ -72,7 +72,7 @@ class MeleeWeapon extends Weapon {
 	}
 	
 	function isStriking() {
-		return (Time.time < strikeEndTime);
+		return (Time.timeSinceLevelLoad < strikeEndTime);
 	}
 	
 	function executeStrike() {
@@ -83,7 +83,7 @@ class MeleeWeapon extends Weapon {
 		var bodyAngle : float;
 		bodyAngle = owner.transform.eulerAngles.z;
 		
-		var currentStrikeTime = Time.time - strikeStartTime;
+		var currentStrikeTime = Time.timeSinceLevelLoad - strikeStartTime;
 		
 		// find current length and angle
 		if (angleData == null) {

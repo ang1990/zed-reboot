@@ -33,7 +33,7 @@ private var centeredStyle : GUIStyle;
 function Start() {
 	zedResources = zed.GetComponent(ZedResources);
 	bullets = 0;
-	reloadClip();
+	//reloadClip();
 	lastWeaponId = "";
 }
 

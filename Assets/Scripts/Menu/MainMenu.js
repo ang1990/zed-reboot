@@ -31,6 +31,12 @@ var howToPlaySceneName : String;
 
 function Awake() {
 	screenToDefaultScreenRatio = parseFloat(Screen.width)/defaultScreenWidth;
+	// The high score manager for some reason persists after the high score screen.
+	// This is to remove it.
+	var highScoreManager : GameObject = GameObject.Find("HighScoreManager");
+	if (highScoreManager != null) {
+		Destroy(highScoreManager);
+	}
 }
 
 function OnGUI() {

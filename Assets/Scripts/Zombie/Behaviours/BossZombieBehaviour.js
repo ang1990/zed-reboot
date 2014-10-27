@@ -2,8 +2,8 @@
 
 class BossZombieBehaviour extends ZombieBehaviour {
 
-/* Following Finite State Machine style, Boss Zombie has 3 behaviours:
-*  Attacking, Summon, AfterSummon.
+/* Following Finite State Machine style, Boss Zombie has 2 behaviours:
+*  Attacking and Summon.
 *
 *  Attacking State:
 *  Boss Zombie will path towards Zed, like a Chaser Zombie.
@@ -45,6 +45,12 @@ var timeSpentAttacking : float = 10.0;
 var phaseChangedTime : float;
 var numSpawned : int;
 
+// Footstep-related data
+var distancePerFootstep : float;
+private var distanceTravelled : float;
+private var distanceOfLastFootstep : float;
+var footstepSound : AudioClip;
+
 function Start () {
 	zombieSpawnEngine = GameObject.Find("environment").GetComponent(ZombieSpawnEngine) as ZombieSpawnEngine;
 	setTarget(GameObject.Find("zed"));
@@ -61,6 +67,12 @@ function Update () {
 		// Set nextPosition to the target's position.
 		// If within range, attack target.
 		navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
+		
+		distanceTravelled += speed * Time.deltaTime;
+		if(distanceTravelled > distanceOfLastFootstep + distancePerFootstep) {
+			AudioSource.PlayClipAtPoint(footstepSound, transform.position);
+			distanceOfLastFootstep = distanceTravelled;
+		}
 		
 		if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
 			zombieStrike.hitTarget(target);

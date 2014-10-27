@@ -118,8 +118,10 @@ class ZombieSpawnJob extends UnityEngine.Object {
 				var spawnPosition : Vector3 = new Vector3(spawnPosition2D.x, 
 						spawnPosition2D.y, EnvironmentAttributes.zombieZCoordinate);
 				var zombie : GameObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
-				zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
-				zombie.GetComponent(ZombieProperties).multiplyExpGained(Mathf.Pow(healthMultiplier,1.5));
+				if (zombie.CompareTag("zombie")) {
+					zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
+					zombie.GetComponent(ZombieProperties).multiplyExpGained(Mathf.Pow(healthMultiplier,1.5));
+				}
 				zombiesLeftCount--;
 				if (zombiesLeftCount > 0 && !spawnConstantly) {
 					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;

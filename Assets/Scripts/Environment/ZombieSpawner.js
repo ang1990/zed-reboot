@@ -17,14 +17,14 @@ function Start() {
 	topBound = transform.renderer.bounds.max.y + distanceFromEdge;
 	bottomBound = transform.renderer.bounds.min.y - distanceFromEdge;
 
-	lastSpawnTime = Time.time;
+	lastSpawnTime = Time.timeSinceLevelLoad;
 	randomizeSpawnLocation();
 }
 
 function Update() {
-	if ((Time.time - lastSpawnTime) > spawnDelay) {
+	if ((Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {
 		var NewZombie : GameObject = Instantiate(ZombiePrefab, spawnLocation, transform.rotation);
-		lastSpawnTime = Time.time;
+		lastSpawnTime = Time.timeSinceLevelLoad;
 		
 		randomizeSpawnLocation();
 	}

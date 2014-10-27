@@ -49,8 +49,8 @@ function Awake() {
 
 function Update() {
 	// only check for spawning every so often to avoid performance drop
-	if ((Time.time - lastCheckTime) > checkingDelay) {
-		lastCheckTime = Time.time;
+	if ((Time.timeSinceLevelLoad - lastCheckTime) > checkingDelay) {
+		lastCheckTime = Time.timeSinceLevelLoad;
 		// Count the zombies in the field.
 		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
 		// TODO: I think this is breaking Unity.
@@ -93,7 +93,8 @@ function addWave(newWave : ZombieWave) {
 function startNextWave() {
 // Pull out all the spawn jobs from the next wave.
 	if(!isEndless) {
-		spawnJobs = waves[waveNum].getWaveSpawns();
+		spawnJobs = waves[0].getWaveSpawns();
+		waves.RemoveAt(0);
 		waveNum++;
 	}
 	else {
