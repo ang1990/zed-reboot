@@ -12,6 +12,7 @@ var sword : Texture2D;
 var revolver : Texture2D;
 var assaultRifle : Texture2D;
 var shotgun : Texture2D;
+var grenadier : Texture2D;
 var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
@@ -95,6 +96,8 @@ function OnGUI() {
 		} else if (weapon.getId().Equals("sword")) {
 			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), sword, ScaleMode.ScaleAndCrop, true);
 			melee = true;
+		} else if (weapon.getId().Equals("grenadier")) {
+			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), grenadier, ScaleMode.ScaleAndCrop, true);
 		}
 		
 		if (!melee) {
