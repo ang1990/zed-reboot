@@ -102,7 +102,9 @@ function animatorReady(stateInfo : AnimatorStateInfo, weaponType : String) : boo
 		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.AssaultRifleStrike"));
 	} else if (weaponType == "pistol") {
 		return (stateInfo.IsName("WeaponLayer.PistolRelaxed") || stateInfo.IsName("WeaponLayer.PistolStrike"));
-	} else {
+	} else if (weaponType == "grenadier") {
+		return (stateInfo.IsName("WeaponLayer.GrenadierRelaxed") || stateInfo.IsName("WeaponLayer.GrenadierStrike"));
+	}else {
 		return true;
 	}
 }

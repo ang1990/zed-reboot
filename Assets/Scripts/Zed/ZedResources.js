@@ -95,7 +95,12 @@ function Update() {
 				changeWeapon();
 			}
 		} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
-			currentWeaponIndex = 4;
+			if(weapons[4].id != "nullWeapon") {
+				currentWeaponIndex = 4;
+				changeWeapon();
+			}
+		} else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
+			currentWeaponIndex = 5;
 		// Right now we don't have an animation for this state. So we just adopt the previous state.
 		//	changeWeaponAnimator();
 		} 
@@ -115,21 +120,31 @@ private function changeWeapon() {
 		animator.SetBool("carryRifle", false);
 		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", false);
+		animator.SetBool("carryGrenadier", false);
 	} else if(weapons[currentWeaponIndex].id == "revolver") {
 		animator.SetBool("carrySword", false);
 		animator.SetBool("carryRifle", false);
 		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", true);
+		animator.SetBool("carryGrenadier", false);
 	} else if(weapons[currentWeaponIndex].id == "shotgun") {
 		animator.SetBool("carrySword", false);
 		animator.SetBool("carryRifle", false);
 		animator.SetBool("carryShotgun", true);
 		animator.SetBool("carryPistol", false);
+		animator.SetBool("carryGrenadier", false);
 	} else if(weapons[currentWeaponIndex].id == "assaultRifle") {
 		animator.SetBool("carrySword", false);
 		animator.SetBool("carryRifle", true);
 		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", false);
+		animator.SetBool("carryGrenadier", false);
+	} else if(weapons[currentWeaponIndex].id == "grenadier") {
+		animator.SetBool("carrySword", false);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryShotgun", false);
+		animator.SetBool("carryPistol", false);
+		animator.SetBool("carryGrenadier", true);
 	}
 	weapons[currentWeaponIndex].playSwitchSound();
 
