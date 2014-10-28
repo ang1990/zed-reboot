@@ -140,13 +140,19 @@ class ProjectileWeapon extends Weapon {
 					
 					newBullet.GetComponent(BulletProperties).setPower(firePower);
 					newBullet.GetComponent(BulletProperties).setOwner(owner);
-					newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
+					if(newBullet.GetComponent(BulletMovement) != null) {
+						newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
+					}
+					else if(newBullet.GetComponent(ExplosiveBulletMovement) != null) {
+						newBullet.GetComponent(ExplosiveBulletMovement).setSpeed(actualBulletSpeed);
+					}
+					
 									
 					increaseScatterAngle();
 					
-					AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
 					lastShotTime = Time.time;
 				}
+				AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
 
 				if (bulletsInClip == 0) {
 					reload();

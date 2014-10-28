@@ -3,7 +3,7 @@
 var prefab : GameObject;
 var explosionCollider : CircleCollider2D;
 
-var healthToReduce : float = 300;
+var damage : float = 300;
 
 var radiusExpanded : boolean;
 
@@ -16,14 +16,12 @@ function Start() {
 
 function OnTriggerEnter2D(coll : Collider2D) {
 	if (coll.gameObject.tag == "zombie") {
-		var colliders : Collider2D[] = Physics2D.OverlapCircleAll(transform.position, explosionCollider.radius);
-		for (var c : Collider2D in colliders) {	
-			if (c.gameObject.tag == "zombie") {
-				c.gameObject.GetComponent(ZombieResources).reduceHealth(healthToReduce);
-			}
-		}
-	AudioSource.PlayClipAtPoint(mineTriggerSound, transform.position);
-	Instantiate(prefab, transform.position, Quaternion.identity);
-	Destroy(gameObject);
+		AudioSource.PlayClipAtPoint(mineTriggerSound, transform.position);
+		Destroy(gameObject);
 	}
+}
+
+function generateExplosion() {
+	var explosion = Instantiate(prefab, transform.position, Quaternion.identity);
+	explosion.GetComponent(Explosion).setDamage(damage);
 }

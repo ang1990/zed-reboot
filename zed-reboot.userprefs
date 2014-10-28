@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\Weapon\Shotgun.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\Weapon\Grenadier.js">
     <Files>
-      <File FileName="Assets\Scripts\Weapon\Weapon.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapon\WeaponArsenal.js" Line="108" Column="16" />
-      <File FileName="Assets\Scripts\Weapon\ProjectileWeapon.js" Line="221" Column="3" />
-      <File FileName="Assets\Scripts\Weapon\Weapon\Shotgun.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Grenadier.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -15,6 +15,8 @@ private var lastDeltaTime : float;
 private var finalPosition : Vector3;
 private var moving : boolean;
 
+var explosion : GameObject;
+
 function Start () {
 	moving = true;
 }
@@ -103,18 +105,23 @@ private function checkCollision() {
 			moving = false;
 			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
 				trailRenderer.time);
+			generateExplosion();
 		}
 		else if (firstHitObject.CompareTag("tallTerrain")) {
 			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
 			moving = false;
 			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
 				trailRenderer.time);
+			generateExplosion();
 		}
 		
 	}	
 }
 
-
+function generateExplosion() {
+	var prefab = Instantiate(explosion, transform.position, Quaternion.identity);
+	prefab.GetComponent(Explosion).setDamage(bulletProperties.getPower());
+}
 
 
 function evaluateZombieCollision(hitList : RaycastHit2D[], firstHitObject : GameObject) {	
