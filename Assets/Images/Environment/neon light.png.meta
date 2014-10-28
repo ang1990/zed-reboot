@@ -1,0 +1,92 @@
+fileFormatVersion: 2
+guid: 5e9c9efdcfeeb934a9b78167cab686ee
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: neon light
+    21300002: neon light_0
+    21300004: neon light_1
+    21300006: neon light_2
+    21300008: neon light_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 500
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: neon light_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 398
+        width: 452
+        height: 370
+      alignment: 9
+      pivot: {x: .0873296112, y: .825125396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neon light_1
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 399
+        width: 422
+        height: 369
+      alignment: 9
+      pivot: {x: .0451810583, y: .800365746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neon light_2
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 71
+        width: 417
+        height: 273
+      alignment: 9
+      pivot: {x: .0374747068, y: .960224748}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neon light_3
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 72
+        width: 417
+        height: 273
+      alignment: 9
+      pivot: {x: .0311398953, y: .950969517}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
