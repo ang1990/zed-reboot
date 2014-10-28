@@ -25,7 +25,7 @@ function setDamage(dmg : float) {
 }
 
 function processExplosion() {
-	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(transform.position, transform.lossyScale.x/2);
+	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(transform.position, 1);
 	for (var c : Collider2D in colliders) {
 	if (c.gameObject.CompareTag("zombie")) {
 		c.gameObject.GetComponent(ZombieImpact).damage(damage);

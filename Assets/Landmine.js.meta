@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 9bbacbc8f86e6c946a36b29d0be00e55
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefab: {instanceID: 0}
+  - explosionCollider: {instanceID: 0}
+  - mineTriggerSound: {fileID: 8300000, guid: 2d03906f7b88d9f459eff0d750d46fdf, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

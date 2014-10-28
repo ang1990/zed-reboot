@@ -17,6 +17,7 @@ function Start() {
 function OnTriggerEnter2D(coll : Collider2D) {
 	if (coll.gameObject.tag == "zombie") {
 		AudioSource.PlayClipAtPoint(mineTriggerSound, transform.position);
+		generateExplosion();
 		Destroy(gameObject);
 	}
 }
