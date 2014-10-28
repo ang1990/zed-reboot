@@ -33,8 +33,8 @@ function Start () {
 	var singleWave = new ZombieWave();
 	zombieSpawnEngine.isEndless = false;
 
-	singleWave.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
-	singleWave.spawnSingle(bossZombiePrefab, 75, Edge.RIGHT);
+	singleWave.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
+	singleWave.spawnContinuous(bossZombiePrefab, 120, 10000, 140, Edge.LEFT);
 	
 			
 	singleWave.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
