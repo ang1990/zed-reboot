@@ -31,6 +31,10 @@ var limitZombieCount: boolean;
 var maxZombiesLimit : int = 50;
 var undeadCount : int;
 
+var limitMinesCount: boolean = true;
+var maxMinesCount: int = 20;
+var minesCount : int;
+
 var diffMultiplier : float;
 
 var victory : boolean = false;
@@ -53,6 +57,7 @@ function Update() {
 		lastCheckTime = Time.timeSinceLevelLoad;
 		// Count the zombies in the field.
 		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
+		minesCount = GameObject.FindGameObjectsWithTag("Landmine").Length;
 		// TODO: I think this is breaking Unity.
 //		if(spawnJobs.Count > 0)
 			handleSpawnJobs();
@@ -70,6 +75,10 @@ function checkSpawnJobs() : int {
 
 function checkUndeadCount() : int {
 	return undeadCount;
+}
+
+function checkMinesCount() : int {
+	return minesCount;
 }
 
 function isVictory() : boolean {
@@ -131,10 +140,22 @@ function handleSpawnJobs() {
 		if (spawnJobs[i].isExpired()) {
 			spawnJobs.RemoveAt(i);
 		} else {
-			if(!limitZombieCount || undeadCount < maxZombiesLimit) {
-				spawnJobs[i].setHealthMultiplier(diffMultiplier);
-				if(spawnJobs[i].spawnIfDue())
-					undeadCount++;
+			if (spawnJobs[i].compareTag("zombie")) {
+				if(!limitZombieCount || undeadCount < maxZombiesLimit) {
+					spawnJobs[i].setHealthMultiplier(diffMultiplier);
+					if(spawnJobs[i].spawnIfDue())
+						undeadCount++;
+				}
+			}
+			else {
+				if (spawnJobs[i].compareTag("Landmine")) {
+				Debug.Log("Landmine!");
+				if(!limitMinesCount || minesCount < maxMinesCount) {
+					spawnJobs[i].setHealthMultiplier(diffMultiplier);
+					if(spawnJobs[i].spawnIfDue())
+						undeadCount++;
+				} else Debug.Log("Too many mines!");
+			}
 			}
 			i++;
 		}

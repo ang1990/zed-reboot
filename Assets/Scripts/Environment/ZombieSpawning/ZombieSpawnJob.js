@@ -148,6 +148,10 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		startTime = Time.timeSinceLevelLoad + startTime;
 	}
 	
+	function compareTag(string : String) : boolean {
+		return prefab.CompareTag(string);
+	}
+	
 	private function getPosition() : Vector2 {
 		if (locationMode == LocationMode.POSITION) {
 			return new Vector2(position.x + Random.Range(-spread.x, spread.x),
