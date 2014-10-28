@@ -1,8 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zed\ZedResources.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\LevelMenu.js">
     <Files>
-      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="100" Column="15" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="76" Column="22" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" Line="121" Column="39" />
+      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="26" Column="104" />
+      <File FileName="Assets\Scripts\Visuals\HudMain.js" Line="134" Column="24" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="97" Column="21" />
+      <File FileName="Assets\Scripts\Menu\MainMenu.js" Line="35" Column="26" />
+      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="60" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
