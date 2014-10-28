@@ -97,7 +97,7 @@ function animatorReady(stateInfo : AnimatorStateInfo, weaponType : String) : boo
 	if (weaponType == "meleeWeapon") {
 		return (stateInfo.IsName("WeaponLayer.SwordRelaxed") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordUp"));
 	} else if (weaponType == "scattergun") {
-		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.ShotGunStrike"));
+		return (stateInfo.IsName("WeaponLayer.ShotgunRelaxed") || stateInfo.IsName("WeaponLayer.ShotGunStrike"));
 	} else if (weaponType == "rifle") {
 		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.AssaultRifleStrike"));
 	} else if (weaponType == "pistol") {

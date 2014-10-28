@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zed\ZedResources.js">
     <Files>
-      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="100" Column="15" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="257" Column="22" />
+      <File FileName="Assets\Scripts\Zed\ZedStrike.js" Line="108" Column="2" />
+      <File FileName="Assets\Scripts\Zed\ZedMovement.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

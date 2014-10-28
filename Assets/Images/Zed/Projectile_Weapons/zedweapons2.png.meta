@@ -3,6 +3,9 @@ guid: 93020302cd1d04845ae8c68b37eda2b2
 TextureImporter:
   fileIDToRecycleName:
     21300000: zedweapons2
+    21300002: zedweapons2_0
+    21300004: zedweapons2_1
+    21300006: zedweapons2_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -43,6 +46,36 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: zedweapons2_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 499
+        width: 260
+        height: 483
+      alignment: 9
+      pivot: {x: .524447322, y: .730300665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: zedweapons2_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 504
+        width: 267
+        height: 486
+      alignment: 9
+      pivot: {x: .494048506, y: .709260762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: zedweapons2_2
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 496
+        width: 272
+        height: 504
+      alignment: 9
+      pivot: {x: .49415791, y: .717551827}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

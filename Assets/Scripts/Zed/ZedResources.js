@@ -113,24 +113,22 @@ private function changeWeapon() {
 	if(weapons[currentWeaponIndex].id == "sword") {
 		animator.SetBool("carrySword", true);
 		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", false);
 	} else if(weapons[currentWeaponIndex].id == "revolver") {
 		animator.SetBool("carrySword", false);
 		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", true);
 	} else if(weapons[currentWeaponIndex].id == "shotgun") {
-		if (animator.GetBool("carryRifle")) {
-			animator.SetTrigger("changeRifles");
-		}
 		animator.SetBool("carrySword", false);
-		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryRifle", false);
+		animator.SetBool("carryShotgun", true);
 		animator.SetBool("carryPistol", false);
 	} else if(weapons[currentWeaponIndex].id == "assaultRifle") {
-		if (animator.GetBool("carryRifle")) {
-			animator.SetTrigger("changeRifles");
-		}
 		animator.SetBool("carrySword", false);
 		animator.SetBool("carryRifle", true);
+		animator.SetBool("carryShotgun", false);
 		animator.SetBool("carryPistol", false);
 	}
 	weapons[currentWeaponIndex].playSwitchSound();
