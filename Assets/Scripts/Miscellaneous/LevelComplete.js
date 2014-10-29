@@ -55,6 +55,10 @@ function OnGUI() {
 			boxWidth*Screen.width,
 			buttonHeight));
 		if (GUILayout.Button("Back to Level Select", GUILayout.Width(boxWidth*Screen.width), GUILayout.Height(buttonHeight))) {
+			var path : String [] = Application.loadedLevelName.Split(char.Parse("/"));
+			var scenename : String [] = path[path.Length -1].Split(char.Parse("."));
+			PlayerPrefs.SetString(scenename[0], "Level Clear");
+			Debug.Log(scenename[0] + " clear saved into playerprefs");
 			levelSelectButtonPressed();
 		}
 		GUILayout.EndArea();

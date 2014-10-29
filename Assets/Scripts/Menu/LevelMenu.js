@@ -19,6 +19,7 @@ var titleLabelY : float; // fraction of Screen.height
 var lvButton1 : float; 
 var lvButton2 : float;
 var lvButton3 : float;
+var lvResetButton: float;
 var returnButton : float;
 
 var lvName1 : String;
@@ -51,13 +52,33 @@ function OnGUI() {
 	}
 	
 	if (newButton(lvButton2, "Level 2")) {
-		Time.timeScale = 1;
-		Application.LoadLevel(lvName2);
+		if (PlayerPrefs.HasKey("Level1")) {
+			Debug.Log("Level1 key found");
+			Time.timeScale = 1;
+			Application.LoadLevel(lvName2);
+		}
+		else {
+			Debug.Log("Level1 key not found");
+			Application.LoadLevel(mainMenuName);
+		}
 	}
 
 	if (newButton(lvButton3, "Level 3")) {
-		Time.timeScale = 1;
-		Application.LoadLevel(lvName3);
+		if (PlayerPrefs.HasKey("Level2")) {
+			Debug.Log("Level2 key found");
+			Time.timeScale = 1;
+			Application.LoadLevel(lvName3);
+		}
+		else {
+			Debug.Log("Level2 key not found");
+			Application.LoadLevel(mainMenuName);
+		}
+	}
+	
+	if (newButton(lvResetButton, "Reset Story Mode")) {
+		PlayerPrefs.DeleteKey("Level1");
+		PlayerPrefs.DeleteKey("Level2");
+		PlayerPrefs.DeleteKey("Level3");
 	}
 
 	// Return to main menu.
