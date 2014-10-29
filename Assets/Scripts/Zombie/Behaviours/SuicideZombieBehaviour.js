@@ -36,6 +36,7 @@ var nextPosition : Vector2;
 var zombieResources : ZombieResources;
 var zombieSuicide : ZombieSuicide;
 var navigator : PolyNavAgent;
+var zombieProperties : ZombieProperties;
 private var animator : Animator;
 	
 // Mapbounds
@@ -51,7 +52,7 @@ function Start() {
 
 function Update() {
 	navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
-	animator.SetFloat("speed", gameObject.GetComponent(Rigidbody2D).velocity.magnitude);
+	animator.SetFloat("speed", zombieProperties.getSpeed());
 	// If zombie is within range, start self-destruct timer.
 	if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
 			suicideTimer += Time.deltaTime;

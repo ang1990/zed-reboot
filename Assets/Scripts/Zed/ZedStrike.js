@@ -17,6 +17,8 @@ private final var SHOTGUN : int = EnvironmentAttributes.SHOTGUN_INDEX;
 private final var ASSAULT_RIFLE : int = EnvironmentAttributes.ASSAULT_RIFLE_INDEX;
 private final var PISTOL : int = EnvironmentAttributes.PISTOL_INDEX;
 
+private var muzzle : SpriteRenderer;
+
 function Awake() {
 	totalBulletsSpawned = 0;
 	bulletsHit = 0;	
@@ -43,13 +45,8 @@ function Update() {
 				var successfulStrike : boolean = currentWeapon.strike();
 				var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
 				if (successfulStrike) {
-					if (zedResources.currentWeaponIndex == SHOTGUN) {
-						animator.SetBool("shotgun", true);
-					} else {
-						animator.SetBool("shotgun", false);
-					}
 					animator.SetTrigger("projectileStrike");
-					totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;				
+					totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;			
 				}
 			} else if (currentWeapon instanceof MeleeWeapon) {
 				if (animator.GetCurrentAnimatorStateInfo(1).IsName("WeaponLayer.SwordStrike")) {

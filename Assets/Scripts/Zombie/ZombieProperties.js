@@ -10,6 +10,7 @@ var attackDamage : float;
 var timeBetweenHits : float;
 var coinDropProbability : float;
 var coinsDroppable : int; // even if 1, might not end up dropping any coins due to probability
+var speed : float;
 
 function getExpGained() {
 	return experience;
@@ -37,4 +38,8 @@ function getCoinDropProbability() {
 
 function getCoinsDroppable() {
 	return coinsDroppable;
+}
+
+function getSpeed() {
+	return speed;
 }
