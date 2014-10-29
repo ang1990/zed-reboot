@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: 4d6e5e9dc0a1b2c44b45c4ffbea9072f
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: spawn
+    21300002: spawn_0
+    21300004: spawn_1
+    21300006: spawn_2
+    21300008: spawn_3
+    21300010: spawn_4
+    21300012: spawn_5
+    21300014: spawn_6
+    21300016: spawn_7
+    21300018: spawn_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 500
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: spawn_0
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 1355
+        width: 227
+        height: 252
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_1
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 1290
+        width: 344
+        height: 336
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_2
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1224
+        width: 464
+        height: 454
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 544
+        width: 691
+        height: 694
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_4
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 525
+        width: 631
+        height: 677
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_5
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 52
+        width: 522
+        height: 457
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_6
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 132
+        width: 333
+        height: 377
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_7
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 99
+        width: 262
+        height: 257
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawn_8
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 99
+        width: 161
+        height: 213
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

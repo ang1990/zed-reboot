@@ -5,6 +5,8 @@ var buttonFontSizeMultiplier : float;
 var defaultFontSize : float = 16; // for font size calculation
 
 var defaultScreenWidth : int = 1600; // for font size calculation
+
+var next : Texture2D;
 private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
 var sprite0 : Sprite;
@@ -47,6 +49,7 @@ function Start() {
 }
 
 function OnGUI() {
+
 	GUI.skin = null;
 	GUI.skin.font = zedFont;
 	GUI.skin.button.fontSize = defaultFontSize*buttonFontSizeMultiplier*screenToDefaultScreenRatio;
