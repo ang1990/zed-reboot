@@ -22,6 +22,8 @@ var lvButton3 : float;
 var lvResetButton: float;
 var returnButton : float;
 
+var lockedLevelClicked : boolean = false;
+
 var lvName1 : String;
 var lvName2 : String;
 var lvName3 : String;
@@ -35,6 +37,7 @@ function OnGUI() {
 	GUI.skin = null;
 	GUI.skin.font = zedFont;
 	GUI.skin.button.fontSize = defaultFontSize*buttonFontSizeMultiplier*screenToDefaultScreenRatio;
+	GUI.skin.label.fontSize = 96;
 
 	// Title
 	var centeredStyle = GUIStyle(GUI.skin.label);
@@ -44,7 +47,7 @@ function OnGUI() {
 			titleWidth*Screen.width,
 			titleHeight*Screen.width); // height until first button
 	GUI.Label(buttonRect, GUIContent("zed"), centeredStyle);
-
+	
 	// Level 1, 2 and 3.
 	if (newButton(lvButton1, "Level 1")) {
 		Time.timeScale = 1;
@@ -59,7 +62,7 @@ function OnGUI() {
 		}
 		else {
 			Debug.Log("Level1 key not found");
-			Application.LoadLevel(mainMenuName);
+			lockedLevelClicked = true;
 		}
 	}
 
@@ -71,7 +74,7 @@ function OnGUI() {
 		}
 		else {
 			Debug.Log("Level2 key not found");
-			Application.LoadLevel(mainMenuName);
+			lockedLevelClicked = true;
 		}
 	}
 	
@@ -87,6 +90,13 @@ function OnGUI() {
 	}
 
 	GUI.skin = null;
+	GUI.skin.label.fontSize = 16;
+	
+	// Notice which appears when player clicks a locked level
+	if (lockedLevelClicked) {
+		GUI.Label(Rect(50,Screen.height-100,400,100), "You must complete previous levels to unlock that level");
+	}
+
 }
 
 function newButton(y : float, text : String) : boolean {

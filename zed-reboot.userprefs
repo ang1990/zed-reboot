@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zombie\ZombieResources.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\LevelMenu.js">
     <Files>
-      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="28" Column="2" />
-      <File FileName="Assets\Scripts\Zombie\ZombieProperties.js" Line="45" Column="2" />
-      <File FileName="Assets\Scripts\Zombie\ZombieMovement.js" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\Runtime\PolyNavAgent.cs" Line="121" Column="2" />
-      <File FileName="Assets\Scripts\Zombie\Behaviours\NormalZombieBehaviour.js" Line="35" Column="1" />
-      <File FileName="Assets\Scripts\Zombie\Behaviours\BossZombieBehaviour.js" Line="81" Column="42" />
-      <File FileName="Assets\Scripts\Zombie\Behaviours\SuicideZombieBehaviour.js" Line="39" Column="41" />
+      <File FileName="Assets\Scripts\Menu\HighScores.js" Line="31" Column="32" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Grenadier.js" Line="1" Column="1" />
+      <File FileName="Assets\Landmine.js" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\HighScoreManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="73" Column="21" />
+      <File FileName="Assets\Scripts\Miscellaneous\LevelComplete.js" Line="58" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
