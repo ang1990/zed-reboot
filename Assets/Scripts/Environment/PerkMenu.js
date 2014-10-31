@@ -156,7 +156,7 @@ function OnGUI() {
 				artilleryButtonRect, 
 				GUIContent("Scanner\nTurret", scannerTurretCost.ToString() + "G"))) {
 
-			purchaseTurret(0);							
+			purchaseTurretAmmo();						
 		}
 
 		GUI.enabled = true;	
@@ -219,4 +219,9 @@ function purchaseTurret(_type : int) {
 		zedResources.changeMoney(-miniTurretCost);
 		Instantiate(turretPrefabs[1], GameObject.Find("zed").GetComponent(ZedMovement).getPosition(), Quaternion.identity);
 	}
+}
+
+function purchaseTurretAmmo() {
+	zedResources.changeMoney(-scannerTurretCost);
+	GameObject.Find("zed").GetComponent(ZedResources).increaseWeaponAmmo(5);
 }

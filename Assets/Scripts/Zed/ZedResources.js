@@ -271,6 +271,10 @@ function getMoney() {
 	return money;
 }
 
+function increaseWeaponAmmo(weaponNo : int) {
+	weapons[weaponNo].addClips(1);
+}
+
 function getCurrentScatterAngle() : float {
 	if (weapons[currentWeaponIndex] instanceof ProjectileWeapon) {
 		var weapon : ProjectileWeapon = weapons[currentWeaponIndex] as ProjectileWeapon;
