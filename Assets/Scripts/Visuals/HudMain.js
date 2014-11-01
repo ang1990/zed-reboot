@@ -18,6 +18,10 @@ var grenadier : GUITexture;
 var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
+var bullet : GUITexture;
+
+private var allbullets : GUITexture[];
+
 
 var healthBar : GUITexture;
 var healthSymbol : Texture2D;
@@ -38,6 +42,7 @@ function Start() {
 	bullets = 0;
 	//reloadClip();
 	lastWeaponId = "";
+	
 }
 
 function OnGUI() {
@@ -137,9 +142,11 @@ function OnGUI() {
 
 			var i : int;
 			bullets = weapon.getBulletsInClip();
+			var init = bullet.pixelInset.x;
 			for (i = 0; i < bullets; i++) {
 				GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12 + 5 + i*9, 90, 9, 28), clipBullets[i], ScaleMode.ScaleAndCrop, true);
 			}
+			bullet.pixelInset.x=init;
 			GUI.DrawTexture(Rect(Screen.width/2 + clipBullets.length*9/2 - 24, 85, 24, 38), rightBracket, ScaleMode.ScaleAndCrop, true);
 
 			// Clip image background
