@@ -1,13 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menu\LevelMenu.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Visuals\HudMain.js">
     <Files>
-      <File FileName="Assets\Scripts\Menu\HighScores.js" Line="31" Column="32" />
-      <File FileName="Assets\Scripts\Weapon\Weapon\Grenadier.js" Line="1" Column="1" />
-      <File FileName="Assets\Landmine.js" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\HighScoreManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Menu\LevelMenu.js" Line="73" Column="21" />
       <File FileName="Assets\Scripts\Miscellaneous\LevelComplete.js" Line="58" Column="54" />
+      <File FileName="Assets\Scripts\Visuals\HudMain.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

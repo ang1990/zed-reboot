@@ -8,16 +8,18 @@ var zedFont : Font;
 var labelFontSize : int;
 
 var zed : GameObject;
-var sword : Texture2D;
-var revolver : Texture2D;
-var assaultRifle : Texture2D;
-var shotgun : Texture2D;
-var grenadier : Texture2D;
+
+var arsenal : GUITexture;
+var sword : GUITexture;
+var revolver : GUITexture;
+var assaultRifle : GUITexture;
+var shotgun : GUITexture;
+var grenadier : GUITexture;
 var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
 
-var healthBar : Texture2D;
+var healthBar : GUITexture;
 var healthSymbol : Texture2D;
 var moneySymbol : Texture2D;
 var skillPointSymbol : Texture2D;
@@ -54,7 +56,7 @@ function OnGUI() {
 	clipSize = weapon.getClipSize();
 
 	// Draws the health bar background for the current health bar
-	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 200, 18), healthBar, ScaleMode.StretchToFill); 
+	//GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 200, 18), healthBar, ScaleMode.StretchToFill); 
 	
 	GUI.color = Color(0.0, 0.0, 0.0, 0.4);
 
@@ -80,24 +82,44 @@ function OnGUI() {
 	centeredStyle = prevStyle;
 
 	// Current health bar
-	GUI.DrawTexture(Rect(Screen.width/2 - 100, Screen.height - 30, 9, 18), healthSymbol, ScaleMode.StretchToFill); 
-	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 2*zedResources.getHealth(), 18), healthBar, ScaleMode.StretchToFill); 
+	healthBar.pixelInset.width = 400*zedResources.getHealth()/100;
 	
 	if (weapon.getId() != null) {
 		var melee : boolean = false;
 		
 		// Weapon image
 		if (weapon.getId().Equals("assaultRifle")) {
-			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), assaultRifle, ScaleMode.ScaleAndCrop, true);
+			revolver.enabled=false;
+			assaultRifle.enabled=true;
+			shotgun.enabled=false;
+			grenadier.enabled=false;
+			sword.enabled=false;
 		} else if (weapon.getId().Equals("shotgun")) {
-			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), shotgun, ScaleMode.ScaleAndCrop, true);
+			revolver.enabled=false;
+			assaultRifle.enabled=false;
+			shotgun.enabled=true;
+			grenadier.enabled=false;
+			sword.enabled=false;
 		} else if (weapon.getId().Equals("revolver")) {
-			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), revolver, ScaleMode.ScaleAndCrop, true);
+			revolver.enabled=true;
+			assaultRifle.enabled=false;
+			shotgun.enabled=false;
+			grenadier.enabled=false;
+			sword.enabled=false;
+			//GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), revolver, ScaleMode.ScaleAndCrop, true);
 		} else if (weapon.getId().Equals("sword")) {
-			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), sword, ScaleMode.ScaleAndCrop, true);
+			revolver.enabled=false;
+			assaultRifle.enabled=false;
+			shotgun.enabled=false;
+			grenadier.enabled=false;
+			sword.enabled=true;
 			melee = true;
 		} else if (weapon.getId().Equals("grenadier")) {
-			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), grenadier, ScaleMode.ScaleAndCrop, true);
+			revolver.enabled=false;
+			assaultRifle.enabled=false;
+			shotgun.enabled=false;
+			grenadier.enabled=true;
+			sword.enabled=false;
 		}
 		
 		if (!melee) {
