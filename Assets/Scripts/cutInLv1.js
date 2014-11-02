@@ -7,6 +7,8 @@ var defaultFontSize : float = 16; // for font size calculation
 var defaultScreenWidth : int = 1600; // for font size calculation
 
 var next : Texture2D;
+var nextStyle : GUIStyle;
+
 private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
 var sprite0 : Sprite;
@@ -65,7 +67,7 @@ function newButton() : boolean {
 			0.85*Screen.height, 
 			50,
 			50);
-	return GUI.Button(buttonRect, "NEXT");
+	return GUI.Button(buttonRect, "", nextStyle);
 }
 
 function changeImage() {
