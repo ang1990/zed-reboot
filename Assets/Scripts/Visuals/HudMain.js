@@ -19,6 +19,7 @@ var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
 var clip : GUIText;
+var score : GUIText;
 var bullet : GUITexture;
 
 private var allBullets : List.<GUITexture>;
@@ -29,9 +30,8 @@ private var maxClipSize : int;
 
 
 var healthBar : GUITexture;
-var healthSymbol : Texture2D;
-var moneySymbol : Texture2D;
-var skillPointSymbol : Texture2D;
+var money : GUIText;
+var skillPoint : GUIText;
 
 private var zedResources : ZedResources;
 private var clipSize : int;
@@ -60,8 +60,8 @@ function OnGUI() {
 
 	// Skill points and money symbol
 	GUI.color.a = 0.7;
-	GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 45, 15, 15), moneySymbol, ScaleMode.StretchToFill);
-	GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 22, 15, 15), skillPointSymbol, ScaleMode.StretchToFill); 
+	//GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 45, 15, 15), moneySymbol, ScaleMode.StretchToFill);
+	//GUI.DrawTexture(Rect(Screen.width/2 + 122, Screen.height - 22, 15, 15), skillPointSymbol, ScaleMode.StretchToFill); 
 
 	GUI.skin.font = zedFont;
 	GUI.skin.label.fontSize = labelFontSize;
@@ -102,7 +102,9 @@ function OnGUI() {
 	GUI.skin.label.fontSize = 36;
 	centeredStyle = GUIStyle(GUI.skin.label);
 	centeredStyle.alignment = TextAnchor.LowerRight;
-	GUI.Label(Rect(Screen.width/2 - 90, Screen.height - 145, 200, 120), zedResources.getExperience().ToString(), centeredStyle);
+	
+	score.text = zedResources.getExperience().ToString();
+	//GUI.Label(Rect(Screen.width/2 - 90, Screen.height - 145, 200, 120), zedResources.getExperience().ToString(), centeredStyle);
 	GUI.skin.label.fontSize = prevFontSize;
 	centeredStyle = prevStyle;
 
@@ -112,8 +114,11 @@ function OnGUI() {
 	GUI.skin.label.fontSize = 22;
 	centeredStyle = GUIStyle(GUI.skin.label);
 	centeredStyle.alignment = TextAnchor.MiddleLeft;
-	GUI.Label(Rect(Screen.width/2 + 140, Screen.height - 99, 200, 120), zedResources.getMoney().ToString(), centeredStyle);
-	GUI.Label(Rect(Screen.width/2 + 140, Screen.height - 76, 200, 120), zedResources.getSkillPoints().ToString(), centeredStyle);
+	
+	money.text = zedResources.getMoney().ToString();
+	skillPoint.text = zedResources.getSkillPoints().ToString();
+	//GUI.Label(Rect(Screen.width/2 + 140, Screen.height - 99, 200, 120), zedResources.getMoney().ToString(), centeredStyle);
+	//GUI.Label(Rect(Screen.width/2 + 140, Screen.height - 76, 200, 120), zedResources.getSkillPoints().ToString(), centeredStyle);
 	GUI.skin.label.fontSize = prevFontSize;
 	centeredStyle = prevStyle;
 
@@ -139,8 +144,6 @@ function OnGUI() {
 				clip.guiText.enabled = true;
 				clip.text = weapon.getBulletsInClip().ToString()+"\\"+weapon.getBullets().ToString();
 			}
-			//GUI.Label(Rect(Screen.width/2 + clipBullets.length*9/2 - 24 + 27, 80, 100, 100), 
-	    	//	weapon.getBullets().ToString() + "\\"+  weapon.getBulletsInClip().ToString());
 
 			// Clip image overlay
 
@@ -151,12 +154,6 @@ function OnGUI() {
 					allBullets[i].enabled=true;
 				else
 					allBullets[i].enabled=false;
-			}
-
-			// Clip image background
-			GUI.color = Color(0.0, 0.0, 0.0, 0.10);
-			for (i = 0; i < clipBullets.length; i++) {
-				GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12 + 5 + i*9, 90, 9, 28), clipBullets[i], ScaleMode.ScaleAndCrop, true);
 			}
 		}
 	}
