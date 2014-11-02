@@ -18,9 +18,14 @@ var grenadier : GUITexture;
 var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
+var clip : GUIText;
 var bullet : GUITexture;
 
-private var allbullets : GUITexture[];
+private var allBullets : List.<GUITexture>;
+private var initBulletx : float;
+private var initBullety : float;
+
+private var maxClipSize : int;
 
 
 var healthBar : GUITexture;
@@ -34,6 +39,7 @@ private var bullets : int;
 private var clipBullets : Texture2D[];
 private var weapon : Weapon;
 private var lastWeaponId : String;
+private var currentWeaponId : String;
 
 private var centeredStyle : GUIStyle;
 
@@ -43,6 +49,10 @@ function Start() {
 	//reloadClip();
 	lastWeaponId = "";
 	
+	allBullets = new List.<GUITexture>();
+	initBulletx = bullet.pixelInset.x;
+	initBullety = bullet.pixelInset.y;
+	maxClipSize = 0;
 }
 
 function OnGUI() {
@@ -55,10 +65,31 @@ function OnGUI() {
 
 	GUI.skin.font = zedFont;
 	GUI.skin.label.fontSize = labelFontSize;
-
+	
+	if(lastWeaponId != "")
+		lastWeaponId = weapon.getId();
+	
 	// Gets current weapon's clip size
 	weapon = zedResources.weapons[zedResources.currentWeaponIndex];
 	clipSize = weapon.getClipSize();
+	
+	currentWeaponId = weapon .getId();
+	
+	if(currentWeaponId != lastWeaponId) {
+		Debug.Log("weapon change");
+		clipSize = weapon.getClipSize();
+		
+		var j : int;
+		if (clipSize > maxClipSize) {
+			for (j = maxClipSize; j<clipSize; j++) {
+				bullet.pixelInset.x = bullet.pixelInset.x + ((bullet.pixelInset.width + 2)*j);
+				allBullets.Add(Instantiate(bullet));
+				bullet.pixelInset.x = initBulletx;
+				bullet.pixelInset.y = initBullety;
+			}
+			maxClipSize = clipSize;
+		}
+	}
 
 	// Draws the health bar background for the current health bar
 	//GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 200, 18), healthBar, ScaleMode.StretchToFill); 
@@ -93,39 +124,7 @@ function OnGUI() {
 		var melee : boolean = false;
 		
 		// Weapon image
-		if (weapon.getId().Equals("assaultRifle")) {
-			revolver.enabled=false;
-			assaultRifle.enabled=true;
-			shotgun.enabled=false;
-			grenadier.enabled=false;
-			sword.enabled=false;
-		} else if (weapon.getId().Equals("shotgun")) {
-			revolver.enabled=false;
-			assaultRifle.enabled=false;
-			shotgun.enabled=true;
-			grenadier.enabled=false;
-			sword.enabled=false;
-		} else if (weapon.getId().Equals("revolver")) {
-			revolver.enabled=true;
-			assaultRifle.enabled=false;
-			shotgun.enabled=false;
-			grenadier.enabled=false;
-			sword.enabled=false;
-			//GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), revolver, ScaleMode.ScaleAndCrop, true);
-		} else if (weapon.getId().Equals("sword")) {
-			revolver.enabled=false;
-			assaultRifle.enabled=false;
-			shotgun.enabled=false;
-			grenadier.enabled=false;
-			sword.enabled=true;
-			melee = true;
-		} else if (weapon.getId().Equals("grenadier")) {
-			revolver.enabled=false;
-			assaultRifle.enabled=false;
-			shotgun.enabled=false;
-			grenadier.enabled=true;
-			sword.enabled=false;
-		}
+		changeHUDWeapon(weapon.getId());
 		
 		if (!melee) {
 			// Clip image
@@ -134,20 +133,25 @@ function OnGUI() {
 			}
 
 			// Total bullets left
-			GUI.Label(Rect(Screen.width/2 + clipBullets.length*9/2 - 24 + 27, 80, 100, 100), 
-	    		weapon.getBullets().ToString() + "\\"+  weapon.getBulletsInClip().ToString());
+			if(weapon.getId().Equals("sword")) {
+				clip.guiText.enabled = false;
+			} else {
+				clip.guiText.enabled = true;
+				clip.text = weapon.getBulletsInClip().ToString()+"\\"+weapon.getBullets().ToString();
+			}
+			//GUI.Label(Rect(Screen.width/2 + clipBullets.length*9/2 - 24 + 27, 80, 100, 100), 
+	    	//	weapon.getBullets().ToString() + "\\"+  weapon.getBulletsInClip().ToString());
 
 			// Clip image overlay
-			GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12, 85, 24, 38), leftBracket, ScaleMode.ScaleAndCrop, true);
 
 			var i : int;
 			bullets = weapon.getBulletsInClip();
-			var init = bullet.pixelInset.x;
-			for (i = 0; i < bullets; i++) {
-				GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12 + 5 + i*9, 90, 9, 28), clipBullets[i], ScaleMode.ScaleAndCrop, true);
+			for (i = 0; i < allBullets.Count; i++) {
+				if(i<bullets)
+					allBullets[i].enabled=true;
+				else
+					allBullets[i].enabled=false;
 			}
-			bullet.pixelInset.x=init;
-			GUI.DrawTexture(Rect(Screen.width/2 + clipBullets.length*9/2 - 24, 85, 24, 38), rightBracket, ScaleMode.ScaleAndCrop, true);
 
 			// Clip image background
 			GUI.color = Color(0.0, 0.0, 0.0, 0.10);
@@ -174,4 +178,23 @@ function reloadClip() {
 function getRandomBulletTexture() : Texture2D {
 	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.01));
 	return bulletSkins[bulletNumber];
+}
+
+function changeHUDWeapon (id : String) {
+	revolver.enabled=false;
+	assaultRifle.enabled=false;
+	shotgun.enabled=false;
+	grenadier.enabled=false;
+	sword.enabled=false;
+	if (weapon.getId().Equals("assaultRifle")) {
+		assaultRifle.enabled=true;
+	} else if (weapon.getId().Equals("shotgun")) {
+		shotgun.enabled=true;
+	} else if (weapon.getId().Equals("revolver")) {
+		revolver.enabled=true;
+	} else if (weapon.getId().Equals("sword")) {
+		sword.enabled=true;
+	} else if (weapon.getId().Equals("grenadier")) {
+		grenadier.enabled=true;
+	}
 }
