@@ -1,12 +1,20 @@
 ﻿#pragma strict
 private var customGuiStyle : GUIStyle;
 
+var PerkMenu : GameObject;
+private var perksMenu : Transform;
+private var weaponsMenu : Transform;
+private var weaponPerkMenu : Transform;
+private var perksPerkMenu : Transform;
+
 var turretPrefabs : GameObject[];
 
 var boxTexture : Texture2D;
 var zedFont : Font;
 var titleFontSize : int;
 var buttonFontSize : int;
+
+var buttonStyle : GUIStyle;
 
 var purchasedIcon : Texture2D; // checkmark-image
 var zedResources : ZedResources;
@@ -43,8 +51,36 @@ function Start() {
 	buttonSize = new Vector2(
 		(backgroundWidth - (perkStock.CATEGORY_COUNT + 1)*buttonPadding.x)/perkStock.CATEGORY_COUNT,
 		buttonHeight);
-
-
+	
+	perksMenu = PerkMenu.transform.FindChild("Perks");
+	weaponsMenu = PerkMenu.transform.FindChild("Weapons");
+	perksPerkMenu = PerkMenu.transform.FindChild("Perkstext");
+	weaponPerkMenu = PerkMenu.transform.FindChild("Weaponstext");
+	
+	perksMenu.guiTexture.enabled = false;
+	weaponsMenu.guiTexture.enabled = false;
+	
+	weaponPerkMenu.guiText.enabled = false;
+	perksPerkMenu.guiText.enabled = false;
+	
+	perksMenu.guiTexture.pixelInset.x = 10*Screen.width/100;
+	perksMenu.guiTexture.pixelInset.y = 10*Screen.height/100;
+	
+	perksMenu.guiTexture.pixelInset.height = 80*Screen.height/100;
+	perksMenu.guiTexture.pixelInset.width = 50*Screen.width/100;
+	
+	weaponsMenu.guiTexture.pixelInset.x = 60*Screen.width/100;
+	weaponsMenu.guiTexture.pixelInset.y = 10*Screen.height/100;
+	
+	weaponsMenu.guiTexture.pixelInset.height = 80*Screen.height/100;
+	weaponsMenu.guiTexture.pixelInset.width = 30*Screen.width/100;
+	
+	perksPerkMenu.guiText.pixelOffset.y =  88*Screen.height/100;
+	perksPerkMenu.guiText.pixelOffset.x =  35*Screen.width/100;
+	
+	weaponPerkMenu.guiText.pixelOffset.y = 88*Screen.height/100;
+	weaponPerkMenu.guiText.pixelOffset.x = 75*Screen.width/100;
+	
 }
 
 function Update () {
@@ -62,41 +98,60 @@ function Update () {
 function OnGUI() {
 	var defaultBackground : Texture2D = GUI.skin.box.normal.background;
 	if (perkMenuActive) {
+	
+		perksMenu.guiTexture.enabled = true;
+		weaponsMenu.guiTexture.enabled = true;
+		perksPerkMenu.guiText.enabled = true;
+		weaponPerkMenu.guiText.enabled = true;
+		
 		changeFontSize(titleFontSize, GUI.skin.box);
 		changeFontSize(buttonFontSize, GUI.skin.button);
 
-		GUI.skin.box.normal.background = boxTexture;
-		GUI.Box(
-			Rect((backgroundCenter.x - 0.5*backgroundWidth)*Screen.width, 
-				(backgroundCenter.y - 0.5*backgroundHeight)*Screen.width, 
-				(backgroundWidth*Screen.width), 
-				(backgroundHeight*Screen.width)), 
-			"Perks");
+//		GUI.skin.box.normal.background = boxTexture;
+//		GUI.Box(
+//			Rect((backgroundCenter.x - 0.5*backgroundWidth)*Screen.width, 
+//				(backgroundCenter.y - 0.5*backgroundHeight)*Screen.width, 
+//				(backgroundWidth*Screen.width), 
+//				(backgroundHeight*Screen.width)), 
+//			"Perks");
 
 
 		/**
 		 ********** PERKS **********
 		 */
+		var areaPosition : Vector2 = new Vector2(0.1*Screen.width+15,0.1*Screen.height);
+		var areaWidth : float = 0.5*Screen.width-30;
+		var areaHeight : float = 0.8*Screen.height-15;
 		GUILayout.BeginArea(
-			Rect((backgroundCenter.x - 0.5*backgroundWidth)*Screen.width, 
-				(backgroundCenter.y - 0.5*backgroundHeight)*Screen.width, 
-				(backgroundWidth*Screen.width), 
-				(backgroundHeight*Screen.width)));
+			Rect(
+			areaPosition.x,
+			areaPosition.y,
+			areaWidth,
+			areaHeight
+		));
+//			Rect((backgroundCenter.x - 0.5*backgroundWidth)*Screen.width, 
+//				(backgroundCenter.y - 0.5*backgroundHeight)*Screen.width, 
+//				(backgroundWidth*Screen.width), 
+//				(backgroundHeight*Screen.width)));
 
-		// 
+		//
+		var category : int = perkStock.CATEGORY_COUNT;
+		var buttonLength : float = areaWidth/category;
+		var buttonTall : float = buttonLength;
+		 
 		for (var categoryIndex : int = 0; categoryIndex < perkStock.CATEGORY_COUNT; categoryIndex++) {
 			for (var perkIndex : int = 0; perkIndex < perkStock.getCategorySize(categoryIndex); perkIndex++) {
 				var perk : Perk = perkStock.getPerk(categoryIndex, perkIndex);
 
 				var position : Vector2 = new Vector2(
-					(buttonPadding.x + categoryIndex*(buttonSize.x + buttonPadding.x))*Screen.width,
-					backgroundHeight*Screen.width - ((perkIndex + 1)*(buttonSize.y + buttonPadding.y))*Screen.width);
+					(categoryIndex*buttonLength),
+					(buttonTall*(perkIndex+1)));
 
 				var buttonRect : Rect = new Rect(
 					position.x, 
 					position.y, 
-					buttonSize.x*Screen.width, 
-					buttonSize.y*Screen.width);
+					buttonLength, 
+					buttonTall);
 
 				var unlocked : boolean = perkStock.isUnlocked(categoryIndex, perkIndex);
 				var active : boolean = perkStock.isActive(categoryIndex, perkIndex);
@@ -108,7 +163,7 @@ function OnGUI() {
 
 				if (GUI.Button(
 						buttonRect, 
-						GUIContent(perk.getName(), perk.getSkillPointCost() + " SP"))) {
+						GUIContent(perk.getName(), perk.getSkillPointCost() + " SP"),buttonStyle)) {
 
 					purchasePerk(categoryIndex, perkIndex);							
 				}
@@ -126,27 +181,37 @@ function OnGUI() {
 		/**
 		 ********** ARTILLERY **********
 		 */
-		GUI.Box(
-			Rect((artilleryBackgroundCenter.x - 0.5*artilleryBackgroundWidth)*Screen.width, 
-				(artilleryBackgroundCenter.y - 0.5*artilleryBackgroundHeight)*Screen.width, 
-				(artilleryBackgroundWidth*Screen.width), 
-				(artilleryBackgroundHeight*Screen.width)), 
-			"Artillery");
+//		GUI.Box(
+//			Rect((artilleryBackgroundCenter.x - 0.5*artilleryBackgroundWidth)*Screen.width, 
+//				(artilleryBackgroundCenter.y - 0.5*artilleryBackgroundHeight)*Screen.width, 
+//				(artilleryBackgroundWidth*Screen.width), 
+//				(artilleryBackgroundHeight*Screen.width)), 
+//			"Artillery");
 
+		var areaPosition2 : Vector2 = new Vector2(0.6*Screen.width+15,0.1*Screen.height);
+		var areaWidth2 : float = 0.3*Screen.width-30;
+		var areaHeight2 : float = 0.8*Screen.height-15;
+		
 		GUILayout.BeginArea(
-			Rect((artilleryBackgroundCenter.x - 0.5*artilleryBackgroundWidth)*Screen.width, 
-				(artilleryBackgroundCenter.y - 0.5*artilleryBackgroundHeight)*Screen.width, 
-				(artilleryBackgroundWidth*Screen.width), 
-				(artilleryBackgroundHeight*Screen.width)));
+			Rect(
+			areaPosition2.x,
+			areaPosition2.y,
+			areaWidth2,
+			areaHeight2)
+//			Rect((artilleryBackgroundCenter.x - 0.5*artilleryBackgroundWidth)*Screen.width, 
+//				(artilleryBackgroundCenter.y - 0.5*artilleryBackgroundHeight)*Screen.width, 
+//				(artilleryBackgroundWidth*Screen.width), 
+//				(artilleryBackgroundHeight*Screen.width)));
+		);
 
 		/*
 		 *	Here be buttons
 		 */ 
 		var artilleryButtonRect : Rect = new Rect(
-			turretButtonLocation.x*Screen.width, 
-			turretButtonLocation.y*Screen.width, 
-			buttonSize.x*Screen.width, 
-			buttonSize.y*Screen.width);
+			areaWidth2/2-buttonLength,
+			buttonTall*1, 
+			buttonLength, 
+			buttonTall);
 
 		if (scannerTurretCost > zedResources.getMoney()) {
 			GUI.enabled = false;
@@ -154,7 +219,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent("Scanner\nTurret", scannerTurretCost.ToString() + "G"))) {
+				GUIContent("Scanner\nTurret", scannerTurretCost.ToString() + "G"),buttonStyle)) {
 
 			purchaseTurretAmmo();						
 		}
@@ -166,14 +231,14 @@ function OnGUI() {
 		}
 
 		artilleryButtonRect = new Rect(
-			(turretButtonLocation.x + buttonSize.x + buttonPadding.x)*Screen.width , 
-			turretButtonLocation.y*Screen.width, 
-			buttonSize.x*Screen.width, 
-			buttonSize.y*Screen.width);
+			areaWidth2/2,
+			buttonTall*1, 
+			buttonLength, 
+			buttonTall);
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent("Roaming\nMiniturret", "" + miniTurretCost.ToString() + "G"))) {
+				GUIContent("Roaming\nMiniturret", "" + miniTurretCost.ToString() + "G"),buttonStyle)) {
 
 			purchaseTurret(1);							
 		}
@@ -189,7 +254,12 @@ function OnGUI() {
 				(descriptionBoxSize.x*Screen.width), 
 				(descriptionBoxSize.y*Screen.width)),
 			GUI.tooltip);
-	} 
+	} else {
+		perksMenu.guiTexture.enabled = false;
+		weaponsMenu.guiTexture.enabled = false;
+		weaponPerkMenu.guiText.enabled = false;
+		perksPerkMenu.guiText.enabled = false;
+	}
 
 	GUI.skin.box.normal.background = defaultBackground;
 	GUI.skin = null;
