@@ -35,13 +35,24 @@ function Update () {
 		mouseScreenPosition.z = sourcePosition.z - Camera.main.transform.position.z;
 		var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 
-		var hits : RaycastHit2D[] = Physics2D.RaycastAll(
-			sourcePosition, 
-			laserSightDirection,
+		var hits : RaycastHit2D[] = Physics2D.RaycastAll(sourcePosition, laserSightDirection,
 			(mouseWorldPosition - transform.position).magnitude);
-		if (hits.Length != 0) {
+		
+		if (hits.Length > 0)  {
+			var hitArray = new Array(hits as RaycastHit2D[]);
+			for (var i : int = hitArray.length - 1; i >= 0; i--) {
+				var hit : RaycastHit2D = hitArray[i];
+				if (hit.collider.gameObject.CompareTag("Landmine")) {
+					hitArray.RemoveAt(i);
+					}
+				}
+			if (hitArray.length != 0) {
+				lineRenderer.SetPosition(0, sourcePosition);
+				lineRenderer.SetPosition(1, hits[0].point);
+			} else {
 			lineRenderer.SetPosition(0, sourcePosition);
-			lineRenderer.SetPosition(1, hits[0].point);
+			lineRenderer.SetPosition(1, mouseWorldPosition);
+			}
 		} else {
 			lineRenderer.SetPosition(0, sourcePosition);
 			lineRenderer.SetPosition(1, mouseWorldPosition);
