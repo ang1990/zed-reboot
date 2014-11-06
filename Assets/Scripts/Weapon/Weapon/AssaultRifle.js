@@ -5,6 +5,7 @@ class AssaultRifle extends ProjectileWeapon {
 	var firingSoundPath : String = "Weapon SFX/Rifle Fire";
 	var reloadingSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	var switchSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
+	var reloadFinishSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	
 	function AssaultRifle(owner : GameObject) {
 		this.rateOfFire = 10;
@@ -26,6 +27,7 @@ class AssaultRifle extends ProjectileWeapon {
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadingSound = Resources.Load(reloadingSoundPath) as AudioClip;
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
+		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "scattergun";
 		bullets = 1000;
 		bulletsInClip = this.clipSize;

@@ -169,7 +169,7 @@ function reloadClip() {
 	for (var i = 0; i < clipSize; i++) {
 		clipBullets[i] = getRandomBulletTexture();
 	}
-	weapon.falsifyJustReloaded();
+	weapon.finishReload();
 }
 
 function getRandomBulletTexture() : Texture2D {

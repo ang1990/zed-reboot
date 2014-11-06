@@ -4,6 +4,8 @@
 
 #pragma strict
 
+
+
 class ProjectileWeapon extends Weapon {
 	var rateOfFire : float;
 	var firePower : float;
@@ -20,6 +22,7 @@ class ProjectileWeapon extends Weapon {
 	var firingSound : AudioClip;
 	var reloadingSound : AudioClip;
 	var switchSound : AudioClip;
+	var reloadFinishSound : AudioClip;
 	
 	var bullets : int;
 	var bulletsInClip : int;
@@ -70,6 +73,7 @@ class ProjectileWeapon extends Weapon {
 		this.spawnOffset = spawnOffset;
 		this.firingSound = firingSound;
 		this.reloadingSound = reloadingSound;
+		this.reloadFinishSound = null;
 			
 		bullets = 1000; // hardcoded, should be dynamic in future implementation.
 		this.bulletsInClip = this.clipSize;
@@ -93,6 +97,7 @@ class ProjectileWeapon extends Weapon {
 		this.spawnOffset = Vector2.zero;
 		this.firingSound = null;
 		this.reloadingSound = null;
+		this.reloadFinishSound = null;
 	}
 	// @Override
 	function strike() : boolean {
@@ -175,7 +180,7 @@ class ProjectileWeapon extends Weapon {
 		bullets += (clips * clipSize);
 	}
 	
-	private function reload() {
+	protected function reload() {
 		bulletsInClipBeforeReload = bulletsInClip;
 		bulletsInClip = Mathf.Min(clipSize, bullets);
 		bullets -= (bulletsInClip - bulletsInClipBeforeReload);
@@ -183,8 +188,6 @@ class ProjectileWeapon extends Weapon {
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
-		if(Time.timeSinceLevelLoad > 0.25)
-			playReloadSound();
 	}
 	
 	function increaseScatterAngle() {
@@ -200,14 +203,8 @@ class ProjectileWeapon extends Weapon {
 		return reloadingSound;
 	}
 	
-	// TODO: Figure out how to introduce a time delay onto the script without breaking it.
-	// yield seems to break the whole thing.
-	
 	function playReloadSound() {
-		Debug.Log("Reload sound going to play.");
-		var waitTime : float = reloadTime - reloadingSound.length;
 		AudioSource.PlayClipAtPoint(reloadingSound,owner.transform.position);
-//		Debug.Log("Reload sound played.");
 	}
 	
 	function playSwitchSound () {
@@ -218,8 +215,9 @@ class ProjectileWeapon extends Weapon {
 		return justReloaded;
 	}
 	
-	function falsifyJustReloaded() {
+	function finishReload() {
 		justReloaded = false;
+		AudioSource.PlayClipAtPoint(reloadFinishSound, owner.transform.position);
 	}
 	
 	function getBullets() : int {

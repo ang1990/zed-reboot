@@ -30,7 +30,7 @@ class Weapon extends UnityEngine.Object {
 		return false;
 	}
 	
-	function falsifyJustReloaded() {}
+	function finishReload() {}
 	
 	function manualReload() {}
 	

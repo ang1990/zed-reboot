@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Explosion.js" />
-     <Compile Include="Assets\Landmine.js" />
      <Compile Include="Assets\Scripts\CollisionBehavior.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
@@ -84,12 +83,14 @@
      <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain2.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl2Arsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\survivalArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
      <Compile Include="Assets\Scripts\Weapon\ExplosiveBulletMovement.js" />
-     <Compile Include="Assets\Scripts\Weapon\Lvl2Arsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\MeleeWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Traps\Landmine.js" />
      <Compile Include="Assets\Scripts\Weapon\TurretPlacerWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" />
@@ -99,7 +100,6 @@
      <Compile Include="Assets\Scripts\Weapon\Weapon\Shotgun.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
-     <Compile Include="Assets\Scripts\Weapon\survivalArsenal.js" />
      <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserSight.js" />

@@ -1,8 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zed\Perk\LaserSight.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\ProjectileWeapon.js">
     <Files>
-      <File FileName="Assets\Scripts\Zed\Perk\LaserSight.js" Line="67" Column="28" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Shotgun.js" Line="30" Column="64" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Revolver.js" Line="30" Column="64" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Grenadier.js" Line="8" Column="70" />
+      <File FileName="Assets\Scripts\Weapon\ProjectileWeapon.js" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\Visuals\HudMain.js" Line="171" Column="3" />
+      <File FileName="Assets\Scripts\Visuals\HudMain2.js" Line="105" Column="18" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="75" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

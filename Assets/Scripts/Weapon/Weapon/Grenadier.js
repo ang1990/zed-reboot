@@ -5,6 +5,7 @@ class Grenadier extends ProjectileWeapon {
 	var firingSoundPath : String = "Weapon SFX/GL Fire";
 	var reloadingSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	var switchSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
+	var reloadFinishSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	
 	function Grenadier(owner : GameObject) {
 		this.rateOfFire = 1.5;
@@ -26,6 +27,7 @@ class Grenadier extends ProjectileWeapon {
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadingSound = Resources.Load(reloadingSoundPath) as AudioClip;
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
+		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "grenadier";
 		bullets = 1000;
 		bulletsInClip = this.clipSize;

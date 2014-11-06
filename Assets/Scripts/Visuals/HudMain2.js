@@ -84,7 +84,7 @@ function OnGUI() {
 	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 2*zedResources.getHealth(), 18), healthBar, ScaleMode.StretchToFill); 
 	
 	if (weapon.getId() != null) {
-		var melee : boolean = false;
+		var isMelee : boolean = weapon.getId().Equals("sword");
 		
 		// Weapon image
 		if (weapon.getId().Equals("assaultRifle")) {
@@ -95,12 +95,11 @@ function OnGUI() {
 			GUI.DrawTexture(Rect(119, 500, 237, 86), revolver, ScaleMode.ScaleAndCrop, true);
 		} else if (weapon.getId().Equals("sword")) {
 			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), sword, ScaleMode.ScaleAndCrop, true);
-			melee = true;
 		} else if (weapon.getId().Equals("grenadier")) {
 			GUI.DrawTexture(Rect(Screen.width/2 - 119, 10, 237, 86), grenadier, ScaleMode.ScaleAndCrop, true);
 		}
 		
-		if (!melee) {
+		if (!isMelee) {
 			// Clip image
 			if (weapon.getJustReloaded() || !weapon.getId().Equals(lastWeaponId)) {
 				reloadClip();
@@ -139,7 +138,7 @@ function reloadClip() {
 	for (var i = 0; i < clipSize; i++) {
 		clipBullets[i] = getRandomBulletTexture();
 	}
-	weapon.falsifyJustReloaded();
+	weapon.finishReload();
 }
 
 function getRandomBulletTexture() : Texture2D {

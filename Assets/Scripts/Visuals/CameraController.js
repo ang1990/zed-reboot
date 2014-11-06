@@ -43,7 +43,7 @@ function Update () {
 	
 	var mouseScreenPosition : Vector3 = Input.mousePosition;
 	mouseScreenPosition.z = -transform.position.z;
-	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);	
+	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 	
 	var targetPosition : Vector3 = (1 - mouseInfluenceWeight)*zedPosition + mouseInfluenceWeight*mouseWorldPosition;
 	
@@ -59,7 +59,8 @@ function Update () {
 	cameraSpeedY *= Mathf.Exp(-damping*Time.deltaTime);
 
 	transform.position += (new Vector3(cameraSpeedX*Time.deltaTime, cameraSpeedY*Time.deltaTime, 0));
-	shakeCamera();
+	if (shakeIntensity > 0.01)
+		shakeCamera();
 }
 
 function shakeCamera() {
