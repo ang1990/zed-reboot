@@ -10,6 +10,8 @@ var zedMovement : ZedMovement;
 var sourceOffset : Vector2;
 private var sourcePosition : Vector3;
 
+var collideTags : String[] = ["tallTerrain", "zombie"];
+
 function Start() {
 	lineRenderer = GetComponent(LineRenderer);
 }
@@ -39,16 +41,16 @@ function Update () {
 			(mouseWorldPosition - transform.position).magnitude);
 		
 		if (hits.Length > 0)  {
-			var hitArray = new Array(hits as RaycastHit2D[]);
-			for (var i : int = hitArray.length - 1; i >= 0; i--) {
-				var hit : RaycastHit2D = hitArray[i];
-				if (hit.collider.gameObject.CompareTag("Landmine")) {
-					hitArray.RemoveAt(i);
-					}
-				}
-			if (hitArray.length != 0) {
+			var hitIndex : int = 0;
+			for (hit in hits) {
+				if(stopsLaser(hit.collider.gameObject))
+					break;
+				else
+					hitIndex++;
+			}
+			if (hitIndex < hits.Length) {
 				lineRenderer.SetPosition(0, sourcePosition);
-				lineRenderer.SetPosition(1, hits[0].point);
+				lineRenderer.SetPosition(1, hits[hitIndex].point);
 			} else {
 			lineRenderer.SetPosition(0, sourcePosition);
 			lineRenderer.SetPosition(1, mouseWorldPosition);
@@ -60,4 +62,13 @@ function Update () {
 	} else {
 		lineRenderer.enabled = false;
 	}
+}
+
+private function stopsLaser(o : GameObject) : boolean {
+	for (tag in collideTags) {
+		if (o.CompareTag(tag)) {
+			return true;
+		}
+	}
+	return false;
 }
