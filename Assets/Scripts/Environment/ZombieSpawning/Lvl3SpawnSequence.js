@@ -8,6 +8,7 @@
 var spawnEngine : ZombieSpawnEngine;
 var normalZombiePrefab : GameObject;
 var bossZombiePrefab : GameObject;
+var suicideZombiePrefab : GameObject;
 var singleWave : ZombieWave;
 
 function Start () {
@@ -26,15 +27,15 @@ function Start () {
 
 	singleWave.spawnSingle(bossZombiePrefab, 25, Edge.RIGHT);
 	singleWave.spawnSingle(bossZombiePrefab, 28, Edge.TOP);
-	singleWave.spawnSingle(bossZombiePrefab, 28, Edge.BOTTOM);
+	singleWave.spawnSingle(bossZombiePrefab, 30, Edge.BOTTOM);
 
 
 	singleWave.spawnContinuous(normalZombiePrefab, 3, 10, 5, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 3, 10, 5, Edge.TOP);
+	singleWave.spawnContinuous(suicideZombiePrefab, 3, 10, 5, Edge.TOP);
 	singleWave.spawnContinuous(normalZombiePrefab, 3, 10, 5, Edge.BOTTOM);
 	singleWave.spawnContinuous(normalZombiePrefab, 8, 10, 5, Edge.RIGHT);
 	singleWave.spawnContinuous(normalZombiePrefab, 13, 10, 5, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 13, 10, 5, Edge.BOTTOM);
+	singleWave.spawnContinuous(suicideZombiePrefab, 13, 10, 5, Edge.BOTTOM);
 
 	if(ReferenceEquals(singleWave, null))
 		Debug.Log("singleWave is null");

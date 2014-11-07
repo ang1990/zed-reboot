@@ -117,6 +117,10 @@ function isDefeated() : boolean {
 	return defeated;
 }
 
+function getWeaponPerks() : List.<WeaponPerk> {
+	return activePerks.getWeaponPerks();
+}
+
 private function changeWeapon() {
 	// Handle weapon object-side switching processes.
 	weapons[prevWeaponIndex].switchOut();

@@ -25,4 +25,5 @@ function OnTriggerEnter2D(coll : Collider2D) {
 function generateExplosion() {
 	var explosion = Instantiate(prefab, transform.position, Quaternion.identity);
 	explosion.GetComponent(Explosion).setDamage(damage);
+	explosion.GetComponent(Explosion).setAllegiance(gameObject.tag);
 }

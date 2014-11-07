@@ -12,12 +12,11 @@ private var explosionCollider : CircleCollider2D;
 var explosionPrefab : GameObject;
 
 var explosionRadius : float;
-var explosionPower : float;
+var damage : float;
 
 var animator : Animator;
 
 function Awake() {
-	explosionCollider = GetComponent(CircleCollider2D);
 	zombieProperties = GetComponent(ZombieProperties);
 	zombieResources = GetComponent(ZombieResources);
 	animator = GetComponent(Animator);
@@ -32,26 +31,18 @@ function Awake() {
 */
 
 function selfDestruct() {
-	explosionCollider.radius = explosionRadius;
-	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(explosionCollider.center,explosionCollider.radius);
-	for (var c : Collider2D in colliders) {
-		if(c.gameObject.CompareTag("zed")) {
-			var damageDealt : float = explosionPower * (1 - (c.transform.position - transform.position).sqrMagnitude / explosionRadius*explosionRadius);
-			Debug.Log(damageDealt);
-			c.gameObject.GetComponent(ZedResources).reduceHealth(damageDealt);
-		}
-		// TODO: Input terrain damage handling here.
-		//
-		//
-	}
-	
-	Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+	generateExplosion();
 	// Zombie cuts his own health to zero, but after the self-destruct damage has been dealt, hence the waiting until the end of frame.
-	yield WaitForEndOfFrame();
 	zombieResources.reduceHealth(zombieProperties.getMaxHealth());
 	
 	// TODO: Input animation and destruction of zombie here.
-
-
-
 }
+
+function generateExplosion() {
+	var explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+	explosion.GetComponent(Explosion).setDamage(damage);
+	explosion.GetComponent(Explosion).setAllegiance(gameObject.tag);
+	Debug.Log("Explosion!");
+}
+
+

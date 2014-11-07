@@ -159,9 +159,10 @@ class ProjectileWeapon extends Weapon {
 		currentState = WeaponState.Firing;
 		
 		// modifications by perks
-			var activeWeaponPerks : List.<WeaponPerk> = zedResources.activePerks.getWeaponPerks();
-			actualBulletSpeed = bulletSpeed;
-			actualRateOfFire = rateOfFire;
+		var activeWeaponPerks : List.<WeaponPerk> = zedResources.getWeaponPerks();
+		Debug.Log("Number of perks: " + activeWeaponPerks.Count);
+		actualBulletSpeed = bulletSpeed;
+		actualRateOfFire = rateOfFire;
 			for (var perk : WeaponPerk in activeWeaponPerks) {
 				actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
 				actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();

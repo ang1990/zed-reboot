@@ -84,6 +84,8 @@
      <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain2.js" />
      <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl2Arsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl3Arsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\WeaponArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\Arsenals\survivalArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
@@ -95,10 +97,8 @@
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon\Grenadier.js" />
-     <Compile Include="Assets\Scripts\Weapon\Weapon\Lvl3Arsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon\Revolver.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon\Shotgun.js" />
-     <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
      <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
      <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
