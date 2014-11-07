@@ -4,12 +4,22 @@
 
 #pragma strict
 
-
+enum WeaponState {Ready, Firing, Reloading, Unselected};
 
 class ProjectileWeapon extends Weapon {
+
+	var currentState : WeaponState = WeaponState.Ready;
+	
+	var reloadInterrupted : boolean = false;
+	
 	var rateOfFire : float;
+	var actualRateOfFire : float = 0;
+	
 	var firePower : float;
+	
 	var bulletSpeed : float;
+	var actualBulletSpeed : float = 0;
+	
 	var spread : float; // different from scatter. Think of shotgun.
 	var bulletsSpawned : int;
 	var clipSize : int;
@@ -26,9 +36,7 @@ class ProjectileWeapon extends Weapon {
 	
 	var bullets : int;
 	var bulletsInClip : int;
-	var justReloaded : boolean; // for HUD
 	var reloadEndTime : float;
-	var bulletsInClipBeforeReload : int;
 	var lastShotTime : float;
 	
 	var scatterMaxAngle : float;
@@ -56,8 +64,10 @@ class ProjectileWeapon extends Weapon {
 			reloadingSound : AudioClip) {
 			
 		this.rateOfFire = rateOfFire;
+		this.actualRateOfFire = rateOfFire;
 		this.firePower = firePower;
 		this.bulletSpeed = bulletSpeed;
+		this.actualBulletSpeed = bulletSpeed;
 		this.spread = spread;
 		this.bulletsSpawned = bulletsSpawned;
 		this.clipSize = clipSize;
@@ -99,25 +109,68 @@ class ProjectileWeapon extends Weapon {
 		this.reloadingSound = null;
 		this.reloadFinishSound = null;
 	}
+	
+	function checkState() {
+		switch (currentState) {
+			case WeaponState.Unselected:
+				break;
+			case WeaponState.Ready:
+				if (bulletsInClip <= 0) {
+					currentState = WeaponState.Reloading;
+				} break;
+			case WeaponState.Firing:
+				if(Time.timeSinceLevelLoad > lastShotTime + 1.0/actualRateOfFire) {
+					currentState = WeaponState.Ready;
+				}
+				break;
+			case WeaponState.Reloading:
+			// When reloading, you must wait for the reload to finish before the weapon becomes ready.
+				
+				if(Time.timeSinceLevelLoad > reloadEndTime) {
+					finishReload();
+					currentState = WeaponState.Ready;
+					} break;
+			default: break;
+			}
+	}
+	
+	function switchOut() {
+		if (currentState == WeaponState.Reloading) {
+			reloadInterrupted = true;
+		}
+		currentState = WeaponState.Unselected;
+	}
+	
+	function switchIn() {
+		if (reloadInterrupted) {
+		// If the reload was interrupted, we delay the reload until the weapon is selected again.
+			reloadEndTime = Time.timeSinceLevelLoad + reloadTime;
+			currentState = WeaponState.Reloading;
+		} else
+			currentState = WeaponState.Ready;
+	}
+	
 	// @Override
 	function strike() : boolean {
 		var successfulStrike : boolean = false;
 
+		if (currentState == WeaponState.Ready) {
+		
+		currentState = WeaponState.Firing;
+		
 		// modifications by perks
-		var actualRateOfFire : float = rateOfFire;
-		var actualBulletSpeed : float = bulletSpeed;
-		var activeWeaponPerks : List.<WeaponPerk> = zedResources.activePerks.getWeaponPerks();
-		for (var perk : WeaponPerk in activeWeaponPerks) {
-			actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
-			actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
-		}
-	
-		if (Time.time > reloadEndTime && 
-			Time.time > lastShotTime + 1.0/actualRateOfFire ) {
-			justReloaded = false;
+			var activeWeaponPerks : List.<WeaponPerk> = zedResources.activePerks.getWeaponPerks();
+			actualBulletSpeed = bulletSpeed;
+			actualRateOfFire = rateOfFire;
+			for (var perk : WeaponPerk in activeWeaponPerks) {
+				actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
+				actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
+			}
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
 				successfulStrike = true;
+				// Firing sound.
+				playFiringSound();
 				
 				var gunAngle : float = zedMovement.getUpperBodyAngle();
 				// apply scatter
@@ -152,18 +205,15 @@ class ProjectileWeapon extends Weapon {
 						newBullet.GetComponent(ExplosiveBulletMovement).setSpeed(actualBulletSpeed);
 					}
 					
-									
 					increaseScatterAngle();
-					
-					lastShotTime = Time.time;
+					lastShotTime = Time.timeSinceLevelLoad;
 				}
-				AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
 
-				if (bulletsInClip == 0) {
-					reload();
+				if (bulletsInClip <= 0) {
+					startReload();
 				}
 			} else {
-				reload();
+				startReload();
 			}
 		}
 
@@ -172,7 +222,7 @@ class ProjectileWeapon extends Weapon {
 	
 	function manualReload() {
 		if (bulletsInClip < clipSize) {
-			reload();
+			startReload();
 		}
 	}
 	
@@ -180,14 +230,28 @@ class ProjectileWeapon extends Weapon {
 		bullets += (clips * clipSize);
 	}
 	
-	protected function reload() {
-		bulletsInClipBeforeReload = bulletsInClip;
-		bulletsInClip = Mathf.Min(clipSize, bullets);
-		bullets -= (bulletsInClip - bulletsInClipBeforeReload);
-		justReloaded = bulletsInClip > 0;
-		if (justReloaded) {
-			reloadEndTime = Time.time + reloadTime;
+	protected function startReload() {
+		if(currentState == WeaponState.Ready || currentState == WeaponState.Firing) {
+			if (bullets > 0) {
+				reloadEndTime = Time.timeSinceLevelLoad + reloadTime;
+				currentState = WeaponState.Reloading;
+				playReloadSound();
+			}
 		}
+	}
+	
+	/* Reload has finished here.
+		What's gonna happen is:
+			
+	*/
+	function finishReload() {
+		var bulletsShort = clipSize - bulletsInClip;
+		var bulletsToAdd = Mathf.Min(bulletsShort, bullets);
+		bulletsInClip += bulletsToAdd;
+		bullets -= bulletsToAdd;
+		reloadEndTime = Time.timeSinceLevelLoad + reloadTime;
+		playReloadFinishSound();
+//		Debug.Log("Reload finished with: " + bulletsInClip);
 	}
 	
 	function increaseScatterAngle() {
@@ -196,11 +260,11 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	function getCurrentScatterAngle() {
-		return lastShotScatterAngle*Mathf.Exp(-(Time.time - lastShotTime)*scatterRelaxationFactor);
+		return lastShotScatterAngle*Mathf.Exp(-(Time.timeSinceLevelLoad - lastShotTime)*scatterRelaxationFactor);
 	}
 	
-	function getReloadSound() {
-		return reloadingSound;
+	function playFiringSound() {
+		AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
 	}
 	
 	function playReloadSound() {
@@ -211,12 +275,7 @@ class ProjectileWeapon extends Weapon {
 		AudioSource.PlayClipAtPoint(switchSound, owner.transform.position);
 	}
 	
-	function getJustReloaded() : boolean {
-		return justReloaded;
-	}
-	
-	function finishReload() {
-		justReloaded = false;
+	function playReloadFinishSound() {
 		AudioSource.PlayClipAtPoint(reloadFinishSound, owner.transform.position);
 	}
 	
@@ -225,11 +284,7 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	function getBulletsInClip() : int {
-		if (Time.time > reloadEndTime) {
-			return bulletsInClip;
-		} else {
-			return bulletsInClipBeforeReload;
-		}
+		return bulletsInClip;
 	}
 	
 	function getReloadEndTime() : float {

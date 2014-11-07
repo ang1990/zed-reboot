@@ -23,7 +23,7 @@ function Update() {
 // Check game state every interval.
 	if(Time.timeSinceLevelLoad > lastCheckTime + interval) {
 		lastCheckTime = Time.timeSinceLevelLoad;
-		Debug.Log("checking victory " + spawnEngine.checkSpawnJobs() + " " + spawnEngine.checkUndeadCount());
+//		Debug.Log("checking victory " + spawnEngine.checkSpawnJobs() + " " + spawnEngine.checkUndeadCount());
 		if(zedResources.isDefeated()) {
 			currentState = GameState.Defeat;
 		}

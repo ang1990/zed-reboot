@@ -17,6 +17,7 @@ private var defeated : boolean = false;
 var animator : Animator;
 
 var weapons : Weapon[];
+var prevWeaponIndex : int;
 var currentWeaponIndex : int;  // index in weapons-array
 
 var perkStock : PerkStock;
@@ -48,6 +49,7 @@ var fastBloodSpawner : ParticleSystem;
  */
 function Start() {
 	currentWeaponIndex = 0;
+	prevWeaponIndex = 0;
 	health = 100;
 	
 	activePerks = new PerkList();
@@ -56,8 +58,8 @@ function Start() {
 }
 
 function Update() {
-	if (Input.GetKeyDown("x")){
-		reduceHealth(50);
+	if (Input.GetKey("x")){
+		reduceHealth(50*Time.deltaTime);
 	} else if (Input.GetKeyDown("m")) {
 		changeMoney(10);
 	}
@@ -73,40 +75,41 @@ function Update() {
 			trimUnnecessaryComponents();
 		}
 	// This handles weapon changing. 
-	} else if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {
-		if (Input.GetKeyDown("1") && currentWeaponIndex != 0) {
-			if(weapons[0].id != "nullWeapon") {
-				currentWeaponIndex = 0;
-				changeWeapon();
-			}
-		} else if (Input.GetKeyDown("2") && currentWeaponIndex != 1) {
-			if(weapons[1].id != "nullWeapon") {
-				currentWeaponIndex = 1;
-				changeWeapon();
-			}
-		} else if (Input.GetKeyDown("3") && currentWeaponIndex != 2) {
-			if(weapons[2].id != "nullWeapon") {
-				currentWeaponIndex = 2;
-				changeWeapon();
-			}
-		} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
-			if(weapons[3].id != "nullWeapon") {
-				currentWeaponIndex = 3;
-				changeWeapon();
-			}
-		} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
-			if(weapons[4].id != "nullWeapon") {
-				currentWeaponIndex = 4;
-				changeWeapon();
-			}
-		} else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
-			currentWeaponIndex = 5;
-		// Right now we don't have an animation for this state. So we just adopt the previous state.
-		//	changeWeaponAnimator();
-		} 
-		
 	}
-
+	if (Input.GetKeyDown("1") && currentWeaponIndex != 0) {
+		if(weapons[0].id != "nullWeapon") {
+			currentWeaponIndex = 0;
+			changeWeapon();
+		}
+	} else if (Input.GetKeyDown("2") && currentWeaponIndex != 1) {
+		if(weapons[1].id != "nullWeapon") {
+			currentWeaponIndex = 1;
+			changeWeapon();
+		}
+	} else if (Input.GetKeyDown("3") && currentWeaponIndex != 2) {
+		if(weapons[2].id != "nullWeapon") {
+			currentWeaponIndex = 2;
+			changeWeapon();
+		}
+	} else if (Input.GetKeyDown("4") && currentWeaponIndex != 3) {
+		if(weapons[3].id != "nullWeapon") {
+			currentWeaponIndex = 3;
+			changeWeapon();
+		}
+	} else if (Input.GetKeyDown("5") && currentWeaponIndex != 4) {
+		if(weapons[4].id != "nullWeapon") {
+			currentWeaponIndex = 4;
+			changeWeapon();
+		}
+	} else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
+		currentWeaponIndex = 5;
+	// Right now we don't have an animation for this state. So we just adopt the previous state.
+	//	changeWeaponAnimator();
+	} 
+	// For the weapon-side state processing, we use this function until we can find a way to improve the
+	// implementation.
+	weapons[currentWeaponIndex].checkState();
+	
 	changeOverlay();
 }
 
@@ -115,6 +118,12 @@ function isDefeated() : boolean {
 }
 
 private function changeWeapon() {
+	// Handle weapon object-side switching processes.
+	weapons[prevWeaponIndex].switchOut();
+	weapons[currentWeaponIndex].switchIn();
+	prevWeaponIndex = currentWeaponIndex;
+
+	// Animator-side weapon handling.
 	if(weapons[currentWeaponIndex].id == "sword") {
 		animator.SetBool("carrySword", true);
 		animator.SetBool("carryRifle", false);
@@ -231,11 +240,8 @@ function changeMoney(difference : int) {
 	money += difference;
 }
 
-
 // The function controlling Zed's level is here.
 // A Square function is used.
-
-
 
 function updateLevel() {
 	var newLevel : int = expToLevel(experience);

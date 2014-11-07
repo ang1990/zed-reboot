@@ -9,14 +9,19 @@ class Weapon extends UnityEngine.Object {
 	var weaponType : String;
 	var owner : GameObject;
 
+	function checkState() {}
+
+	function switchOut() {}
+	function switchIn() {}
+
 	function strike() : boolean {
 		Debug.Log("General weapon strike");
 		return true;
 	}
 	
-	function secondaryStrike() {
+	// Unused.
 	
-	}
+	function secondaryStrike() {}
 	
 	function getClipSize() : int {
 		return 0; // null is melee
@@ -24,10 +29,6 @@ class Weapon extends UnityEngine.Object {
 	
 	function getId() : String {
 		return id;
-	}
-	
-	function getJustReloaded() : boolean {
-		return false;
 	}
 	
 	function finishReload() {}

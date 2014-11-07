@@ -33,8 +33,8 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadingSound = Resources.Load(reloadingSoundPath) as AudioClip;
 			
-		bullets = 3; // hardcoded, should be dynamic in future implementation.
-		reload();
+		bullets = 2; // hardcoded, should be dynamic in future implementation.
+		this.bulletsInClip = this.clipSize;
 	}
 	
 	// @Override
@@ -52,7 +52,6 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		
 		if (Time.time > reloadEndTime && 
 			Time.time > lastShotTime + 1.0/actualRateOfFire ) {
-			justReloaded = false;
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
 				successfulStrike = true;
@@ -61,11 +60,11 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 
 				if (bulletsInClip == 0) {
 					if(bullets > 0)
-						reload();
+						startReload();
 				}
 			} else {
 				if(bullets > 0)
-					reload();
+					startReload();
 			}
 		}
 

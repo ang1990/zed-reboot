@@ -11,7 +11,7 @@ class Grenadier extends ProjectileWeapon {
 		this.rateOfFire = 1.5;
 		this.firePower = 250;
 		this.bulletSpeed = 12;
-		this.spread = 0;
+		this.spread = 10;
 		this.bulletsSpawned = 1;
 		this.clipSize = 6;
 		this.reloadTime = 3;
@@ -29,7 +29,7 @@ class Grenadier extends ProjectileWeapon {
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "grenadier";
-		bullets = 1000;
+		bullets = 5 * this.clipSize;
 		bulletsInClip = this.clipSize;
 		}
 }

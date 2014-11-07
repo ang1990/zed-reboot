@@ -29,7 +29,7 @@ class AssaultRifle extends ProjectileWeapon {
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "scattergun";
-		bullets = 1000;
+		bullets = 10 * this.clipSize;
 		bulletsInClip = this.clipSize;
 		this.weaponType = "rifle";
 		}

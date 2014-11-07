@@ -100,11 +100,11 @@ function OnGUI() {
 		}
 		
 		if (!isMelee) {
-			// Clip image
+/*			// Clip image
 			if (weapon.getJustReloaded() || !weapon.getId().Equals(lastWeaponId)) {
 				reloadClip();
 			}
-
+*/
 			// Total bullets left
 			GUI.Label(Rect(Screen.width/2 + clipBullets.length*9/2 - 24 + 27, 80, 100, 100), 
 	    		weapon.getBullets().ToString() + "\\"+  weapon.getBulletsInClip().ToString());
@@ -138,10 +138,9 @@ function reloadClip() {
 	for (var i = 0; i < clipSize; i++) {
 		clipBullets[i] = getRandomBulletTexture();
 	}
-	weapon.finishReload();
 }
 
 function getRandomBulletTexture() : Texture2D {
-	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.01));
+	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.001));
 	return bulletSkins[bulletNumber];
 }

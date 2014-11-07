@@ -8,7 +8,7 @@ class Revolver extends ProjectileWeapon {
 	var reloadFinishSoundPath : String = "Weapon SFX/Cock Weapon 1Handed";
 	
 	function Revolver(owner : GameObject) {
-		this.rateOfFire = 2;
+		this.rateOfFire = 2.5;
 		this.firePower = 120;
 		this.bulletSpeed = 30;
 		this.spread = 0;
@@ -29,7 +29,7 @@ class Revolver extends ProjectileWeapon {
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "pistol";
-		bullets = 1000;
+		bullets = 15 * this.clipSize;
 		bulletsInClip = this.clipSize;
 		}
 }

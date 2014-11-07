@@ -149,12 +149,12 @@ function handleSpawnJobs() {
 			}
 			else {
 				if (spawnJobs[i].compareTag("Landmine")) {
-				Debug.Log("Landmine!");
+				//Debug.Log("Landmine!");
 				if(!limitMinesCount || minesCount < maxMinesCount) {
 					spawnJobs[i].setHealthMultiplier(diffMultiplier);
 					if(spawnJobs[i].spawnIfDue())
 						undeadCount++;
-				} else Debug.Log("Too many mines!");
+				}// else Debug.Log("Too many mines!");
 			}
 			}
 			i++;

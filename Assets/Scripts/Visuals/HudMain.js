@@ -73,10 +73,10 @@ function OnGUI() {
 	weapon = zedResources.weapons[zedResources.currentWeaponIndex];
 	clipSize = weapon.getClipSize();
 	
-	currentWeaponId = weapon .getId();
+	currentWeaponId = weapon.getId();
 	
 	if(currentWeaponId != lastWeaponId) {
-		Debug.Log("weapon change");
+//		Debug.Log("weapon change");
 		clipSize = weapon.getClipSize();
 		
 		var j : int;
@@ -125,18 +125,18 @@ function OnGUI() {
 	// Current health bar
 	healthBar.pixelInset.width = 400*zedResources.getHealth()/100;
 	
-	if (weapon.getId() != null) {
+	if(weapon.getId() != null){
 		var melee : boolean = false;
 		
 		// Weapon image
 		changeHUDWeapon(weapon.getId());
 		
-		if (!melee) {
+		if(!melee) {
 			// Clip image
-			if (weapon.getJustReloaded() || !weapon.getId().Equals(lastWeaponId)) {
+/*			if (weapon.getJustReloaded() || !weapon.getId().Equals(lastWeaponId)) {
 				reloadClip();
 			}
-
+*/
 			// Total bullets left
 			if(weapon.getId().Equals("sword")) {
 				clip.guiText.enabled = false;
@@ -169,7 +169,7 @@ function reloadClip() {
 	for (var i = 0; i < clipSize; i++) {
 		clipBullets[i] = getRandomBulletTexture();
 	}
-	weapon.finishReload();
+	//weapon.finishReload();
 }
 
 function getRandomBulletTexture() : Texture2D {
