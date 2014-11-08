@@ -160,7 +160,7 @@ class ProjectileWeapon extends Weapon {
 		
 		// modifications by perks
 		var activeWeaponPerks : List.<WeaponPerk> = zedResources.getWeaponPerks();
-		Debug.Log("Number of perks: " + activeWeaponPerks.Count);
+//		Debug.Log("Number of perks: " + activeWeaponPerks.Count);
 		actualBulletSpeed = bulletSpeed;
 		actualRateOfFire = rateOfFire;
 			for (var perk : WeaponPerk in activeWeaponPerks) {

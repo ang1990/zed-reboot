@@ -7,7 +7,6 @@
 #pragma strict
 import System.Collections.Generic;
 
-
 enum Edge { TOP, BOTTOM, LEFT, RIGHT }
 
 var checkingDelay : float = 0.5; // number of seconds between checking for new 
@@ -37,8 +36,6 @@ var minesCount : int;
 
 var diffMultiplier : float;
 
-var victory : boolean = false;
-
 function Awake() {
 	spawnJobs = new List.<ZombieSpawnJob>();
 	waves = new List.<ZombieWave>();
@@ -46,8 +43,8 @@ function Awake() {
 	if(!isEndless) {
 		diffMultiplier = normalMode;
 	}
-	// Survival starts with easy mode, but can be modified in future. TODO
 	else
+	// Survival starts with easy mode, but can be modified in future. TODO
 		diffMultiplier = easyMode;
 }
 
@@ -58,14 +55,8 @@ function Update() {
 		// Count the zombies in the field.
 		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
 		minesCount = GameObject.FindGameObjectsWithTag("Landmine").Length;
-		// TODO: I think this is breaking Unity.
 //		if(spawnJobs.Count > 0)
 			handleSpawnJobs();
-	}
-	
-	if (spawnJobs.Count==1&&undeadCount==0) {
-		//Debug.Log("checking victory " + victory + " " + spawnJobs.Count + " " + undeadCount);
-		victory = true;
 	}
 }
 
@@ -79,10 +70,6 @@ function checkUndeadCount() : int {
 
 function checkMinesCount() : int {
 	return minesCount;
-}
-
-function isVictory() : boolean {
-	return victory;
 }
 
 function spawnSingleNow(prefab : GameObject, position : Vector2, spread : Vector2) {
@@ -107,11 +94,15 @@ function startNextWave() {
 		waveNum++;
 	}
 	else {
+		Debug.Log("Starting Wave: " + waveNum);
 		spawnJobs = waves[waveNum%waves.Count].getWaveSpawns();
+		Debug.Log(waves[waveNum%waves.Count].getWaveSpawns().Count);
+		Debug.Log(spawnJobs.Count);
+		Debug.Log("Wave type: " + waveNum%waves.Count);
 		waveNum++;
 	// We could step up difficulty by sets of waves. That kind of makes more sense.
 	// If we do that, we could put all that work in here.
-		switch (waveNum / waves.Count) {
+		switch ((waveNum-1) / waves.Count) {
 			case 0: diffMultiplier = easyMode;
 					break;
 			case 1: diffMultiplier = normalMode;
@@ -138,6 +129,7 @@ function handleSpawnJobs() {
 	var i : int = 0;
 	while (i < spawnJobs.Count) {
 		if (spawnJobs[i].isExpired()) {
+			Debug.Log("Spawn job expired.");
 			spawnJobs.RemoveAt(i);
 		} else {
 			if (spawnJobs[i].compareTag("zombie")) {

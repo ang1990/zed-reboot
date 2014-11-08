@@ -6,7 +6,7 @@ import System.Collections.Generic;
 */
 
 private var experience : int;
-private var health : float;
+var health : float;
 private var level : int;
 private var skillPoints : int = 0;
 private var money : int = 0;

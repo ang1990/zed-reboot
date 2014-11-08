@@ -145,7 +145,11 @@ class ZombieSpawnJob extends UnityEngine.Object {
 	}
 	
 	function waveStart() {
-		startTime = Time.timeSinceLevelLoad + startTime;
+		Debug.Log("Wave started at: " + Time.timeSinceLevelLoad);
+//		Debug.Log("Spawn starts at: " + (startTime + Time.timeSinceLevelLoad));
+		Debug.Log("Wave ends at: " + (this.endTime + Time.timeSinceLevelLoad));
+		this.startTime += Time.timeSinceLevelLoad;
+		this.endTime += Time.timeSinceLevelLoad;
 	}
 	
 	function compareTag(string : String) : boolean {

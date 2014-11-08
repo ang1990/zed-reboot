@@ -11,9 +11,9 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 	
 	var firingSoundPath : String = "Sounds/Bleep";
 	var reloadingSoundPath : String = "Sounds/Empty Clip";
+	var reloadFinishSoundPath : String = "Sounds/Empty Clip";
 		
 	function TurretPlacerWeapon(owner : GameObject) {
-		
 		this.rateOfFire = 0.5;
 		this.firePower = 50;
 		this.bulletSpeed = 20;
@@ -31,7 +31,8 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		this.zedResources = owner.GetComponent(ZedResources);
 		this.spawnOffset = new Vector2(1,0);
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
-		this.reloadingSound = Resources.Load(reloadingSoundPath) as AudioClip;
+		this.reloadingSound = Resources.Load(firingSoundPath) as AudioClip;
+		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 			
 		bullets = 2; // hardcoded, should be dynamic in future implementation.
 		this.bulletsInClip = this.clipSize;

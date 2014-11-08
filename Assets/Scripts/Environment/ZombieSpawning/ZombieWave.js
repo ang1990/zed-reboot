@@ -31,18 +31,14 @@ function addJob(newJob : ZombieSpawnJob) {
 function getWaveSpawns() : List.<ZombieSpawnJob> {
 	if(spawns == null)
 		return new List.<ZombieSpawnJob>();
-	else for(var i : int = 0; i < spawns.Count; i++) {
-		spawns[i].waveStart();
+	else {
+		//Debug.Log("Spawn count: " + spawns.Count);
+		for(var i : int = 0; i < spawns.Count; i++) {
+			spawns[i].waveStart();
+		}
 	}
 	return spawns;
 }
-
-
-
-
-
-
-
 
 
 /*

@@ -12,6 +12,8 @@ var numWaves : int; // -1 for survival.
 var timeBetweenWaves : float;
 var bell : AudioClip;
 private var zedResources : ZedResources;
+var restTime : float = 5;
+var waveOverTime : float;
 
 function Awake() {
 	currentState = GameState.starting;
@@ -24,7 +26,7 @@ function Update() {
 	if(Time.timeSinceLevelLoad > lastCheckTime + interval) {
 		lastCheckTime = Time.timeSinceLevelLoad;
 //		Debug.Log("checking victory " + spawnEngine.checkSpawnJobs() + " " + spawnEngine.checkUndeadCount());
-		if(zedResources.isDefeated()) {
+		if(!zedResources.isAlive()) {
 			currentState = GameState.Defeat;
 		}
 		switch(currentState) {
@@ -40,7 +42,6 @@ function Update() {
 			case GameState.starting :
 				spawnEngine.startNextWave();
 				currentState = GameState.waveSpawning;
-				AudioSource.PlayClipAtPoint(bell,transform.position);
 				break;
 		// If there are no more spawns from this wave, we change state to waveSpawnOver.
 			case GameState.waveSpawning :
@@ -52,19 +53,27 @@ function Update() {
 				if(spawnEngine.checkUndeadCount() == 0) {
 					if(spawnEngine.noMoreWaves()) {
 						currentState = GameState.Victory;
-					} else currentState = GameState.restBetweenWaves;
+					} else {
+						waveOverTime = Time.timeSinceLevelLoad;
+						currentState = GameState.restBetweenWaves;
+					}
 				} break;
 			case GameState.Victory :
+				Debug.Log("Victory!");
 				Camera.main.GetComponent(LevelComplete).openPrompt();
 				Time.timeScale = 0;
 				break;
+			// If the rest time is over, continue with the next wave.
 			case GameState.restBetweenWaves:
-			// NOTE: I'm not confident that this waitTime function works. Please test and confirm.
-			//	waitTime(timeBetweenWaves);
-				currentState = GameState.waveSpawning;
-				spawnEngine.startNextWave();
+				Debug.Log("Time left to next wave: " + (waveOverTime + restTime - Time.timeSinceLevelLoad));
+				if(Time.timeSinceLevelLoad > waveOverTime + restTime) {
+					AudioSource.PlayClipAtPoint(bell,transform.position);
+					currentState = GameState.starting;
+				}
+				break;
 			case GameState.Defeat:
 				Camera.main.GetComponent(NamePrompt).openPrompt();
+				Debug.Log("Defeat!");
 				Time.timeScale = 0;
 				break;
 			default:

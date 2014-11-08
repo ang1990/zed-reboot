@@ -85,13 +85,11 @@ function Start() {
 
 function Update () {
 	if (Input.GetKeyDown("space")) {
-		if (!perkMenuActive) {
-			perkMenuActive = true;
+		if(perkMenuActive)
+			Time.timeScale = 1;
+		else
 			Time.timeScale = 0;
-		} else {
-			perkMenuActive = false;
-			Time.timeScale = 1;		
-		}
+		perkMenuActive = !perkMenuActive;
 	}
 }
 
