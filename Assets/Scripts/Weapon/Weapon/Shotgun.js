@@ -9,7 +9,7 @@ class Shotgun extends ProjectileWeapon {
 	
 	function Shotgun(owner : GameObject) {
 		this.rateOfFire = 1;
-		this.firePower = 25;
+		this.firepower = 25;
 		this.bulletSpeed = 20;
 		this.spread = 20;
 		this.bulletsSpawned = 9;

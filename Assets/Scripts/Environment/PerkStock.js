@@ -74,21 +74,21 @@ function createPerkStock() {
 			new WeaponPerk.Builder()
 					.name("Fire Power\nI")
 					.skillPointCost(4)
-					.firePowerMultiplier(1.2)
+					.firepowerMultiplier(1.2)
 					.build());	
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
 					.name("Fire Power\nII")
 					.skillPointCost(1)
-					.firePowerMultiplier(1.2)
+					.firepowerMultiplier(1.2)
 					.build());	
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
 					.name("Fire Power\nIII")
 					.skillPointCost(4)
-					.firePowerMultiplier(1.2)
+					.firepowerMultiplier(1.2)
 					.build());		
 	
 	perkTree[SHOT_ACCURACY].Add(

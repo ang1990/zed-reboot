@@ -17,7 +17,7 @@ function Start () {
 
 function Update() {
 	if (!damageDone && damage > 0) {
-		Debug.Log("Explosion processing.");
+//		Debug.Log("Explosion processing.");
 		processExplosion();
 		damageDone = !damageDone;
 	}
@@ -47,7 +47,7 @@ function processExplosion() {
 	for (var c : Collider2D in colliders) {
 		switch(alignment) {
 			case Allegiance.Friendly:
-				Debug.Log("Damage Done.");
+//				Debug.Log("Damage Done.");
 				if (c.gameObject.GetComponent(ZombieImpact) != null) 
 					c.gameObject.GetComponent(ZombieImpact).damage(damage);
 				break;
@@ -64,7 +64,7 @@ function processExplosion() {
 				Debug.Log(alignment);
 				if (c.gameObject.GetComponent(ZombieImpact) != null) 
 					c.gameObject.GetComponent(ZombieImpact).damage(damage);
-				Debug.Log("Damage Done.");
+//				Debug.Log("Damage Done.");
 				if(c.gameObject.CompareTag("Player"))
 					c.gameObject.GetComponent(ZedResources).reduceHealth(damage);
 				else if(c.gameObject.CompareTag("turret"))

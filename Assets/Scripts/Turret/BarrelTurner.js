@@ -16,7 +16,7 @@ var angularSpeed : float;
 var barrelLength : float;
 
 // Firing properties
-var firePower : float;
+var firepower : float;
 var bulletSpeed : float;
 var rateOfFire : float;
 var bulletsSpawned : int; // for burst fire
@@ -72,7 +72,7 @@ function fire(direction : Vector3) {
 			var delta : Vector2 = ZedUtils.rotateVector(bulletSpawningPositionDelta, Random.Range(0, 360));
 			newBullet.transform.position += delta;
 			
-			newBullet.GetComponent(BulletProperties).setPower(firePower);
+			newBullet.GetComponent(BulletProperties).setPower(firepower);
 			newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
 			
 			AudioSource.PlayClipAtPoint(firingSound, transform.position);

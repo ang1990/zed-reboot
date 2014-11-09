@@ -6,19 +6,19 @@
 
 class WeaponPerk extends Perk {
 	private var rateOfFireMultiplier : float;
-	private var firePowerMultiplier : float;
+	private var firepowerMultiplier : float;
 	private var scatterMultiplier : float;
 	
 	function WeaponPerk(name : String,
 			skillPointCost : int, 
 			perkIcon : Texture2D,
 			rateOfFireMultiplier : float,
-			firePowerMultiplier : float,
+			firepowerMultiplier : float,
 			scatterMultiplier : float){
 		
 		super(name, skillPointCost, perkIcon);
 		this.rateOfFireMultiplier = rateOfFireMultiplier;
-		this.firePowerMultiplier = firePowerMultiplier;
+		this.firepowerMultiplier = firepowerMultiplier;
 		this.scatterMultiplier = scatterMultiplier;
 	}
 	
@@ -26,8 +26,8 @@ class WeaponPerk extends Perk {
 		return rateOfFireMultiplier;
 	}
 	
-	function getFirePowerMultiplier() : float {
-		return firePowerMultiplier;
+	function getFirepowerMultiplier() : float {
+		return firepowerMultiplier;
 	}	
 	
 	function getScatterMultiplier() : float {
@@ -39,7 +39,7 @@ class WeaponPerk extends Perk {
 		private var _skillPointCost : int = 0;
 		private var _perkIcon : Texture2D;
 		private var _rateOfFireMultiplier : float = 1;
-		private var _firePowerMultiplier : float = 1;		
+		private var _firepowerMultiplier : float = 1;		
 		private var _scatterMultiplier : float = 1;
 
 		function name(val : String) : Builder {
@@ -62,8 +62,8 @@ class WeaponPerk extends Perk {
 			return this;
 		}
 		
-		function firePowerMultiplier(val : float) : Builder {
-			this._firePowerMultiplier = val;
+		function firepowerMultiplier(val : float) : Builder {
+			this._firepowerMultiplier = val;
 			return this;
 		}
 		
@@ -74,7 +74,7 @@ class WeaponPerk extends Perk {
 		
 		function build() : WeaponPerk {
 			return new WeaponPerk(_name, _skillPointCost, _perkIcon, 
-					_rateOfFireMultiplier, _firePowerMultiplier,
+					_rateOfFireMultiplier, _firepowerMultiplier,
 					_scatterMultiplier);
 		}
 	}

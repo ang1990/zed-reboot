@@ -9,7 +9,7 @@ class AssaultRifle extends ProjectileWeapon {
 	
 	function AssaultRifle(owner : GameObject) {
 		this.rateOfFire = 10;
-		this.firePower = 40;
+		this.firepower = 40;
 		this.bulletSpeed = 20;
 		this.spread = 0;
 		this.bulletsSpawned = 1;

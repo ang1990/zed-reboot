@@ -8,7 +8,7 @@
 #pragma strict
 
 // turret main properties
-var firePower : float;
+var firepower : float;
 var bulletSpeed : float;
 var rateOfFire : float;
 
@@ -105,7 +105,7 @@ function fire(direction : Vector3) {
 					Quaternion.identity);
 			newBullet.transform.eulerAngles.z = transform.eulerAngles.z;
 		
-			newBullet.GetComponent(BulletProperties).setPower(firePower);
+			newBullet.GetComponent(BulletProperties).setPower(firepower);
 			newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
 		
 			AudioSource.PlayClipAtPoint(firingSound, instantiationPosition);

@@ -15,10 +15,10 @@ class ProjectileWeapon extends Weapon {
 	var rateOfFire : float;
 	var actualRateOfFire : float = 0;
 	
-	var firePower : float;
+	var firepower : float;
+	var actualFirepower : float;
 	
 	var bulletSpeed : float;
-	var actualBulletSpeed : float = 0;
 	
 	var spread : float; // different from scatter. Think of shotgun.
 	var bulletsSpawned : int;
@@ -47,7 +47,7 @@ class ProjectileWeapon extends Weapon {
 	
 			
 	function ProjectileWeapon(rateOfFire : float, 
-			firePower : float, 
+			firepower : float, 
 			bulletSpeed : float,
 			spread : float,
 			bulletsSpawned : int,
@@ -65,9 +65,9 @@ class ProjectileWeapon extends Weapon {
 			
 		this.rateOfFire = rateOfFire;
 		this.actualRateOfFire = rateOfFire;
-		this.firePower = firePower;
+		this.firepower = firepower;
+		this.actualFirepower = firepower;
 		this.bulletSpeed = bulletSpeed;
-		this.actualBulletSpeed = bulletSpeed;
 		this.spread = spread;
 		this.bulletsSpawned = bulletsSpawned;
 		this.clipSize = clipSize;
@@ -92,7 +92,7 @@ class ProjectileWeapon extends Weapon {
 	
 	function ProjectileWeapon() {
 		this.rateOfFire = 0;
-		this.firePower = 0;
+		this.firepower = 0;
 		this.bulletSpeed = 0;
 		this.spread = 0;
 		this.bulletsSpawned = 0;
@@ -161,11 +161,11 @@ class ProjectileWeapon extends Weapon {
 		// modifications by perks
 		var activeWeaponPerks : List.<WeaponPerk> = zedResources.getWeaponPerks();
 //		Debug.Log("Number of perks: " + activeWeaponPerks.Count);
-		actualBulletSpeed = bulletSpeed;
 		actualRateOfFire = rateOfFire;
+		actualFirepower = firepower;
 			for (var perk : WeaponPerk in activeWeaponPerks) {
-				actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
 				actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
+				actualFirepower = actualFirepower*perk.getFirepowerMultiplier();
 			}
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
@@ -197,13 +197,13 @@ class ProjectileWeapon extends Weapon {
 							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
 				
 					
-					newBullet.GetComponent(BulletProperties).setPower(firePower);
+					newBullet.GetComponent(BulletProperties).setPower(actualFirepower);
 					newBullet.GetComponent(BulletProperties).setOwner(owner);
 					if(newBullet.GetComponent(BulletMovement) != null) {
-						newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
+						newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
 					}
 					else if(newBullet.GetComponent(ExplosiveBulletMovement) != null) {
-						newBullet.GetComponent(ExplosiveBulletMovement).setSpeed(actualBulletSpeed);
+						newBullet.GetComponent(ExplosiveBulletMovement).setSpeed(bulletSpeed);
 					}
 					
 					increaseScatterAngle();

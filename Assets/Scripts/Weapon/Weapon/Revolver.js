@@ -9,7 +9,7 @@ class Revolver extends ProjectileWeapon {
 	
 	function Revolver(owner : GameObject) {
 		this.rateOfFire = 2.5;
-		this.firePower = 120;
+		this.firepower = 120;
 		this.bulletSpeed = 30;
 		this.spread = 0;
 		this.bulletsSpawned = 1;

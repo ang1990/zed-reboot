@@ -15,7 +15,7 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		
 	function TurretPlacerWeapon(owner : GameObject) {
 		this.rateOfFire = 0.5;
-		this.firePower = 50;
+		this.firepower = 50;
 		this.bulletSpeed = 20;
 		this.spread = 0;
 		this.bulletsSpawned = 1;
@@ -47,7 +47,7 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		var actualBulletSpeed : float = bulletSpeed;
 		var activeWeaponPerks : List.<WeaponPerk> = zedResources.activePerks.getWeaponPerks();
 		for (var perk : WeaponPerk in activeWeaponPerks) {
-			actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
+			actualBulletSpeed = actualBulletSpeed*perk.getFirepowerMultiplier();
 			actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
 		}
 		

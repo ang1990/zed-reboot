@@ -9,7 +9,7 @@ class Grenadier extends ProjectileWeapon {
 	
 	function Grenadier(owner : GameObject) {
 		this.rateOfFire = 1.5;
-		this.firePower = 100;
+		this.firepower = 100;
 		this.bulletSpeed = 12;
 		this.spread = 10;
 		this.bulletsSpawned = 1;
