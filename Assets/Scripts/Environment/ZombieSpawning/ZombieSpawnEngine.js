@@ -111,7 +111,7 @@ function startNextWave() {
 					break;
 			case 3: diffMultiplier = insaneMode;
 					break;
-			default: diffMultiplier = waveNum / waves.Count - 2;
+			default: diffMultiplier = ((waveNum-1) / waves.Count) * 2 - 3;
 						break;
 		}
 	}
