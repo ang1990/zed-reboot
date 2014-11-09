@@ -18,6 +18,7 @@ class AssaultRifle extends ProjectileWeapon {
 		this.scatterMaxAngle = 20;
 		this.scatterSaturationFactor = 0.1;
 		this.scatterRelaxationFactor = 2;
+		this.bullets = 10 * this.clipSize;
 		this.id = "assaultRifle";
 		this.bulletPrefab = Resources.Load(bulletPrefabPath) as GameObject;
 		this.owner = owner;
@@ -29,7 +30,6 @@ class AssaultRifle extends ProjectileWeapon {
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 		this.weaponType = "scattergun";
-		bullets = 10 * this.clipSize;
 		bulletsInClip = this.clipSize;
 		this.weaponType = "rifle";
 		}

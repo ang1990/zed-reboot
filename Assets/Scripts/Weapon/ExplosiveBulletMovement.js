@@ -99,7 +99,6 @@ private function checkCollision() {
 		
 		if (firstHitObject.CompareTag("zombie")) {
 			evaluateZombieCollision(raycastHit2D, firstHitObject);
-			
 			// bullet to be destroyed
 			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
 			moving = false;
@@ -120,6 +119,7 @@ private function checkCollision() {
 
 function generateExplosion() {
 	var prefab = Instantiate(explosion, transform.position, Quaternion.identity);
+	prefab.GetComponent(Explosion).setAllegiance(gameObject.tag);
 	prefab.GetComponent(Explosion).setDamage(bulletProperties.getPower());
 }
 

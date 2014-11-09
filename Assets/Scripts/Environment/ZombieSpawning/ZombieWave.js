@@ -33,11 +33,13 @@ function getWaveSpawns() : List.<ZombieSpawnJob> {
 		return new List.<ZombieSpawnJob>();
 	else {
 		//Debug.Log("Spawn count: " + spawns.Count);
+		var newJobList : List.<ZombieSpawnJob> = new List.<ZombieSpawnJob>();
 		for(var i : int = 0; i < spawns.Count; i++) {
-			spawns[i].waveStart();
+			newJobList.Add(spawns[i]);
+			newJobList[i].waveStart();
 		}
 	}
-	return spawns;
+	return newJobList;
 }
 
 

@@ -55,7 +55,7 @@ function Update() {
 		// Count the zombies in the field.
 		undeadCount = GameObject.FindGameObjectsWithTag("zombie").Length;
 		minesCount = GameObject.FindGameObjectsWithTag("Landmine").Length;
-//		if(spawnJobs.Count > 0)
+		if(spawnJobs.Count > 0)
 			handleSpawnJobs();
 	}
 }
@@ -145,7 +145,7 @@ function handleSpawnJobs() {
 				if(!limitMinesCount || minesCount < maxMinesCount) {
 					spawnJobs[i].setHealthMultiplier(diffMultiplier);
 					if(spawnJobs[i].spawnIfDue())
-						undeadCount++;
+						minesCount++;
 				}// else Debug.Log("Too many mines!");
 			}
 			}

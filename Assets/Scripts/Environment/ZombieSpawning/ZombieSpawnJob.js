@@ -13,9 +13,12 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		
 	private var prefab : GameObject;
 	private var startTime : float;
+	private var startTimeActual : float;
 	private var endTime : float;
+	private var endTimeActual : float;
 	private var spawnDelay : float;
 	private var zombiesLeftCount : int;	
+	private var zombiesLeftCountActual : int;	
 	private var spawnConstantly : boolean = false;
 	
 	private var lastSpawnTime : float;
@@ -43,7 +46,8 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.endTime = startTime;
 		this.zombiesLeftCount = 1;		
 		spawnDelay = 0;
-			}
+		resetActualValues();
+		}
 	
 	function ZombieSpawnJob(prefab : GameObject, 
 			startTime : float, 
@@ -57,6 +61,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.endTime = startTime + duration;
 		this.zombiesLeftCount = count;		
 		spawnDelay = duration/count;
+		resetActualValues();
 	}	
 	
 	function ZombieSpawnJob(prefab : GameObject, 
@@ -71,6 +76,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.endTime = startTime + duration;
 		this.zombiesLeftCount = count;
 		spawnDelay = duration/count;
+		resetActualValues();
 	}	
 	
 	function ZombieSpawnJob(prefab : GameObject, 
@@ -87,6 +93,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.position = position;
 		this.spread = spread;
 		spawnDelay = duration/count;
+		resetActualValues();
 	}
 	
 	function ZombieSpawnJob(prefab : GameObject, 
@@ -103,13 +110,14 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.zombiesLeftCount = 1;		
 		spawnDelay = delayBetweenSpawns;
 		this.spawnConstantly = true;
+		resetActualValues();
 	}
 	
 	function spawnIfDue() : boolean {
-		if (Time.timeSinceLevelLoad > startTime) {
-			while ((zombiesLeftCount > 0) && (Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {			
-				if (lastSpawnTime == 0) {
-					lastSpawnTime = startTime + spawnDelay;
+		if (Time.timeSinceLevelLoad > startTimeActual) {
+			while ((zombiesLeftCountActual > 0) && (Time.timeSinceLevelLoad > (lastSpawnTime + spawnDelay))) {			
+				if (lastSpawnTime == startTimeActual) {
+					lastSpawnTime = startTimeActual + spawnDelay;
 				} else {
 					lastSpawnTime += spawnDelay;
 				}
@@ -122,10 +130,10 @@ class ZombieSpawnJob extends UnityEngine.Object {
 					zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
 					zombie.GetComponent(ZombieProperties).multiplyExpGained(Mathf.Pow(healthMultiplier,1.5));
 				}
-				zombiesLeftCount--;
-				if (zombiesLeftCount > 0 && !spawnConstantly) {
-					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;
-					spawnDelay = timeUntilEnd/zombiesLeftCount;
+				zombiesLeftCountActual--;
+				if (zombiesLeftCountActual > 0 && !spawnConstantly) {
+					var timeUntilEnd : float = endTimeActual - Time.timeSinceLevelLoad;
+					spawnDelay = timeUntilEnd/zombiesLeftCountActual;
 				}
 			}
 			return true;
@@ -137,19 +145,25 @@ class ZombieSpawnJob extends UnityEngine.Object {
 	}
 	
 	function isExpired() : boolean {
-		return (zombiesLeftCount == 0);
+		return (zombiesLeftCountActual == 0);
 	}
 	
 	function getPrefab() : GameObject {
 		return prefab;
 	}
 	
+	function resetActualValues() {
+		startTimeActual = startTime + Time.timeSinceLevelLoad;
+		endTimeActual = endTime + Time.timeSinceLevelLoad;
+		zombiesLeftCountActual = this.zombiesLeftCount;
+		lastSpawnTime = startTimeActual;
+	}
+	
 	function waveStart() {
 		Debug.Log("Wave started at: " + Time.timeSinceLevelLoad);
 //		Debug.Log("Spawn starts at: " + (startTime + Time.timeSinceLevelLoad));
 		Debug.Log("Wave ends at: " + (this.endTime + Time.timeSinceLevelLoad));
-		this.startTime += Time.timeSinceLevelLoad;
-		this.endTime += Time.timeSinceLevelLoad;
+		resetActualValues();
 	}
 	
 	function compareTag(string : String) : boolean {
