@@ -3,7 +3,7 @@ class Grenadier extends ProjectileWeapon {
 	
 	var bulletPrefabPath : String = "Prefabs/GLBullet";
 	var firingSoundPath : String = "Weapon SFX/GL Fire";
-	var reloadingSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
+	var reloadingSoundPath : String = "Weapon SFX/GL Reload Sound";
 	var switchSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	var reloadFinishSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
 	

@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\gameStateController.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js">
     <Files>
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="61" Column="75" />
-      <File FileName="Assets\waveOverlay.js" Line="41" Column="51" />
-      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="114" Column="65" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" Line="77" Column="59" />
+      <File FileName="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" Line="116" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

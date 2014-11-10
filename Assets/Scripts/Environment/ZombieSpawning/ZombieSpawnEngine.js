@@ -73,7 +73,8 @@ function checkMinesCount() : int {
 }
 
 function spawnSingleNow(prefab : GameObject, position : Vector2, spread : Vector2) {
-	var spawn : ZombieSpawnJob = new ZombieSpawnJob(prefab, Time.timeSinceLevelLoad, 1, 1, position, spread);
+	Debug.Log("Spawn time: " + Time.timeSinceLevelLoad);
+	var spawn : ZombieSpawnJob = new ZombieSpawnJob(prefab, 0, 1, 1, position, spread);
 	spawnJobs.Add(spawn);
 }
 

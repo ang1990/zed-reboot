@@ -26,7 +26,7 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
 
-	var numWaves : int = 1;
+	var numWaves : int = 5;
 
 	zombieSpawnEngine.isEndless = true;
 
@@ -38,9 +38,9 @@ function Start () {
 	waves[0].spawnContinuous(normalZombiePrefab, 5, 12, 6, Edge.BOTTOM);
 	waves[0].spawnContinuous(normalZombiePrefab, 5, 12, 6, Edge.TOP);
 	waves[0].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.RIGHT);
-/*	// Basic wave plus more zombies.
+	// Basic wave plus more zombies.
 	waves[1].spawnContinuous(normalZombiePrefab, 2, 12, 9, Edge.LEFT);	
-	waves[1].spawnContinuous(normalZombiePrefab, 4, 12, 6, Edge.BOTTOM);
+	waves[1].spawnContinuous(normalZombiePrefab, 6, 12, 6, Edge.BOTTOM);
 	waves[1].spawnContinuous(normalZombiePrefab, 4, 12, 6, Edge.TOP);
 	waves[1].spawnContinuous(normalZombiePrefab, 2, 12, 9, Edge.RIGHT);
 	// Suicide wave.
@@ -62,12 +62,12 @@ function Start () {
 	waves[4].spawnContinuous(suicideZombiePrefab, 0, 12, 2, Edge.LEFT);	
 	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.LEFT);
 	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.BOTTOM);
-	waves[4].spawnSingle(suicideZombiePrefab, 15, Edge.TOP);
-	waves[4].spawnSingle(suicideZombiePrefab, 20, Edge.BOTTOM);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.TOP);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.BOTTOM);
 	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.TOP);
 	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.RIGHT);
 	waves[4].spawnContinuous(suicideZombiePrefab, 0, 12, 2, Edge.RIGHT);
-	*/
+	
 	for (wave in waves) {
 		zombieSpawnEngine.addWave(wave);
 	}

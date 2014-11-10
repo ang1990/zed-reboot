@@ -3,9 +3,9 @@ class AssaultRifle extends ProjectileWeapon {
 	
 	var bulletPrefabPath : String = "Prefabs/Bullet";
 	var firingSoundPath : String = "Weapon SFX/Rifle Fire";
-	var reloadingSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
-	var switchSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
-	var reloadFinishSoundPath : String = "Weapon SFX/Cock Weapon 2Handed";
+	var reloadingSoundPath : String = "Weapon SFX/Rifle Reload Sound";
+	var switchSoundPath : String = "Weapon SFX/Cock Rifle";
+	var reloadFinishSoundPath : String = "Weapon SFX/Cock Rifle";
 	
 	function AssaultRifle(owner : GameObject) {
 		this.rateOfFire = 10;

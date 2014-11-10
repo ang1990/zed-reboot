@@ -62,7 +62,6 @@ function Start () {
 }
 
 function Update () {
-
 	if (currentState == BossZombieState.Attacking) {
 		// Set nextPosition to the target's position.
 		// If within range, attack target.
