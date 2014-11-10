@@ -42,6 +42,7 @@ function Update() {
 				break;
 			case GameState.starting :
 				spawnEngine.startNextWave();
+				waveTextPrefab.GetComponent(waveOverlay).waveStart(spawnEngine.waveNum);
 				currentState = GameState.waveSpawning;
 				break;
 		// If there are no more spawns from this wave, we change state to waveSpawnOver.
