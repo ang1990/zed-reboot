@@ -4,12 +4,13 @@ private var initFontSize : float;
 private var initFontA : float;
 
 function Start () {
+	gameObject.guiText.alignment = TextAlignment.Center;
+	gameObject.guiText.anchor = TextAnchor.MiddleCenter;
 	gameObject.guiText.pixelOffset.x = Screen.width/2;
 	gameObject.guiText.pixelOffset.y = Screen.height/2;
 	gameObject.guiText.enabled = false;
 	initFontSize = gameObject.guiText.fontSize;
 	initFontA = gameObject.guiText.color.a;
-	waveEnd();
 }
 
 

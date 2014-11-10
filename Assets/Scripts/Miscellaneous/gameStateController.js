@@ -57,9 +57,9 @@ function Update() {
 					} else {
 						waveOverTime = Time.timeSinceLevelLoad;
 						currentState = GameState.restBetweenWaves;
-						var text : GameObject = Instantiate(waveTextPrefab, Camera.main.transform.position, Quaternion.identity);
-						text.GetComponent(waveOverlay).waveStart(spawnEngine.waveNum);
-						text.transform.parent = Camera.main.transform;
+						//var text : GameObject = Instantiate(waveTextPrefab, Camera.main.transform.position, Quaternion.identity);
+						waveTextPrefab.GetComponent(waveOverlay).waveEnd();
+						//text.transform.parent = Camera.main.transform;
 					}
 				} break;
 			case GameState.Victory :
