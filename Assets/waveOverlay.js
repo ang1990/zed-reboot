@@ -37,8 +37,8 @@ function waveStart (wave : int) {
 	gameObject.guiText.color.a = initFontA;
 }
 
-function waveEnd () {
-	gameObject.guiText.text = "Wave Cleared";
+function waveEnd (wave : int) {
+	gameObject.guiText.text = "Wave "+wave.ToString()+" Cleared";
 	gameObject.guiText.enabled = true;
 	var scale : float = gameObject.guiText.fontSize/10;
 	gameObject.guiText.fontSize *= 3;
