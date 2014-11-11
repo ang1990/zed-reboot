@@ -132,6 +132,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
      <Compile Include="Assets\Scripts\cutInLv1.js" />
      <Compile Include="Assets\TurretDestroyer.js" />
+     <Compile Include="Assets\arsenalTray.js" />
      <Compile Include="Assets\neonLight.js" />
      <Compile Include="Assets\waveOverlay.js" />
   </ItemGroup>
