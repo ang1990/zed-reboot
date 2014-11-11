@@ -75,11 +75,11 @@ function fire(direction : Vector3) {
 			newBullet.GetComponent(BulletProperties).setPower(firepower);
 			newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
 			
-			AudioSource.PlayClipAtPoint(firingSound, transform.position);
 
 			lastShotTime = Time.timeSinceLevelLoad;
 		}
 
+		AudioSource.PlayClipAtPoint(firingSound, transform.position);
 		// recoil
 		currentRecoil = recoil;
 	}
