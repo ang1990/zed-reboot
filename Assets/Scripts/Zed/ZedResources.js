@@ -244,10 +244,6 @@ function changeMoney(difference : int) {
 	money += difference;
 }
 
-function isNotHoldingMeleeWeapon() : boolean {
-	return (!weapons[currentWeaponIndex].weaponType == "meleeWeapon");
-}
-
 // The function controlling Zed's level is here.
 // A Square function is used.
 

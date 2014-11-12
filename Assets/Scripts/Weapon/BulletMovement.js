@@ -14,15 +14,9 @@ private var speed : float;
 private var lastDeltaTime : float;
 private var finalPosition : Vector3;
 private var moving : boolean;
-private var clips : AudioClip[];
 
 function Start () {
 	moving = true;
-	clips = new AudioClip[4];
-	clips[0] = Resources.Load("Weapon SFX/ricochet_1");
-	clips[1] = Resources.Load("Weapon SFX/ricochet_2");
-	clips[2] = Resources.Load("Weapon SFX/ricochet_3");
-	clips[3] = Resources.Load("Weapon SFX/ricochet_4");
 }
 
 function Update () {
@@ -115,8 +109,7 @@ private function checkCollision() {
 			moving = false;
 			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
 				trailRenderer.time);
-			AudioSource.PlayClipAtPoint(clips[Random.Range(0,clips.Length-0.001)], transform.position);
-			}
+		}
 		
 	}	
 }

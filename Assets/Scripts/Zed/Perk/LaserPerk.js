@@ -32,16 +32,6 @@ class LaserPerk extends Perk {
 		}
 	}
 
-	function setActive() {
-		toggleActive();
-		active = true;
-	}
-
-	function setInactive() {
-		toggleActive();
-		active = false;
-	}
-
 	function isActive() {
 		return active;
 	}
