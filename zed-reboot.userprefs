@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Turret\BarrelTurner.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\arsenalTray.js">
     <Files>
-      <File FileName="Assets\Scripts\Turret\BarrelTurner.js" Line="82" Column="3" />
+      <File FileName="Assets\arsenalTray.js" Line="87" Column="46" />
+      <File FileName="Assets\Scripts\Visuals\HudMain.js" Line="73" Column="45" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="62" Column="35" />
+      <File FileName="Assets\Scripts\Weapon\Weapon.js" Line="26" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
