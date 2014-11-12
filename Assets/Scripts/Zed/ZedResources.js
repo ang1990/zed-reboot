@@ -179,6 +179,16 @@ function reduceHealth(reductionAmount : float) {
 		}
 }
 
+function increaseHealth(increaseAmount : float) {
+	overlayTimeEnd = Time.time + overlayTime;
+	changeOverlay();
+	if(health >= 100)
+		return;
+	health += increaseAmount;
+	if (health >= 100)
+		health = 100;
+}
+
 function changeOverlay() {
 	var newAlpha : float;
 	if (Time.time < overlayTimeEnd) {
