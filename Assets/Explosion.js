@@ -43,7 +43,7 @@ function setDamage(dmg : float) {
 
 function processExplosion() {
 	var colliders : Collider2D[] = Physics2D.OverlapCircleAll(transform.position, 1);
-	Debug.Log(alignment);
+//	Debug.Log(alignment);
 	for (var c : Collider2D in colliders) {
 		switch(alignment) {
 			case Allegiance.Friendly:
@@ -61,7 +61,7 @@ function processExplosion() {
 			case Allegiance.Neutral:
 				break;
 			case Allegiance.Ambiguous:
-				Debug.Log(alignment);
+//				Debug.Log(alignment);
 				if (c.gameObject.GetComponent(ZombieImpact) != null) 
 					c.gameObject.GetComponent(ZombieImpact).damage(damage);
 //				Debug.Log("Damage Done.");

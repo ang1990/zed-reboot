@@ -15,14 +15,22 @@ private var lastDeltaTime : float;
 private var finalPosition : Vector3;
 private var moving : boolean;
 
+var collideTags : String[] = ["tallTerrain", "zombie"];
+
+var clips : AudioClip[];
+
 function Start () {
 	moving = true;
+	clips = new AudioClip[3];
+	clips[0] = Resources.Load("Sounds/ricochet_1") as AudioClip;
+	clips[1] = Resources.Load("Sounds/ricochet_2") as AudioClip;
+	clips[2] = Resources.Load("Sounds/ricochet_3") as AudioClip;
 }
 
 function Update () {
 	// bullet always moves distance predicted in last frame
 	if (moving) {
-		move();		
+		move();
 		checkCollision();
 		checkBoundaries();
 	} else {
@@ -56,20 +64,7 @@ private function checkCollision() {
 			rayCastDirection, 
 			rayCastLength);
 
-// Ignore raycast code. Defunct since the object can be set to ignore raycasts.
-/*
-	var detectorsOnly : boolean = true;
-		
-	for(var hit in raycastHit2D) {
-		if(!hit.collider.gameObject.CompareTag("detector")) {
-			detectorsOnly = false;
-			break;
-		}
-	}
-	if(detectorsOnly)
-		return;
-*/					
-	if (raycastHit2D.Length != 0) {							
+	if (raycastHit2D.Length > 0) {							
 		// again raycast (this time infinitely long), to get all objects
 		// in line of fire
 		raycastHit2D = Physics2D.RaycastAll(
@@ -93,29 +88,40 @@ private function checkCollision() {
 		
 		if (hitList.Count == 0) return;
 	*/
-		var firstHitObject : GameObject = raycastHit2D[0].collider.gameObject;
+	
 		
-		if (firstHitObject.CompareTag("zombie")) {
-			evaluateZombieCollision(raycastHit2D, firstHitObject);
+		var indexHit : int = 0;
+		for (hit in raycastHit2D) {
+			if(!stopsBullet(hit.collider.gameObject)) {
+				indexHit++;
+			}
+			else continue;
+		}
+		if(indexHit < raycastHit2D.Length) {
+			var firstHitObject : GameObject = raycastHit2D[indexHit].collider.gameObject;
 			
-			// bullet to be destroyed
-			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
-			moving = false;
-			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
-				trailRenderer.time);
+			var stopLocation : Vector3 = _transform.position +
+							raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;
+			
+			if (firstHitObject.CompareTag("zombie")) {
+				evaluateZombieCollision(raycastHit2D, firstHitObject);
+				// bullet to be destroyed
+				destroyBulletAtLocation(stopLocation);
+			}
+			else if (firstHitObject.CompareTag("tallTerrain")) {
+				AudioSource.PlayClipAtPoint(clips[Random.Range(0,clips.Length-0.001)], transform.position);
+				destroyBulletAtLocation(stopLocation);
+			}
 		}
-		else if (firstHitObject.CompareTag("tallTerrain")) {
-			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
-			moving = false;
-			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
-				trailRenderer.time);
-		}
-		
 	}	
 }
 
 
-
+function destroyBulletAtLocation(position : Vector3) {
+	finalPosition = position;				
+	moving = false;
+	TimedObjectDestructor.destroyGameObjectInSeconds(gameObject, trailRenderer.time);
+}
 
 function evaluateZombieCollision(hitList : RaycastHit2D[], firstHitObject : GameObject) {	
 	var hitChildren : List.<GameObject> = new List.<GameObject>();
@@ -151,4 +157,13 @@ private function checkBoundaries() {
 		finalPosition = _transform.position;		
 		moving = false;
 	}
+}
+
+private function stopsBullet(o : GameObject) : boolean {
+	for (tag in collideTags) {
+		if (o.CompareTag(tag)) {
+			return true;
+		}
+	}
+	return false;
 }

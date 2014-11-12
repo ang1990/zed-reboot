@@ -1,6 +1,8 @@
 ﻿#pragma strict
 
 var coinPrefab : GameObject;
+var healthPrefab : GameObject;
+var ammoPrefab : GameObject;
 var angleDeviationOfDying : float;
 
 var armWeapon : MeleeWeapon;
@@ -76,6 +78,13 @@ function Update() {
 				dropCoin();
 			}
 		}
+		if(Random.Range(0.0,1.0) < zombieProperties.getHealthDropProbability()) {
+			dropHealth();
+		}
+		
+		if(Random.Range(0.0,1.0) < zombieProperties.getHealthDropProbability()) {
+			dropAmmo();
+		}
 
 	} 
 }
@@ -121,6 +130,14 @@ function trimUnnecessaryComponents() {
 
 function dropCoin() {
 	Instantiate(coinPrefab, transform.position, Quaternion.identity);
+}
+
+function dropHealth() {
+	Instantiate(healthPrefab, transform.position, Quaternion.identity);
+}
+
+function dropAmmo() {
+	Instantiate(ammoPrefab, transform.position, Quaternion.identity);
 }
 
 function multiplyHealth(healthMultiplier : float) {

@@ -24,6 +24,7 @@ function Start(){
 	rightBound =  EnvironmentAttributes.mapBounds.max.x - (Camera.main.orthographicSize * Camera.main.aspect);	
 	bottomBound = EnvironmentAttributes.mapBounds.min.y + Camera.main.orthographicSize;	
 	topBound = EnvironmentAttributes.mapBounds.max.y - Camera.main.orthographicSize;
+	damping = Mathf.Exp(-damping * Time.fixedDeltaTime);
 }
 
 // Function to induce camera shake during explosions, etc.
@@ -33,7 +34,8 @@ function induceShake(amount : float) {
 	shakeIntensity = amount;
 }
 
-function Update () {
+
+function FixedUpdate () {
 	var zedPosition : Vector3 = target.position;
 	var camPosition : Vector3 = transform.position;
 	
@@ -55,8 +57,8 @@ function Update () {
 	var delta : Vector3 = (targetPosition - camPosition);
 	cameraSpeedX += acceleration*delta.x*Time.deltaTime;
 	cameraSpeedY += acceleration*delta.y*Time.deltaTime;
-	cameraSpeedX *= Mathf.Exp(-damping*Time.deltaTime);
-	cameraSpeedY *= Mathf.Exp(-damping*Time.deltaTime);
+	cameraSpeedX *= damping;
+	cameraSpeedY *= damping;
 
 	transform.position += (new Vector3(cameraSpeedX*Time.deltaTime, cameraSpeedY*Time.deltaTime, 0));
 	if (shakeIntensity > 0.01)
@@ -64,6 +66,6 @@ function Update () {
 }
 
 function shakeCamera() {
-	shakeIntensity *= Mathf.Exp(-damping*Time.deltaTime*0.5);
+	shakeIntensity *= damping * 0.5;
 	transform.position += Random.insideUnitCircle*shakeIntensity;
 }

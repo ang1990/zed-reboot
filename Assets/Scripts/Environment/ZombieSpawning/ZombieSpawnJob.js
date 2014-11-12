@@ -25,6 +25,11 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		
 	private var locationMode : LocationMode;
 	
+	private var leftBoundActual : float = 1.2 * EnvironmentAttributes.leftBound;
+	private var rightBoundActual : float = 1.2 * EnvironmentAttributes.rightBound;
+	private var topBoundActual : float = 1.2 * EnvironmentAttributes.topBound;
+	private var bottomBoundActual : float = 1.2 * EnvironmentAttributes.bottomBound;
+	
 	// for single edge
 	private var edge : Edge;
 	
@@ -180,31 +185,27 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		}	
 
 		if (edge == Edge.TOP) return (new Vector2(
-					Random.Range(EnvironmentAttributes.leftBound, 
-							EnvironmentAttributes.rightBound),
-							EnvironmentAttributes.topBound) + new Vector2(
+					Random.Range(leftBoundActual, 
+							rightBoundActual),
+							topBoundActual) + new Vector2(
 								Random.Range(-spread.x, spread.x), 
 								Random.Range(-spread.y, spread.y)));
 		else if (edge == Edge.BOTTOM)
 				return (new Vector2(
-					Random.Range(EnvironmentAttributes.leftBound, 
-							EnvironmentAttributes.rightBound),
-							EnvironmentAttributes.bottomBound) + new Vector2(
-								Random.Range(-spread.x, spread.x), 
+					Random.Range(leftBoundActual, rightBoundActual),bottomBoundActual) +
+					new Vector2(Random.Range(-spread.x, spread.x), 
 								Random.Range(-spread.y, spread.y)));
 		else if (edge == Edge.LEFT)
 					return (new Vector2(
-						EnvironmentAttributes.leftBound, 
-							Random.Range(EnvironmentAttributes.bottomBound,
-								EnvironmentAttributes.topBound)) + new Vector2(
-									Random.Range(-spread.x, spread.x), 
+						leftBoundActual, 
+							Random.Range(bottomBoundActual,topBoundActual)) +
+							new Vector2(Random.Range(-spread.x, spread.x), 
 									Random.Range(-spread.y, spread.y)));			
 		else if (edge == Edge.RIGHT)
 					return (new Vector2(
-						EnvironmentAttributes.rightBound, 
-							Random.Range(EnvironmentAttributes.bottomBound,
-								EnvironmentAttributes.topBound)) + new Vector2(
-									Random.Range(-spread.x, spread.x), 
+						rightBoundActual, 
+							Random.Range(bottomBoundActual, topBoundActual)) +
+							new Vector2(Random.Range(-spread.x, spread.x), 
 									Random.Range(-spread.y, spread.y)));		
 		else return Vector2.zero;
 	}

@@ -6,7 +6,8 @@ import System.Collections.Generic;
 */
 
 private var experience : int;
-var health : float;
+private var health : float;
+var maxHealth : float;
 private var level : int;
 private var skillPoints : int = 0;
 private var money : int = 0;
@@ -50,7 +51,8 @@ var fastBloodSpawner : ParticleSystem;
 function Start() {
 	currentWeaponIndex = 0;
 	prevWeaponIndex = 0;
-	health = 100;
+	maxHealth = 100;
+	health = maxHealth;
 	
 	activePerks = new PerkList();
 	overlay = GameObject.Find("overlay");
@@ -102,7 +104,9 @@ function Update() {
 			changeWeapon();
 		}
 	} else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
+		if(weapons[5].id != "nullWeapon") {
 		currentWeaponIndex = 5;
+		}
 	// Right now we don't have an animation for this state. So we just adopt the previous state.
 	//	changeWeaponAnimator();
 	} 
@@ -161,6 +165,10 @@ private function changeWeapon() {
 	}
 	weapons[currentWeaponIndex].playSwitchSound();
 
+}
+
+function atFullHealth() : boolean {
+	return health >= 0.999 * maxHealth;
 }
 
 function reduceHealth(reductionAmount : float) {

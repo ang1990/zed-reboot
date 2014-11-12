@@ -34,8 +34,6 @@ var distancePerFootstep : float;
 
 var zedFootstepSound : AudioClip;
 
-var zedVelocity : Vector3;
-
 function Start() {
 	// caching the Transform
 	_transform = transform;
@@ -43,7 +41,7 @@ function Start() {
 	distanceSinceLastFootstep = 0;
 }
 
-function Update () {
+function FixedUpdate () {
 	updateMovingState();
 	rotateUpperBody();
 	updateTransform();
@@ -57,7 +55,7 @@ private function updateMovingState() {
 	targetSpeed = maxSpeed*Mathf.Min(axes.magnitude, 1.0);
 	targetAngle = Mathf.Rad2Deg*Mathf.Atan2(axes.y, axes.x);
 	
-	var currentAcceleration : float = acceleration*Time.deltaTime;
+	var currentAcceleration : float = acceleration*Time.fixedDeltaTime;
 	
 	// modification by perks
 	var activeMovementPerks : List.<MovementPerk> = zedResources.activePerks.getMovementPerks();
@@ -68,7 +66,7 @@ private function updateMovingState() {
 
 	// Slow down if no keys pressed
 	if (Mathf.Approximately(targetSpeed, 0)) {
-		var currentDeceleration : float = deceleration*Time.deltaTime;
+		var currentDeceleration : float = deceleration*Time.fixedDeltaTime;
 		if (Mathf.Abs(actualSpeed) > currentDeceleration) {
 			actualSpeed -= currentDeceleration;
 		} else {
@@ -78,7 +76,7 @@ private function updateMovingState() {
 	// Accelerate
 	} else {	
 		var angleDifference = ZedUtils.getAngularDistance(actualAngle, targetAngle);
-		actualAngle = ZedUtils.linearlyAdjustAngle(actualAngle, targetAngle, angularSpeed*Time.deltaTime);
+		actualAngle = ZedUtils.linearlyAdjustAngle(actualAngle, targetAngle, angularSpeed*Time.fixedDeltaTime);
 
 		 
 		var speedDifference = targetSpeed - actualSpeed;
@@ -107,7 +105,7 @@ function rotateUpperBody() {
 	
 	upperBodyTargetAngle = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	upperBodyActualAngle = ZedUtils.proportionallyAdjustAngle(upperBodyActualAngle,
-			upperBodyTargetAngle, upperBodyAngularSpeed*Time.deltaTime);
+			upperBodyTargetAngle, upperBodyAngularSpeed*Time.fixedDeltaTime);
 	
 	upperBody.transform.eulerAngles = new Vector3(0, 0, upperBodyActualAngle);
 }
@@ -161,7 +159,7 @@ function getCurrentVelocity() {
 
 private function updateTransform() {
 	_transform.rotation.eulerAngles = new Vector3(0, 0, actualAngle);
-	var distanceCoveredAtFrame = Time.deltaTime*actualSpeed;
+	var distanceCoveredAtFrame = Time.fixedDeltaTime*actualSpeed;
 	distanceCovered += distanceCoveredAtFrame;
 	_transform.position += _transform.right*distanceCoveredAtFrame;
 }

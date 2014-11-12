@@ -11,7 +11,7 @@ var maxEulerAngularSpeed : float;
 var decelerationCoefficient : float;
 var _transform : Transform;
 
-var clinkSound : AudioClip;
+var pickupSound : AudioClip;
 
 private var velocity : Vector2;
 private var angularSpeed : Vector3;
@@ -48,9 +48,11 @@ function OnTriggerEnter2D(other: Collider2D) {
 
 function collect(zedResources : ZedResources) {
 	if (zedResources == null) {
-		Debug.Log("Error! Skill point collected by GameObject without ZedResources");
+		Debug.Log("Error! Health drop collected by GameObject without ZedResources");
 	}
-	AudioSource.PlayClipAtPoint(clinkSound,_transform.position);
-	Destroy(gameObject);
-	zedResources.increaseHealth(health);
+	AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
+	if(!zedResources.atFullHealth()) {
+		Destroy(gameObject);
+		zedResources.increaseHealth(health);
+	}
 }

@@ -11,6 +11,7 @@ private var position : Vector2;
 private var initAlpha : float;
 
 function Start () {
+	zed = GameObject.Find("zed");
 	zedResources = zed.GetComponent(ZedResources);
 	
 	sword.guiTexture.enabled = false;

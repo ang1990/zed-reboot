@@ -1,32 +1,38 @@
 ﻿/*
  * Behaviour of an ammo drop.
- *
- * CURRENTLY NOT USED
  */ 
 
 
 #pragma strict
 
-var numberOfClips : int;
+var numberOfClips : int = 1;
 var maxStartSpeed : float;
-var drag : float;
+var decelerationCoefficient : float;
 var _transform : Transform;
 
 var pickupSound : AudioClip;
 
 private var velocity : Vector2;
+private var angularSpeed : Vector3;
+private var stopped : boolean;
 
 function Start() {
 	velocity = new Vector2(Random.Range(-maxStartSpeed, maxStartSpeed), 
 			Random.Range(-maxStartSpeed, maxStartSpeed));
+	_transform = transform;
 }
 
 function Update () {
-	_transform.position += Time.deltaTime*velocity;
-	
-	// (to do: not frame independent yet)
-	// can be done similarly as the CoinBehaviour script
-	velocity = velocity*drag;
+	if (!stopped) {
+		var velocityBefore : Vector2 = velocity;
+		velocity -= velocity.normalized*Time.deltaTime*decelerationCoefficient;
+		if (Vector2.Dot(velocityBefore, velocity) < 0) {
+			velocity = Vector2.zero;
+			stopped = true;
+		}
+		_transform.position += Time.deltaTime*velocity;
+		_transform.Rotate(angularSpeed*Time.deltaTime);
+	}
 }
 
 
@@ -42,8 +48,13 @@ function collect(zedResources : ZedResources) {
 		Debug.Log("Error! Ammo pickup collected by GameObject without ZedResources");
 	}
 	AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
-	Destroy(gameObject);
 	for(var weapon : Weapon in zedResources.weapons) {
 		weapon.addClips(numberOfClips);
 	}
+	waitForEndOfFrame();
+	Destroy(gameObject);
+}
+
+function waitForEndOfFrame() {
+	yield WaitForEndOfFrame();
 }
