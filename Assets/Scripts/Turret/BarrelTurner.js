@@ -26,6 +26,8 @@ var recoilStabilizeAmount : float;
 
 var firingSound : AudioClip;
 
+var collideTags : String[] = ["tallTerrain", "zombie"];
+
 function Start () {
 	direction = 1;
 	currentRecoil = 0;
@@ -36,11 +38,23 @@ function Update () {
 	var fwd : Vector3 = transform.TransformDirection(Vector3.right);
 	var hits : RaycastHit2D[] = Physics2D.RaycastAll(transform.position + fwd*barrelLength, fwd);
 
+	if (hits.Length > 0)  {
+		var hitIndex : int = 0;
+		for (hit in hits) {
+			if(disruptsLine(hit.collider.gameObject))
+				break;
+			else
+				hitIndex++;
+		}
+	}
+
+
+
 	// scanning and potentially firing
-	if (hits.Length == 0 || !hits[0].transform.gameObject.CompareTag("zombie")) {
+	if (hits.Length == 0 || (hitIndex < hits.Length && !hits[hitIndex].transform.gameObject.CompareTag("zombie"))) {
 		// if a zombie is in line of sight, change direction of the barrel turning with 0.5 probability
 		if (zombieTargeted) {
-			if (Random.Range(0, 2) == 1) direction *= -1;
+			if (Random.Range(0, 1) > 0.5) direction *= -1;
 			zombieTargeted = false;
 		}
 		transform.eulerAngles.z += direction*angularSpeed*Time.deltaTime;
@@ -55,7 +69,7 @@ function Update () {
 	    	child.transform.position = Vector3.MoveTowards(transform.parent.position, transform.parent.position + getTrueInverseDirection(), currentRecoil);
 	}
 
-	Debug.DrawLine(transform.position + fwd*barrelLength, transform.position + fwd * 100, Color.blue, 0.1, false);
+	Debug.DrawLine(transform.position + fwd*barrelLength, transform.position + fwd * 10, Color.blue, 0.1, false);
 
 	currentRecoil -= Mathf.Min(currentRecoil, recoilStabilizeAmount*Time.deltaTime);
 }
@@ -94,4 +108,13 @@ function switchNegativeXY(direction : Vector3) : Vector3 {
 	newVector.x = -direction.y;
 	newVector.y = -direction.x;
 	return newVector;
+}
+
+private function disruptsLine(o : GameObject) : boolean {
+	for (tag in collideTags) {
+		if (o.CompareTag(tag)) {
+			return true;
+		}
+	}
+	return false;
 }

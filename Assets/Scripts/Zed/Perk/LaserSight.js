@@ -18,10 +18,10 @@ function Start() {
 
 function Update () {
 	var laserPerk : LaserPerk = zedResources.activePerks.getLaserPerk();
-	if (Input.GetKeyDown("l")) {
-		laserPerk.toggleActive();
+	if (zedResources.isNotHoldingMeleeWeapon()) {
+		laserPerk.setActive();
 	}
-	if (laserPerk != null && laserPerk.isActive() && zedResources.currentWeaponIndex != 0) {
+	if (laserPerk != null && laserPerk.isActive() && zedResources.isNotHoldingMeleeWeapon()) {
 		lineRenderer.enabled = true;
 		var color : Color = laserPerk.getColor();
 		lineRenderer.SetColors(color, color);
@@ -43,7 +43,7 @@ function Update () {
 		if (hits.Length > 0)  {
 			var hitIndex : int = 0;
 			for (hit in hits) {
-				if(stopsLaser(hit.collider.gameObject))
+				if(disruptsLine(hit.collider.gameObject))
 					break;
 				else
 					hitIndex++;
@@ -64,7 +64,7 @@ function Update () {
 	}
 }
 
-private function stopsLaser(o : GameObject) : boolean {
+private function disruptsLine(o : GameObject) : boolean {
 	for (tag in collideTags) {
 		if (o.CompareTag(tag)) {
 			return true;
