@@ -12,12 +12,13 @@ function Start () {
 	gameObject.guiText.enabled = false;
 	initFontSize = 100;
 	initFontA = 1;
-	Debug.Log(initFontA.ToString());
-	scale = gameObject.guiText.fontSize/10;
+	scale = initFontSize/10;
 }
 
 
 function waveStart (wave : int) {
+	gameObject.guiText.fontSize = initFontSize;
+	gameObject.guiText.color.a = initFontA;
 	gameObject.guiText.text = "Wave "+wave.ToString();
 	gameObject.guiText.enabled = true;
 	
@@ -63,6 +64,8 @@ function waveStart (wave : int) {
 }
 
 function waveEnd (wave : int) {
+	gameObject.guiText.fontSize = initFontSize;
+	gameObject.guiText.color.a = initFontA;
 	gameObject.guiText.text = "Wave "+wave.ToString()+" Cleared";
 	gameObject.guiText.enabled = true;
 	
