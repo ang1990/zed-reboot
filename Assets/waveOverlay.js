@@ -10,7 +10,7 @@ function Start () {
 	gameObject.guiText.pixelOffset.x = Screen.width/2;
 	gameObject.guiText.pixelOffset.y = Screen.height/2;
 	gameObject.guiText.enabled = false;
-	initFontSize = 40;
+	initFontSize = 100;
 	initFontA = 1;
 	Debug.Log(initFontA.ToString());
 	scale = gameObject.guiText.fontSize/10;
@@ -18,7 +18,6 @@ function Start () {
 
 
 function waveStart (wave : int) {
-	wave++;
 	gameObject.guiText.text = "Wave "+wave.ToString();
 	gameObject.guiText.enabled = true;
 	
