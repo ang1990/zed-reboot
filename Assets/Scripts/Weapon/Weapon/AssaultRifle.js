@@ -24,7 +24,7 @@ class AssaultRifle extends ProjectileWeapon {
 		this.owner = owner;
 		this.zedMovement = owner.GetComponent(ZedMovement);
 		this.zedResources = owner.GetComponent(ZedResources);
-		this.spawnOffset = new Vector2(0.8,-0.13);
+		this.spawnOffset = new Vector2(0.63,-0.1);
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadingSound = Resources.Load(reloadingSoundPath) as AudioClip;
 		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;

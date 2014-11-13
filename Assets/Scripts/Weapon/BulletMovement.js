@@ -92,10 +92,10 @@ private function checkCollision() {
 		
 		var indexHit : int = 0;
 		for (hit in raycastHit2D) {
-			if(!stopsBullet(hit.collider.gameObject)) {
-				indexHit++;
+			if(stopsBullet(hit.collider.gameObject)) {
+				break;
 			}
-			else continue;
+			else indexHit++;
 		}
 		if(indexHit < raycastHit2D.Length) {
 			var firstHitObject : GameObject = raycastHit2D[indexHit].collider.gameObject;

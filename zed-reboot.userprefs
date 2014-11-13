@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\waveOverlay.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\Weapon\Grenadier.js">
     <Files>
-      <File FileName="Assets\waveOverlay.js" Line="14" Column="16" />
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="62" Column="77" />
+      <File FileName="Assets\Scripts\Weapon\Weapon\Grenadier.js" Line="26" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
