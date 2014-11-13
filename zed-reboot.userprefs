@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\BulletMovement.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\waveOverlay.js">
     <Files>
-      <File FileName="Assets\Scripts\Weapon\BulletMovement.js" Line="112" Column="96" />
-      <File FileName="Assets\Scripts\Zed\Perk\LaserSight.js" Line="66" Column="1" />
+      <File FileName="Assets\waveOverlay.js" Line="14" Column="16" />
+      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="62" Column="77" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
