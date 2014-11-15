@@ -50,9 +50,9 @@ function collect(zedResources : ZedResources) {
 	if (zedResources == null) {
 		Debug.Log("Error! Health drop collected by GameObject without ZedResources");
 	}
-	AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
 	if(!zedResources.atFullHealth()) {
-		Destroy(gameObject);
+		AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
 		zedResources.increaseHealth(health);
+		Destroy(gameObject);
 	}
 }
