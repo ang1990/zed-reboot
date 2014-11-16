@@ -43,12 +43,13 @@ private var showGraphicsDropDown = false;
 function OnGUI(){
 
 GUI.skin.box.font = pauseMenuFont;
+GUI.skin.box.fontSize = 20;
 GUI.skin.button.font = pauseMenuFont;
 
 	if(pauseEnabled == true){
 		
 		//Make a background box
-		GUI.Box(Rect(Screen.width /2 - 100,Screen.height /2 - 100,250,200), "Pause Menu");
+		GUI.Box(Rect(Screen.width /2 - 100,Screen.height /2 - 150,250,250), "Pause Menu\nPress Esc to return to game");
 		
 		//Make Main Menu button
 		if(GUI.Button(Rect(Screen.width /2 - 100,Screen.height /2 - 50,250,50), "Main Menu")){
