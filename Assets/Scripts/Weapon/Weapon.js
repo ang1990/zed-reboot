@@ -55,4 +55,8 @@ class Weapon extends UnityEngine.Object {
 		return 0;
 	}
 	
+	function isTurretPlacer() : boolean {
+		return false;
+	}
+	
 }
