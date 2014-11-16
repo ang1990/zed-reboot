@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\gameStateController.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Pause Menu\PauseMenu.js">
     <Files>
       <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Miscellaneous\NamePrompt.js" Line="1" Column="1" />
+      <File FileName="Assets\Pause Menu\PauseMenu.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
