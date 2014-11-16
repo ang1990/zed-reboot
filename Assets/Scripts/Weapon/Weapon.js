@@ -53,10 +53,5 @@ class Weapon extends UnityEngine.Object {
 	
 	function getReloadEndTime() : float {
 		return 0;
-	}
-	
-	function isTurretPlacer() : boolean {
-		return false;
-	}
-	
+	}	
 }

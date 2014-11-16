@@ -88,8 +88,4 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 							+ Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
 							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
 	}
-	
-	function isTurretPlacer() : boolean {
-		return true;	
-	}
 }

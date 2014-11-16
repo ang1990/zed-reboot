@@ -49,7 +49,9 @@ function collect(zedResources : ZedResources) {
 	}
 	AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
 	for(var weapon : Weapon in zedResources.weapons) {
-		weapon.addClips(numberOfClips);
+		if (weapon.id != "turretplacer") {
+			weapon.addClips(numberOfClips); 
+		}
 	}
 	waitForEndOfFrame();
 	Destroy(gameObject);
