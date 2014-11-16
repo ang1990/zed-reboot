@@ -67,7 +67,7 @@ private function checkCollision() {
 	if (raycastHit2D.Length > 0) {							
 		// again raycast (this time infinitely long), to get all objects
 		// in line of fire
-		raycastHit2D = Physics2D.RaycastAll(
+		/*raycastHit2D = Physics2D.RaycastAll(
 			rayCastStart,  
 			rayCastDirection, 
 			Mathf.Infinity);
@@ -75,7 +75,7 @@ private function checkCollision() {
 		if (raycastHit2D.Length == 0) {
 			Debug.Log("error in BulletMovement.js: second raycast empty!");
 			return;
-		}
+		}*/
 	/*	
 		var hitList : List.<RaycastHit2D> = new List.<RaycastHit2D>();
 		var i : int = 0;
@@ -99,6 +99,7 @@ private function checkCollision() {
 		}
 		if(indexHit < raycastHit2D.Length) {
 			var firstHitObject : GameObject = raycastHit2D[indexHit].collider.gameObject;
+			Debug.Log(firstHitObject.tag);
 			
 			var stopLocation : Vector3 = _transform.position +
 							raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;

@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\healthDropBehaviour.js" />
      <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
+     <Compile Include="Assets\Scripts\Environment\MineAreaSpawner.js" />
      <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
      <Compile Include="Assets\Scripts\Environment\PerkMenu.js" />
      <Compile Include="Assets\Scripts\Environment\PerkStock.js" />

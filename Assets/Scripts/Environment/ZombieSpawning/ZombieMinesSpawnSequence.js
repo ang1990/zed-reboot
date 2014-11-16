@@ -32,21 +32,21 @@ function Start () {
 	singleWave.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
 	singleWave.spawnContinuous(bossZombiePrefab, 120, 10000, 140, Edge.LEFT);
 	
-	singleWave.spawnContinuous(minePrefab, 0, 10000, 2500, Vector2.zero, inMap);
+//	singleWave.spawnContinuous(minePrefab, 0, 10000, 2500, Vector2.zero, inMap);
 	
 	singleWave.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
 	singleWave.spawnContinuous(suicideZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.TOP);
+	singleWave.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
 
 
 	singleWave.spawnContinuous(suicideZombiePrefab, 80, 10000, 400, Edge.LEFT);
 	singleWave.spawnContinuous(normalZombiePrefab, 170, 10000, 600, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.TOP);
+	singleWave.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.BOTTOM);
 	singleWave.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
-	singleWave.spawnContinuous(suicideZombiePrefab, 45, 10000, 400, Edge.TOP);
+	singleWave.spawnContinuous(suicideZombiePrefab, 45, 10000, 400, Edge.LEFT);
 	singleWave.spawnContinuous(suicideZombiePrefab, 80, 10000, 400, Edge.BOTTOM);
 
-	singleWave.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);
+	singleWave.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.RIGHT);
 	
 	spawnEngine.addWave(singleWave);
 	

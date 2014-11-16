@@ -14,6 +14,9 @@
 
 class NormalZombieBehaviour extends ZombieBehaviour {
 
+private var updateTime : float = 0.1;
+private var lastUpdateTime : float;
+
 // Standard/Spawning variables
 private var speedDeviation : float;
 private var centralizationOfDeviation : int;
@@ -44,22 +47,19 @@ function Start() {
 	zombieResources = transform.GetComponent(ZombieResources) as ZombieResources;
 	navigator = transform.GetComponent(PolyNavAgent);
 	animator = transform.GetComponent(Animator);
+	lastUpdateTime = Time.timeSinceLevelLoad;
 }
 
 function Update() {
-	navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
-	animator.SetFloat("speed", zombieProperties.getSpeed());
-	// If zombie is within range, strike the target.
-	if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
-			zombieStrike.hitTarget(target);
-		}
-		// If the target isn't Zed, then it's probably a turret.
-/*		if(!target.CompareTag("Player")) {
-			if(target.GetComponent(TurretResources.isDead())) {
-				target = null;
-				currentState = PackZombieState.Wandering;
+	if(Time.timeSinceLevelLoad > lastUpdateTime + updateTime) {
+		lastUpdateTime = Time.timeSinceLevelLoad;
+		navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
+		animator.SetFloat("speed", zombieProperties.getSpeed());
+		// If zombie is within range, strike the target.
+		if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
+				zombieStrike.hitTarget(target);
 			}
-		}*/
+	}
 }
 
 function getTargetAngle(destination : Vector3) {

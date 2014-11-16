@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Miscellaneous\gameStateController.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\MineAreaSpawner.js">
     <Files>
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zombie\Behaviours\NormalZombieBehaviour.js" Line="17" Column="37" />
+      <File FileName="Assets\Scripts\Environment\MineAreaSpawner.js" Line="50" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
