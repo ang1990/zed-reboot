@@ -223,7 +223,7 @@ function OnGUI() {
 		}
 
 		GUI.enabled = true;	
-
+/*
 		if (miniTurretCost > zedResources.getMoney()) {
 			GUI.enabled = false;
 		}
@@ -240,7 +240,7 @@ function OnGUI() {
 
 			purchaseTurret(1);							
 		}
-
+*/
 		GUI.enabled = true;	
 
 		GUILayout.EndArea();

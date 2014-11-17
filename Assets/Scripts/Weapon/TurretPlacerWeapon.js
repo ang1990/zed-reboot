@@ -14,7 +14,7 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 	var reloadFinishSoundPath : String = "Sounds/Empty Clip";
 		
 	function TurretPlacerWeapon(owner : GameObject) {
-		this.rateOfFire = 0.5;
+		this.rateOfFire = 20;
 		this.firepower = 50;
 		this.bulletSpeed = 20;
 		this.spread = 0;
@@ -34,7 +34,7 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		this.reloadingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;
 			
-		bullets = 2; // hardcoded, should be dynamic in future implementation.
+		bullets = 0; // hardcoded, should be dynamic in future implementation.
 		this.bulletsInClip = this.clipSize;
 	}
 	
