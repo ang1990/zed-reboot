@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Explosion.js" />
      <Compile Include="Assets\Pause Menu\PauseMenu.js" />
+     <Compile Include="Assets\Scripts\CollectibleDestroyer.js" />
      <Compile Include="Assets\Scripts\CollisionBehavior.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
