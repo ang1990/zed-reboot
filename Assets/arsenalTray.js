@@ -3,6 +3,7 @@ var revolver : GUITexture;
 var rifle : GUITexture;
 var shotgun : GUITexture;
 var grenadier : GUITexture;
+var turret : GUITexture;
 var zed : GameObject;
 
 private var zedResources : ZedResources;
@@ -19,12 +20,14 @@ function Start () {
 	rifle.guiTexture.enabled = false;
 	shotgun.guiTexture.enabled = false;
 	grenadier.guiTexture.enabled = false;
+	turret.guiTexture.enabled = false;
 	
 	sword.guiText.enabled = false;
 	revolver.guiText.enabled = false;
 	rifle.guiText.enabled = false;
 	shotgun.guiText.enabled = false;
 	grenadier.guiText.enabled = false;
+	turret.guiText.enabled = false;
 	
 	weapons = zedResources.weapons;
 	position.x = 0.02*Screen.width;
@@ -89,6 +92,15 @@ function displayHUDWeapon (id : String, position : Vector2, index : int) {
 		grenadier.guiText.pixelOffset.y = position.y;
 		grenadier.guiText.enabled=true;
 		grenadier.enabled=true;
+	} else if (id == "turretplacer") {
+		position.x+=5;
+		turret.guiText.text = index.ToString();
+		turret.guiTexture.pixelInset.x = position.x;
+		turret.guiTexture.pixelInset.y = position.y;
+		turret.guiText.pixelOffset.x = turret.guiTexture.pixelInset.x+5;
+		turret.guiText.pixelOffset.y = position.y;
+		turret.guiText.enabled=true;
+		turret.enabled=true;
 	}
 }
 
@@ -98,7 +110,7 @@ function highlightHUDweapon(id : String) {
 	rifle.guiTexture.color.a = initAlpha;
 	shotgun.guiTexture.color.a = initAlpha;
 	grenadier.guiTexture.color.a = initAlpha;
-	
+	turret.guiTexture.color.a = initAlpha;
 	
 	if (id == "assaultRifle") {
 		rifle.guiTexture.color.a = 3*initAlpha;
@@ -110,6 +122,8 @@ function highlightHUDweapon(id : String) {
 		sword.guiTexture.color.a = 3*initAlpha;
 	} else if (id == "grenadier") {
 		grenadier.guiTexture.color.a = 3*initAlpha;
+	} else if (id == "turretplacer") {
+		turret.guiTexture.color.a = 3*initAlpha;
 	}
 }
 

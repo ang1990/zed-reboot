@@ -15,6 +15,7 @@ var revolver : GUITexture;
 var assaultRifle : GUITexture;
 var shotgun : GUITexture;
 var grenadier : GUITexture;
+var turret : GUITexture;
 var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
@@ -183,6 +184,7 @@ function changeHUDWeapon (id : String) {
 	shotgun.enabled=false;
 	grenadier.enabled=false;
 	sword.enabled=false;
+	turret.enabled=false;
 	if (weapon.getId().Equals("assaultRifle")) {
 		assaultRifle.enabled=true;
 	} else if (weapon.getId().Equals("shotgun")) {
@@ -193,5 +195,7 @@ function changeHUDWeapon (id : String) {
 		sword.enabled=true;
 	} else if (weapon.getId().Equals("grenadier")) {
 		grenadier.enabled=true;
+	} else if (weapon.getId().Equals("turretplacer")) {
+		turret.enabled=true;
 	}
 }
