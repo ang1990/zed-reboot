@@ -271,7 +271,7 @@ function changeMoney(difference : int) {
 function updateLevel() {
 	var newLevel : int = expToLevel(experience);
 	if(newLevel > level) {
-		changeSkillPoints(newLevel-level);
+		changeSkillPoints((newLevel-level)*2);
 		for(var i : int = 0; i < newLevel-level; i++) {
 			AudioSource.PlayClipAtPoint(bellSound, transform.position);
 		}

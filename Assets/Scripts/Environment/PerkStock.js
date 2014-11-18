@@ -34,7 +34,7 @@ function createPerkStock() {
 	
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("Speed\nI")
+					.name("Speed")
 					.skillPointCost(1)
 					.speedMultiplier(1.2)
 					.accelerationMultiplier(1.1)
@@ -42,65 +42,65 @@ function createPerkStock() {
 					
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("Speed\nII")
+					.name("More\nSpeed")
 					.skillPointCost(2)
-					.speedMultiplier(1.2)
-					.accelerationMultiplier(1.1)
+					.speedMultiplier(1.25)
+					.accelerationMultiplier(1.2)
 					.build());
 					
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("Speed\nIII")
-					.skillPointCost(4)
+					.name("Epic\nSpeed")
+					.skillPointCost(2)
 					.speedMultiplier(1.2)
-					.accelerationMultiplier(1.1)
+					.accelerationMultiplier(1.2)
 					.build());
 				
 	perkTree[RATE_OF_FIRE].Add(
 			new WeaponPerk.Builder()
-					.name("Fire Rate\nI")
+					.name("Fire Rate\nUpgrade")
 					.skillPointCost(1)
 					.rateOfFireMultiplier(1.2)
 					.build());
 					
 	perkTree[RATE_OF_FIRE].Add(
 			new WeaponPerk.Builder()
-					.name("Fire Rate\nII")
+					.name("Speedy\nGunzales")
 					.skillPointCost(2)
 					.rateOfFireMultiplier(1.4)
 					.build());
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
-					.name("Fire Power\nI")
-					.skillPointCost(4)
+					.name("Hollow\nPoints")
+					.skillPointCost(2)
+					.firepowerMultiplier(1.25)
+					.build());	
+					
+	perkTree[FIRE_POWER].Add(
+			new WeaponPerk.Builder()
+					.name("Depleted\nUranium")
+					.skillPointCost(2)
 					.firepowerMultiplier(1.2)
 					.build());	
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
-					.name("Fire Power\nII")
-					.skillPointCost(1)
-					.firepowerMultiplier(1.2)
-					.build());	
-					
-	perkTree[FIRE_POWER].Add(
-			new WeaponPerk.Builder()
-					.name("Fire Power\nIII")
+					.name("Shredder\nAmmo")
 					.skillPointCost(4)
-					.firepowerMultiplier(1.2)
+					.firepowerMultiplier(1.5)
 					.build());		
 	
 	perkTree[SHOT_ACCURACY].Add(
 			new WeaponPerk.Builder()
-					.name("Shot Accuracy\nI")
+					.name("Improved\nRecoil")
 					.skillPointCost(1)
 					.scatterMultiplier(0.6)
 					.build());
 					
 	perkTree[SHOT_ACCURACY].Add(
 			new WeaponPerk.Builder()
-					.name("Shot Accuracy\nII")
+					.name("Crack\nShot")
 					.skillPointCost(2)
 					.scatterMultiplier(0.0)
 					.build());

@@ -217,7 +217,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent("Scanner\nTurret", scannerTurretCost.ToString() + "G"),buttonStyle)) {
+				GUIContent("Buy Turret", scannerTurretCost.ToString() + "G"),buttonStyle)) {
 
 			purchaseTurretAmmo();						
 		}
