@@ -1,11 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon\ProjectileWeapon.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zed\ZedResources.js">
     <Files>
-      <File FileName="Assets\Scripts\Environment\PerkMenu.js" Line="294" Column="23" />
-      <File FileName="Assets\Scripts\Weapon\TurretPlacerWeapon.js" Line="75" Column="3" />
-      <File FileName="Assets\Scripts\Weapon\Weapon.js" Line="34" Column="23" />
-      <File FileName="Assets\Scripts\Weapon\ProjectileWeapon.js" Line="223" Column="1" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="38" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

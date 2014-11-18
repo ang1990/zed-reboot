@@ -35,7 +35,7 @@ var lastGruntSoundTime : float;
 
 var deathSound : AudioClip;
 
-var bellSound : AudioClip;
+var levelUpSound : AudioClip;
 
 private var overlay : GameObject;
 private var overlayTimeEnd : float;
@@ -273,7 +273,7 @@ function updateLevel() {
 	if(newLevel > level) {
 		changeSkillPoints((newLevel-level)*2);
 		for(var i : int = 0; i < newLevel-level; i++) {
-			AudioSource.PlayClipAtPoint(bellSound, transform.position);
+			AudioSource.PlayClipAtPoint(levelUpSound, transform.position);
 		}
 		yield WaitForSeconds(0.05);
 		var overlay : GameObject = GameObject.Find("Level Up Text");
