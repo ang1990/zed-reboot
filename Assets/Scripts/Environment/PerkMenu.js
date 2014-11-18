@@ -215,10 +215,8 @@ function OnGUI() {
 			GUI.enabled = false;
 		}
 
-		if (GUI.Button(
-				artilleryButtonRect, 
+		if (GUI.Button( artilleryButtonRect, 
 				GUIContent("Buy Turret", scannerTurretCost.ToString() + "G"),buttonStyle)) {
-
 			purchaseTurretAmmo();						
 		}
 
@@ -291,5 +289,9 @@ function purchaseTurret(_type : int) {
 
 function purchaseTurretAmmo() {
 	zedResources.changeMoney(-scannerTurretCost);
-	GameObject.Find("zed").GetComponent(ZedResources).increaseWeaponAmmo(5);
+	for(weapon in zedResources.weapons) {
+		if(weapon.id == "turretplacer") {
+			weapon.addClips(1);
+		}
+	}
 }

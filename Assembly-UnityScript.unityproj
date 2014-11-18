@@ -1,149 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0E8EAF25-E064-A990-E8B3-1B99546B0C84}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-UnityScript</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <BaseDirectory>Assets</BaseDirectory>
-    <UsePartialTypes>False</UsePartialTypes>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{0E8EAF25-E064-A990-E8B3-1B99546B0C84}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_4_5_4;UNITY_4_5;UNITY_64;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_4;UNITY_4_5;UNITY_64;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Explosion.js" />
-    <Compile Include="Assets\Pause Menu\PauseMenu.js" />
-    <Compile Include="Assets\Scripts\CollectibleDestroyer.js" />
-    <Compile Include="Assets\Scripts\CollisionBehavior.js" />
-    <Compile Include="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" />
-    <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
-    <Compile Include="Assets\Scripts\Environment\Collectibles\healthDropBehaviour.js" />
-    <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
-    <Compile Include="Assets\Scripts\Environment\MineAreaSpawner.js" />
-    <Compile Include="Assets\Scripts\Environment\PerkMenu.js" />
-    <Compile Include="Assets\Scripts\Environment\PerkStock.js" />
-    <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
-    <Compile Include="Assets\Scripts\Environment\SurvivalSpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\TimedObjectDestructor.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lvl2SpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lvl3SpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieMinesSpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />
-    <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieWave.js" />
-    <Compile Include="Assets\Scripts\Menu\HighScores.js" />
-    <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
-    <Compile Include="Assets\Scripts\Menu\LevelMenu.js" />
-    <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\LevelComplete.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\gameStateController.js" />
-    <Compile Include="Assets\Scripts\Miscellaneous\levelUpOverlay.js" />
-    <Compile Include="Assets\Scripts\Turret\BarrelTurner.js" />
-    <Compile Include="Assets\Scripts\Turret\CogTurner.js" />
-    <Compile Include="Assets\Scripts\Turret\MiniturretBehaviour.js" />
-    <Compile Include="Assets\Scripts\Visuals\CameraController.js" />
-    <Compile Include="Assets\Scripts\Visuals\Crosshair.js" />
-    <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
-    <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
-    <Compile Include="Assets\Scripts\Visuals\HudMain2.js" />
-    <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl2Arsenal.js" />
-    <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl3Arsenal.js" />
-    <Compile Include="Assets\Scripts\Weapon\Arsenals\WeaponArsenal.js" />
-    <Compile Include="Assets\Scripts\Weapon\Arsenals\survivalArsenal.js" />
-    <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
-    <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
-    <Compile Include="Assets\Scripts\Weapon\ExplosiveBulletMovement.js" />
-    <Compile Include="Assets\Scripts\Weapon\MeleeWeapon.js" />
-    <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
-    <Compile Include="Assets\Scripts\Weapon\Traps\Landmine.js" />
-    <Compile Include="Assets\Scripts\Weapon\TurretPlacerWeapon.js" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon\Grenadier.js" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon\Revolver.js" />
-    <Compile Include="Assets\Scripts\Weapon\Weapon\Shotgun.js" />
-    <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
-    <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\LaserSight.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\MovementPerk.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\Perk.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\PerkList.js" />
-    <Compile Include="Assets\Scripts\Zed\Perk\WeaponPerk.js" />
-    <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
-    <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
-    <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
-    <Compile Include="Assets\Scripts\Zed\ZedShadowDirection.js" />
-    <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\BossZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\ChaserZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\LeaderZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\NormalZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\SuicideZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\Behaviours\ZombieBehaviour.js" />
-    <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
-    <Compile Include="Assets\Scripts\Zombie\ParticleLayerOrder.js" />
-    <Compile Include="Assets\Scripts\Zombie\TargetDetector.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieMovement2.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
-    <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
-    <Compile Include="Assets\Scripts\cutInLv1.js" />
-    <Compile Include="Assets\TurretDestroyer.js" />
-    <Compile Include="Assets\arsenalTray.js" />
-    <Compile Include="Assets\neonLight.js" />
-    <Compile Include="Assets\waveOverlay.js" />
+     <Compile Include="Assets\Explosion.js" />
+     <Compile Include="Assets\Pause Menu\PauseMenu.js" />
+     <Compile Include="Assets\Scripts\CollectibleDestroyer.js" />
+     <Compile Include="Assets\Scripts\CollisionBehavior.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\healthDropBehaviour.js" />
+     <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
+     <Compile Include="Assets\Scripts\Environment\MineAreaSpawner.js" />
+     <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
+     <Compile Include="Assets\Scripts\Environment\PerkMenu.js" />
+     <Compile Include="Assets\Scripts\Environment\PerkStock.js" />
+     <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
+     <Compile Include="Assets\Scripts\Environment\SurvivalSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\TimedObjectDestructor.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lv1SpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lvl2SpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\Lvl3SpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieMinesSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieWave.js" />
+     <Compile Include="Assets\Scripts\Menu\HighScores.js" />
+     <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
+     <Compile Include="Assets\Scripts\Menu\LevelMenu.js" />
+     <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\LevelComplete.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\gameStateController.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\levelUpOverlay.js" />
+     <Compile Include="Assets\Scripts\Turret\BarrelTurner.js" />
+     <Compile Include="Assets\Scripts\Turret\CogTurner.js" />
+     <Compile Include="Assets\Scripts\Turret\MiniturretBehaviour.js" />
+     <Compile Include="Assets\Scripts\Visuals\CameraController.js" />
+     <Compile Include="Assets\Scripts\Visuals\Crosshair.js" />
+     <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
+     <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
+     <Compile Include="Assets\Scripts\Visuals\HudMain2.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl2Arsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\Lvl3Arsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\Arsenals\survivalArsenal.js" />
+     <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
+     <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
+     <Compile Include="Assets\Scripts\Weapon\ExplosiveBulletMovement.js" />
+     <Compile Include="Assets\Scripts\Weapon\MeleeWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Traps\Landmine.js" />
+     <Compile Include="Assets\Scripts\Weapon\TurretPlacerWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\AssaultRifle.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\Grenadier.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\Revolver.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon\Shotgun.js" />
+     <Compile Include="Assets\Scripts\Weapon\startingArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\LaserSight.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\MovementPerk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\Perk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\PerkList.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\WeaponPerk.js" />
+     <Compile Include="Assets\Scripts\Zed\PerkAddMoveSpeed1.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedShadowDirection.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\BossZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\ChaserZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\LeaderZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\NormalZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\SuicideZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\ZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
+     <Compile Include="Assets\Scripts\Zombie\ParticleLayerOrder.js" />
+     <Compile Include="Assets\Scripts\Zombie\TargetDetector.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieMovement2.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieSuicide.js" />
+     <Compile Include="Assets\Scripts\cutInLv1.js" />
+     <Compile Include="Assets\TurretDestroyer.js" />
+     <Compile Include="Assets\arsenalTray.js" />
+     <Compile Include="Assets\neonLight.js" />
+     <Compile Include="Assets\waveOverlay.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{687B1752-2A16-72A9-4ED3-465FFEFE3DFC}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
+      <Project>{687B1752-2A16-72A9-4ED3-465FFEFE3DFC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -153,4 +153,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>
