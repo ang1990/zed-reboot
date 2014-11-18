@@ -8,7 +8,7 @@ import System.Collections.Generic;
 private var experience : int;
 private var health : float;
 var maxHealth : float;
-private var level : int;
+private var level : int = 1;
 private var skillPoints : int = 0;
 private var money : int = 0;
 
@@ -35,6 +35,8 @@ var lastGruntSoundTime : float;
 
 var deathSound : AudioClip;
 
+var bellSound : AudioClip;
+
 private var overlay : GameObject;
 private var overlayTimeEnd : float;
 var overlayTime : float;
@@ -60,12 +62,12 @@ function Start() {
 }
 
 function Update() {
-	if (Input.GetKey("x")){
+/*	if (Input.GetKey("x")){
 		reduceHealth(50*Time.deltaTime);
 	} else if (Input.GetKeyDown("m")) {
 		changeMoney(10);
 	}
-	
+*/	
 	if (!isAlive()) {	// Zed is dying
 		if (animatorDead && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
 			defeated = true;
@@ -103,13 +105,13 @@ function Update() {
 			currentWeaponIndex = 4;
 			changeWeapon();
 		}
-	} else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
+	}/* else if (Input.GetKeyDown("6") && currentWeaponIndex != 5) {
 		if(weapons[5].id != "nullWeapon") {
 		currentWeaponIndex = 5;
 		}
 	// Right now we don't have an animation for this state. So we just adopt the previous state.
 	//	changeWeaponAnimator();
-	} 
+	} */
 	// For the weapon-side state processing, we use this function until we can find a way to improve the
 	// implementation.
 	weapons[currentWeaponIndex].checkState();
@@ -168,13 +170,13 @@ private function changeWeapon() {
 }
 
 function atFullHealth() : boolean {
-	return health >= 0.999 * maxHealth;
+	return health >= 0.99 * maxHealth;
 }
 
 function reduceHealth(reductionAmount : float) {
 	overlayTimeEnd = Time.time + overlayTime;
 	changeOverlay();
-	if(health <= 0)
+	if(health <= 0 || reductionAmount < 0)
 		return;
 	health -= reductionAmount;
 	if (health <= 0) {
@@ -190,7 +192,7 @@ function reduceHealth(reductionAmount : float) {
 function increaseHealth(increaseAmount : float) {
 	overlayTimeEnd = Time.time + overlayTime;
 	changeOverlay();
-	if(health >= 100)
+	if(health >= 100 || increaseAmount < 0)
 		return;
 	health += increaseAmount;
 	if (health >= 100)
@@ -250,6 +252,7 @@ function handleZombieKilled(zombieDifficultyLevel : int) {
 }
 
 function gainExperience(amount : int) {
+	if(amount <= 0) return;
 	experience += amount;
 	updateLevel();
 }
@@ -269,14 +272,28 @@ function updateLevel() {
 	var newLevel : int = expToLevel(experience);
 	if(newLevel > level) {
 		changeSkillPoints(newLevel-level);
+		for(var i : int = 0; i < newLevel-level; i++) {
+			AudioSource.PlayClipAtPoint(bellSound, transform.position);
+		}
+		yield WaitForSeconds(0.05);
+		var overlay : GameObject = GameObject.Find("Level Up Text");
+		overlay.GetComponent(levelUpOverlay).levelUp();
 		level = newLevel;
 	}
 }
 
-// EXP = 50 (1+LEVEL)^2.
+function expToNextLevel() {
+	return levelToExp(level+1) - experience;
+}
 
-private function expToLevel(exp : float) : float {
-	return Mathf.FloorToInt(Mathf.Sqrt(exp/50.0))+1;
+// EXP = 50 * LEVEL^2
+
+private function expToLevel(exp : float) : int {
+	return Mathf.Sqrt(exp/50.0) + 1;
+}
+
+private function levelToExp(lvl : int) : int {
+	return 50*Mathf.Pow(lvl - 1,2);
 }
 
 function getLevel() {

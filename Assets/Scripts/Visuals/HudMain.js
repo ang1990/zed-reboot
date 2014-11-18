@@ -104,7 +104,9 @@ function OnGUI() {
 	centeredStyle = GUIStyle(GUI.skin.label);
 	centeredStyle.alignment = TextAnchor.LowerRight;
 	
-	score.text = zedResources.getExperience().ToString();
+	// Score text to show level text instead.
+	
+	score.text = getLevelText();
 	//GUI.Label(Rect(Screen.width/2 - 90, Screen.height - 145, 200, 120), zedResources.getExperience().ToString(), centeredStyle);
 	GUI.skin.label.fontSize = prevFontSize;
 	centeredStyle = prevStyle;
@@ -163,7 +165,8 @@ function OnGUI() {
 
 	GUI.skin = null;
 }
-
+/*
+////////// Unused functions.
 function reloadClip() {
 	clipSize = weapon.getClipSize();
 	clipBullets = new Texture2D[clipSize];
@@ -176,6 +179,16 @@ function reloadClip() {
 function getRandomBulletTexture() : Texture2D {
 	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.01));
 	return bulletSkins[bulletNumber];
+}
+*/
+
+function getLevelText() : String {
+	var levelText : String = "Level ";
+	levelText += zedResources.getLevel().ToString();
+	levelText += "\n";
+	levelText += zedResources.expToNextLevel().ToString();
+	levelText += " to next level!";
+	return levelText;
 }
 
 function changeHUDWeapon (id : String) {

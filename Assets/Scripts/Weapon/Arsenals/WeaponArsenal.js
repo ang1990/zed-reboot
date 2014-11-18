@@ -13,19 +13,18 @@ var turretPrefabs: GameObject;
 var zed : GameObject;
 var clips : AudioClip[];
 
-private var numWeapons : int = 6;
+private var numWeapons : int = 5;
 
 // Survival arsenal has all the weapons that we will use in Survival Mode.
 
 function survivalArsenal() : Weapon[] {
 	var weapons : Weapon[] = new Weapon[numWeapons];
 	
-	weapons[0] = getSword();
-	weapons[1] = getRevolver();
-	weapons[2] = getShotgun();
-	weapons[3] = getAssaultRifle();
-	weapons[4] = getGrenadier();
-	weapons[5] = getTurretPlacer();
+	weapons[0] = getRevolver();
+	weapons[1] = getShotgun();
+	weapons[2] = getAssaultRifle();
+	weapons[3] = getGrenadier();
+	weapons[4] = getTurretPlacer();
 	return weapons;
 }
 

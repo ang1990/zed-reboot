@@ -157,7 +157,7 @@ function Update() {
 	}
 }
 
-function getTargetAngle(destination : Vector3) {
+function getTargetAngle(destination : Vector3) : float {
 	positionDifference = destination - transform.position;
 	var targetDifference = positionDifference;
 	if(isInterceptor) {
@@ -199,7 +199,7 @@ function setLeader(newLeader : GameObject) {
 	leader = newLeader;
 }
 
-function getTarget() {
+function getTarget() : GameObject {
 	return target;
 }
 

@@ -10,8 +10,9 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 	var turretPrefab : GameObject;
 	
 	var firingSoundPath : String = "Sounds/Bleep";
+	var switchSoundPath : String = "Sounds/Empty Clip";
 	var reloadingSoundPath : String = "Sounds/Empty Clip";
-	var reloadFinishSoundPath : String = "Sounds/Empty Clip";
+	var reloadFinishSoundPath : String = "Sounds/Bleep";
 		
 	function TurretPlacerWeapon(owner : GameObject) {
 		this.rateOfFire = 20;
@@ -30,6 +31,7 @@ class TurretPlacerWeapon extends ProjectileWeapon {
 		this.zedMovement = owner.GetComponent(ZedMovement);
 		this.zedResources = owner.GetComponent(ZedResources);
 		this.spawnOffset = new Vector2(1,0);
+		this.switchSound = Resources.Load(switchSoundPath) as AudioClip;
 		this.firingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadingSound = Resources.Load(firingSoundPath) as AudioClip;
 		this.reloadFinishSound = Resources.Load(reloadFinishSoundPath) as AudioClip;

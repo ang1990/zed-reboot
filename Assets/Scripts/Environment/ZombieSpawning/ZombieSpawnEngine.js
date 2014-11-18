@@ -95,11 +95,11 @@ function startNextWave() {
 		waveNum++;
 	}
 	else {
-		Debug.Log("Starting Wave: " + waveNum);
+//		Debug.Log("Starting Wave: " + waveNum);
 		spawnJobs = waves[waveNum%waves.Count].getWaveSpawns();
-		Debug.Log(waves[waveNum%waves.Count].getWaveSpawns().Count);
-		Debug.Log(spawnJobs.Count);
-		Debug.Log("Wave type: " + waveNum%waves.Count);
+//		Debug.Log(waves[waveNum%waves.Count].getWaveSpawns().Count);
+//		Debug.Log(spawnJobs.Count);
+//		Debug.Log("Wave type: " + waveNum%waves.Count);
 		waveNum++;
 	// We could step up difficulty by sets of waves. That kind of makes more sense.
 	// If we do that, we could put all that work in here.
@@ -130,7 +130,7 @@ function handleSpawnJobs() {
 	var i : int = 0;
 	while (i < spawnJobs.Count) {
 		if (spawnJobs[i].isExpired()) {
-			Debug.Log("Spawn job expired.");
+//			Debug.Log("Spawn job expired.");
 			spawnJobs.RemoveAt(i);
 		} else {
 			if (spawnJobs[i].compareTag("zombie")) {

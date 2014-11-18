@@ -18,7 +18,7 @@ function Start() {
 
 function Update () {
 	var laserPerk : LaserPerk = zedResources.activePerks.getLaserPerk();
-	if (Input.GetKeyDown("l")) {
+	if (Input.GetKeyDown("l") && laserPerk != null) {
 		laserPerk.toggleActive();
 	}
 	if (laserPerk != null && laserPerk.isActive() && zedResources.currentWeaponIndex != 0) {

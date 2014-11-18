@@ -1,15 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Turret\BarrelTurner.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zed\ZedResources.js">
     <Files>
-      <File FileName="Assets\Scripts\Miscellaneous\gameStateController.js" Line="1" Column="1" />
-      <File FileName="Assets\Pause Menu\PauseMenu.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment\TimedObjectDestructor.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" Line="53" Column="4" />
-      <File FileName="Assets\Scripts\Weapon\TurretPlacerWeapon.js" Line="93" Column="15" />
-      <File FileName="Assets\Scripts\Weapon\Weapon.js" Line="59" Column="16" />
-      <File FileName="Assets\Scripts\Turret\MiniturretBehaviour.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Turret\BarrelTurner.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zed\ZedResources.js" Line="8" Column="9" />
+      <File FileName="Assets\Scripts\Visuals\HudMain.js" Line="1" Column="1" />
+      <File FileName="Assets\waveOverlay.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zed\Perk\LaserSight.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Miscellaneous\levelUpOverlay.js" Line="1" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

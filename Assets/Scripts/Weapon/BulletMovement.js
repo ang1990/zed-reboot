@@ -99,7 +99,7 @@ private function checkCollision() {
 		}
 		if(indexHit < raycastHit2D.Length) {
 			var firstHitObject : GameObject = raycastHit2D[indexHit].collider.gameObject;
-			Debug.Log(firstHitObject.tag);
+//			Debug.Log(firstHitObject.tag);
 			
 			var stopLocation : Vector3 = _transform.position +
 							raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;

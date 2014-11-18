@@ -10,12 +10,12 @@ function Start(){}
 
 function plotNewPosition() {} // Plot new position.
 
-function getTarget() { // Determine the zombie’s current target.
+function getTarget() : GameObject { // Determine the zombie’s current target.
 	return null;
 }
 
-function getTargetVisualRange() {
-	return 0;
+function getTargetVisualRange() : float {
+	return 0.0;
 }
 
 function setTarget(target : GameObject) {}

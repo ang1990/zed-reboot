@@ -22,6 +22,7 @@ function Start() {
 			Random.Range(-maxStartSpeed, maxStartSpeed));
 	angularSpeed = new Vector3(0, 0, Random.Range(-maxEulerAngularSpeed, maxEulerAngularSpeed));
 	stopped = false;
+	coins = Random.Range(1,4);
 }
 
  
@@ -53,4 +54,5 @@ function collect(zedResources : ZedResources) {
 	AudioSource.PlayClipAtPoint(clinkSound,_transform.position);
 	Destroy(gameObject);
 	zedResources.changeMoney(coins);
+	zedResources.gainExperience(1);
 }
