@@ -40,10 +40,7 @@ function Update () {
 					}
 					break;
 				case MineSpawnState.Spawn:
-					var chance = Random.Range(0.0,1.0);
-					Debug.Log(chance);
-					if(chance < chanceToSpawn) {
-						Debug.Log("spawn");
+					if(Random.Range(0.0,1.0) < chanceToSpawn) {
 						mineArray.Add(Instantiate(minePrefab, spotInBox(), Quaternion.identity) as GameObject);
 						minesInField++;
 					}

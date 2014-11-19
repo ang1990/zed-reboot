@@ -289,9 +289,21 @@ function purchaseTurret(_type : int) {
 
 function purchaseTurretAmmo() {
 	zedResources.changeMoney(-scannerTurretCost);
+	var bought : boolean = false;
 	for(weapon in zedResources.weapons) {
 		if(weapon.id == "turretplacer") {
 			weapon.addClips(1);
+			bought = true;
+		}
+		if(bought) break;
+	}
+	if(!bought) {
+		for(weapon in zedResources.weapons) {
+			if(weapon.id == "nullWeapon") {
+				weapon = new TurretPlacerWeapon(zedResources.gameObject);
+				bought = true;
+			}
+			if(bought) break;
 		}
 	}
 }

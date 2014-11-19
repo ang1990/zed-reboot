@@ -5,13 +5,13 @@
 
 #pragma strict
 
+import System.Collections.Generic;
+
 var spawnEngine : ZombieSpawnEngine;
 var normalZombiePrefab : GameObject;
-var minePrefab : GameObject;
 var bossZombiePrefab : GameObject;
 var suicideZombiePrefab : GameObject;
-var singleWave : ZombieWave;
-var inMap : Vector2;
+var waves : List.<ZombieWave>;
 
 function Start () {
 	// possible commands:
@@ -24,42 +24,58 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, position, spread)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
-	inMap = getEnvironmentBounds();
-	
-	singleWave = new ZombieWave();
-	spawnEngine.isEndless = false;
 
-	singleWave.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
-	singleWave.spawnContinuous(bossZombiePrefab, 120, 10000, 140, Edge.LEFT);
-	
-//	singleWave.spawnContinuous(minePrefab, 0, 10000, 2500, Vector2.zero, inMap);
-	
-	singleWave.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
-	singleWave.spawnContinuous(suicideZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
+	var numWaves : int = 5;
 
+	spawnEngine.isEndless = true;
 
-	singleWave.spawnContinuous(suicideZombiePrefab, 80, 10000, 400, Edge.LEFT);
-	singleWave.spawnContinuous(normalZombiePrefab, 170, 10000, 600, Edge.RIGHT);
-	singleWave.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.BOTTOM);
-	singleWave.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
-	singleWave.spawnContinuous(suicideZombiePrefab, 45, 10000, 400, Edge.LEFT);
-	singleWave.spawnContinuous(suicideZombiePrefab, 80, 10000, 400, Edge.BOTTOM);
+	for (var i : int = 0; i < numWaves; i++)
+		waves.Add(new ZombieWave());
 
-	singleWave.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.RIGHT);
+	// Basic wave.		
+	waves[0].spawnContinuous(normalZombiePrefab, 0, 12, 7, Edge.LEFT);	
+	waves[0].spawnContinuous(normalZombiePrefab, 5, 12, 6, Edge.BOTTOM);
+	waves[0].spawnContinuous(normalZombiePrefab, 0, 12, 7, Edge.RIGHT);
+	// Basic wave plus more zombies.
+	waves[1].spawnContinuous(normalZombiePrefab, 0, 12, 9, Edge.LEFT);	
+	waves[1].spawnContinuous(normalZombiePrefab, 4, 12, 6, Edge.BOTTOM);
+	waves[1].spawnContinuous(normalZombiePrefab, 0, 12, 9, Edge.RIGHT);
+	// Suicide wave.
+	waves[2].spawnContinuous(suicideZombiePrefab, 0, 12, 4, Edge.LEFT);	
+	waves[2].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.LEFT);
+	waves[2].spawnContinuous(normalZombiePrefab, 12, 12, 6, Edge.BOTTOM);
+	waves[2].spawnContinuous(suicideZombiePrefab, 12, 12, 6, Edge.BOTTOM);
+	waves[2].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.RIGHT);
+	waves[2].spawnContinuous(suicideZombiePrefab, 0, 12, 4, Edge.RIGHT);
 	
-	spawnEngine.addWave(singleWave);
+	// Boss wave + normals.
+	waves[3].spawnSingle(bossZombiePrefab, 0, Edge.RIGHT);
+	waves[3].spawnSingle(bossZombiePrefab, 0, Edge.LEFT);
+	waves[3].spawnContinuous(normalZombiePrefab, 0, 12, 5, Edge.LEFT);	
+	waves[3].spawnContinuous(normalZombiePrefab, 5, 12, 5, Edge.BOTTOM);
+	waves[3].spawnContinuous(normalZombiePrefab, 5, 12, 5, Edge.TOP);
+	waves[3].spawnContinuous(normalZombiePrefab, 0, 12, 5, Edge.RIGHT);
 	
-//	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 0, 150, 130, Edge.LEFT);
-//	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.RIGHT);
-//	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.TOP);
-//	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 10, 150, 130, Edge.BOTTOM);
+	// More bosses / suicides / normals.
+	waves[4].spawnSingle(bossZombiePrefab, 0, Edge.RIGHT);
+	waves[4].spawnSingle(bossZombiePrefab, 0, Edge.RIGHT);
+	waves[4].spawnSingle(bossZombiePrefab, 15, Edge.BOTTOM);
+	waves[4].spawnSingle(bossZombiePrefab, 15, Edge.BOTTOM);
+	waves[4].spawnSingle(bossZombiePrefab, 25, Edge.LEFT);
+	waves[4].spawnSingle(bossZombiePrefab, 25, Edge.LEFT);
+	waves[4].spawnContinuous(suicideZombiePrefab, 0, 12, 2, Edge.LEFT);	
+	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.LEFT);
+	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.BOTTOM);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.BOTTOM);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.BOTTOM);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.BOTTOM);
+	waves[4].spawnSingle(suicideZombiePrefab, 10, Edge.BOTTOM);
+	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 9, Edge.LEFT);
+	waves[4].spawnContinuous(normalZombiePrefab, 0, 12, 6, Edge.RIGHT);
+	waves[4].spawnContinuous(suicideZombiePrefab, 0, 12, 2, Edge.RIGHT);
 	
+	for (wave in waves) {
+		spawnEngine.addWave(wave);
+	}
 	
-//	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 0, 1, 3, Vector2(4, 4), Vector2(1, 1));
-//	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 50, 25, Vector2(2, 0), Vector2(2, 2));
-}
-
-function getEnvironmentBounds() : Vector2 {
-	return Vector2(EnvironmentAttributes.rightBound, EnvironmentAttributes.topBound);
 }
